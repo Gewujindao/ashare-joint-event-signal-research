@@ -1,0 +1,31 @@
+# c2_full_perturb  avail_MB_at_start=3265  job_cap_1GiB=True
+scores read from scratch cache <BLIND_ROOT>\evaluator\tmp\c2_cache_full.npz
+# [  2.9s] scores and market ready; rows 2019-11-26..2026-10-09  peak_ws_MB=477
+
+==== WINDOW V target 5, version 2, conservative: 20 perturbed runs (start shift 0-4 x 4 seeds); annualised net excess over B, %/yr ====
+  shift 0 (start 2020-01-03, 727 days) | unperturbed   22.54 | perturbed   22.54   22.54   22.54   22.54
+  shift 1 (start 2020-01-06, 726 days) | unperturbed   22.54 | perturbed   22.54   22.54   22.54   22.54
+  shift 2 (start 2020-01-07, 725 days) | unperturbed   22.92 | perturbed   22.92   22.92   22.92   22.92
+  shift 3 (start 2020-01-08, 724 days) | unperturbed   22.53 | perturbed   22.53   22.53   22.53   22.53
+  shift 4 (start 2020-01-09, 723 days) | unperturbed   22.86 | perturbed   22.86   22.86   22.86   22.86
+  20 runs: min 22.53 | mean 22.68 | sd 0.18 | sd/mean 0.008 | target 5 (min > 0 and sd <= mean/3): PASS
+# [  9.9s] perturb V  peak_ws_MB=477
+
+==== WINDOW SEL target 5, version 2, conservative: 20 perturbed runs (start shift 0-4 x 4 seeds); annualised net excess over B, %/yr ====
+  shift 0 (start 2023-01-03, 359 days) | unperturbed   15.35 | perturbed   15.35   15.35   15.35   15.35
+  shift 1 (start 2023-01-04, 358 days) | unperturbed   14.85 | perturbed   14.85   14.85   14.85   14.85
+  shift 2 (start 2023-01-05, 357 days) | unperturbed   14.78 | perturbed   14.78   14.78   14.78   14.78
+  shift 3 (start 2023-01-06, 356 days) | unperturbed   15.08 | perturbed   15.08   15.08   15.08   15.08
+  shift 4 (start 2023-01-09, 355 days) | unperturbed   15.42 | perturbed   15.42   15.42   15.42   15.42
+  20 runs: min 14.78 | mean 15.09 | sd 0.27 | sd/mean 0.018 | target 5 (min > 0 and sd <= mean/3): PASS
+# [ 13.7s] perturb SEL  peak_ws_MB=477
+
+==== WINDOW HOLD target 5, version 2, conservative: 20 perturbed runs (start shift 0-4 x 4 seeds); annualised net excess over B, %/yr ====
+  shift 0 (start 2024-07-01, 551 days) | unperturbed   27.17 | perturbed   27.17   27.17   27.17   27.17
+  shift 1 (start 2024-07-02, 550 days) | unperturbed   27.78 | perturbed   27.78   27.78   27.78   27.78
+  shift 2 (start 2024-07-03, 549 days) | unperturbed   25.08 | perturbed   25.08   25.08   25.08   25.08
+  shift 3 (start 2024-07-04, 548 days) | unperturbed   25.51 | perturbed   25.51   25.51   25.51   25.51
+  shift 4 (start 2024-07-05, 547 days) | unperturbed   26.30 | perturbed   26.30   26.30   26.30   26.30
+  20 runs: min 25.08 | mean 26.37 | sd 1.03 | sd/mean 0.039 | target 5 (min > 0 and sd <= mean/3): PASS
+# [ 20.7s] perturb HOLD  peak_ws_MB=477
+# done  elapsed_s=20.7  peak_workingset_MB=477  peak_commit_MB=469

@@ -1,0 +1,25 @@
+# c3_scores  avail_MB_at_start=6465  job_cap_1GiB=True
+data rows 3102, last date 2026-10-09 ; mode extend ; tag scores
+# [  9.4s] stage1  peak_ws_MB=629
+# [ 13.8s] stage2  peak_ws_MB=710
+# [ 35.4s] stage3  peak_ws_MB=789
+# [ 38.5s] stage4  peak_ws_MB=789
+# [ 44.2s] stage5  peak_ws_MB=789
+pool: first day 2015-01-12 (row 250); fit segment ends 2019-12-31 (row 1463)
+model file bytes 408799
+# [112.4s] frozen scores ready, rows 3102, last 2026-10-09  peak_ws_MB=789
+list check (frozen rule, no exclusions) against record_SEL.npz: 1085 days 2020-01-03..2024-06-27 ; max |x diff| 0.000e+00 ; max |buys diff| 0.0
+score cache written: <BLIND_ROOT>\design\stageC3\cache_c3_scores.npz (23.6 MB)
+# [117.8s] market ready; rows 2019-11-26..2026-10-09  peak_ws_MB=789
+WINDOW V    n=727 | v2 MAIN conservative: annS 29.73 annB 7.19 | T1 excess %/yr 22.54 (arith 18.95) | T2 t 2.90 | TE %/d 0.6984 | ddS 19.15 ddB 26.26 | NAV S 2.1190 B 1.2218
+   against evaluator record_c2_full_V.npz: dates same True | navz max |diff| 0.000e+00 | navBz max |diff| 0.000e+00 | days with different held list 0 | IDENTICAL
+# [118.0s] window V  peak_ws_MB=789
+WINDOW SEL  n=359 | v2 MAIN conservative: annS 5.61 annB -9.74 | T1 excess %/yr 15.35 (arith 17.75) | T2 t 1.39 | TE %/d 0.9599 | ddS 36.93 ddB 29.29 | NAV S 1.0808 B 0.8641
+   against evaluator record_c2_full_SEL.npz: dates same True | navz max |diff| 0.000e+00 | navBz max |diff| 0.000e+00 | days with different held list 0 | IDENTICAL
+# [118.2s] window SEL  peak_ws_MB=789
+WINDOW HOLD n=551 | v2 MAIN conservative: annS 48.27 annB 21.11 | T1 excess %/yr 27.17 (arith 20.52) | T2 t 2.33 | TE %/d 0.8201 | ddS 29.45 ddB 23.09 | NAV S 2.3661 B 1.5200
+   against evaluator record_c2_full_HOLD.npz: dates same True | navz max |diff| 0.000e+00 | navBz max |diff| 0.000e+00 | days with different held list 0 | IDENTICAL
+   hold-out readings vs evaluator report (+27.17, t 2.33, drawdown 29.45): got (27.17, 2.33, 29.45) -> MATCH
+# [118.3s] window HOLD  peak_ws_MB=789
+REPRODUCTION PASSED
+# done  elapsed_s=118.3  peak_workingset_MB=789  peak_commit_MB=781

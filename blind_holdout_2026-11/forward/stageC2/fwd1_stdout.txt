@@ -1,0 +1,39 @@
+﻿# c2_fwd1  avail_MB_at_start=2146  job_cap_1GiB=True
+data rows 3123, last date 2026-11-09 ; mode extend ; tag fwd1
+# [  7.2s] stage1  peak_ws_MB=634
+# [ 11.0s] stage2  peak_ws_MB=716
+# [ 30.5s] stage3  peak_ws_MB=795
+# [ 33.6s] stage4  peak_ws_MB=795
+# [ 40.2s] stage5  peak_ws_MB=795
+pool: first day 2015-01-12 (row 250); fit segment ends 2019-12-31 (row 1463)
+model file bytes 408799
+list check (frozen rule, no exclusions) against record_SEL.npz, 1085 days 2020-01-03..2024-06-27 ; max |x diff| 0.000e+00 ; max |buys diff| 0.0
+# [120.2s] scores and market ready; rows 2019-11-26..2026-11-09  peak_ws_MB=795
+# [121.9s] accounts plan  peak_ws_MB=795
+# [123.0s] accounts baseline  peak_ws_MB=795
+
+==== PREFIX CHECK: rows 2024-07-01..2026-10-09 (551 days) of the extended run against the saved hold-out records ====
+plan vs record_c2_full_HOLD.npz: days whose held / bought / sold list differs 0 / 0 / 0 | nav max|diff| 0.000e+00 days 0 | navz 0.000e+00 days 0 | navB 0.000e+00 days 0
+  report only (conservative benchmark): navBz max|diff| 8.739e-03, days that differ 38
+baseline vs record_c3_main.npz: navz (HOLD_nav_ii) max|diff| 0.000e+00 days 0 | plan navz (HOLD_navz) 0.000e+00 days 0 | report only: navBz (HOLD_navB) 8.739e-03 days 38
+PREFIX CHECK PASSED
+hold-out records (record_c3_main.npz HOLD_navz, HOLD_nav_ii): plan minus baseline daily mean -2.02 bp, sd 0.5542%, t -0.86 (551 days)
+
+==== FORWARD SEGMENT 2026-10-12..2026-11-09  n = 21 trading days (after 2026-10-09) ====
+plan MAIN (slip 0.1%/side, conservative) | strategy -9.90% | benchmark B -9.48% | cumulative excess -0.42 pts | daily difference mean -0.020% sd 0.766% | maxDD strategy 12.44% B 12.91%
+plan trades: buys 105 sells 105 | holdings share by amt60 quintile (lowest..highest | not in pool): 0.743 0.114 0.031 0.038 0.074 0.000 | lowest-quintile share 0.743
+plan series ended while held in the segment: 0
+plan events: buy blocked at the open 0 | one lot unaffordable 2 | no cash for one lot 0 | pending-sell days 0 | pending at end 0
+plan report only, slip 0.02%/side conservative | strategy -9.57% | B -9.48% | excess -0.08 pts
+plan report only, last-close valuation          | strategy -9.90% | B -9.36% | excess -0.54 pts
+baseline MAIN (slip 0.1%/side, conservative) | strategy -11.64% | benchmark B -9.48% | cumulative excess -2.15 pts | daily difference mean -0.113% sd 0.697% | maxDD strategy 13.39% B 12.91%
+baseline trades: buys 12 sells 12 | holdings share by amt60 quintile (lowest..highest | not in pool): 0.809 0.191 0.000 0.000 0.000 0.000 | lowest-quintile share 0.809
+baseline series ended while held in the segment: 0
+baseline events: buy blocked at the open 0 | one lot unaffordable 0 | no cash for one lot 0 | pending-sell days 0 | pending at end 0
+baseline report only, slip 0.02%/side conservative | strategy -11.61% | B -9.48% | excess -2.12 pts
+baseline report only, last-close valuation          | strategy -11.64% | B -9.36% | excess -2.27 pts
+F6 plan minus baseline: cumulative difference +1.74 pts (sum of daily differences +1.96) | SE = 0.5542% x sqrt(21) = 2.54 pts | range -4.98 to +4.98
+F1 centre +1.00 pts, SE 3.76, range -6.37 to +8.37
+extension codes without qfq anchor 002084,002155,002445,002906,600984: held by plan ['002084'] | held by baseline none | in benchmark B pool ['002084', '002155', '002445', '002906', '600984'] | in the pool on forward decision days: 0 stock-days
+series saved: <BLIND_ROOT>\forward\forward_series.npz (0.05 MB)
+# done  elapsed_s=123.1  peak_workingset_MB=795  peak_commit_MB=787

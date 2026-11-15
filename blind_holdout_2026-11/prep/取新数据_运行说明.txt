@@ -1,0 +1,131 @@
+【注】这是第 1 段的历史记录，命令里的路径已失效；每月运行以 forward\每月运行说明.txt 为准。
+取新数据（2026-10-10 以后的沪深主板日线）运行说明
+写定时间：2026-11-09 17:55（本机时钟，取自 date 命令）
+状态：2026-11-09 18:59 已装包并联网验证（单只 + 30 只小批量 + 30 只拼接试跑），整批还没有运行。实测结果和确切命令见第九节；
+      第一至八节是验证前写的原文，与第九节不一致的地方以第九节为准。
+
+一、现状
+  - 本机环境 <PYTHON_ENV>（Python 3.10.11）里没有 baostock 包（pip show 返回 not found）；pandas 2.3.3、numpy 1.26.4 已有。
+  - 本目录下还没有 pylibs\ 和 data_new\。
+  - 本地日线到 2026-10-09 为止。评测时建的全量面板 evaluator\data_full\ 已在评测收尾时删除，第 4 步需要评测者一侧重新提供一份到 2026-10-09 的全量面板。
+  - 脚本：prep\fetch_baostock_range.py（取数）、prep\build_panel_extension.py（拼延伸段并核对）。
+
+二、需要批准的事
+  1. 联网装一个包（PyPI，约 0.1 MB，装到本目录 pylibs\，不动环境本身）。
+  2. 联网取数（Baostock 匿名接口，约 6,660 次请求，2–3.5 小时）。
+  3. 在本目录新建 pylibs\ 和 data_new\ 并写入（合计约 30 MB）。
+  不需要账号、密码或密钥；脚本里没有任何凭据。不进入旧量化项目目录。
+
+三、批准后依次运行（解释器记作 PY = python；工作目录 = 本目录）
+  第 0 步  装包（由协议方执行；几秒）
+      PY -m pip install --target "<BLIND_ROOT>\pylibs" --no-deps baostock==0.9.1
+    - 必须带 --no-deps：baostock 只依赖 pandas，环境里已有。不带的话 pip 会把 pandas、numpy 也装进 pylibs\（一百多 MB），并且会盖过环境里的 numpy。
+    - 0.9.1 是旧项目环境里用过的版本（摘要 B4）；PyPI 上若没有这个版本号，去掉 “==0.9.1”。
+    - 装完核对（不联网）：PY -I -X utf8 -c "import sys; sys.path.insert(0, r'<BLIND_ROOT>\pylibs'); import baostock; print(baostock.__version__)"
+
+  第 1 步  用一只股票验证接口（联网；3 次请求，几秒；不写任何文件）
+      PY -I -X utf8 prep\fetch_baostock_range.py --start 2026-09-21 --end 2026-11-09 --dry-run-one
+    看输出：
+    - 没有 AssertionError（字段名与脚本里写的一致）；
+    - trade calendar 一行：2026-09-21 至 2026-10-09 应是 9 个交易日（09-21、22、23、24、28、29、30、10-08、10-09），10-12 起每个工作日一天；
+    - CHECK 1 为 True（两次请求的日期与交易日历相同）；
+    - CHECK 2 每行为 True（成交额 ÷ 成交量落在最低价与最高价之间，说明成交量单位是股）；
+    - CHECK 3：tradestatus 只有 '1'（或含 '0'）、isST 只有 '0'/'1'、日期形如 2026-09-21；
+    - CHECK 4 人工看一眼：preclose 等于前一日收盘；turn 是百分数；该股区间后没有除权时 qfq 行与原价行相同。
+    任何一项不对就停，把输出交回，不要改脚本硬跑。
+
+  第 2 步  全量取数（联网；2–3.5 小时；可中断，重跑同一条命令续跑）
+      PY -I -X utf8 prep\fetch_baostock_range.py --start 2026-09-21 --end 2026-11-09
+    - --start 2026-09-21 是为了与旧面板留出 9 个重叠交易日；不要改小重叠。
+    - --end 取“北京时间 18:00 已过”的最后一个交易日（Baostock 当日 17:30 入库日线、18:00 入库复权因子）。本地时间每天 02:00 以后，北京当天的数据才算齐。
+      脚本自己会拒绝还没入库完的 --end。区间一旦开始取就不能改；要换区间就换一个 --out 目录。
+    - 输出：data_new\raw\<代码>.csv（3,329 个）、data_new\trade_dates.csv、data_new\fetch_log.txt（每只一行：进度、行数、速度、预计剩余）、data_new\fetch_meta.json。
+    - 结束时日志最后一行以 COMPLETE 或 INCOMPLETE 开头；INCOMPLETE 就再跑同一条命令，直到 COMPLETE。
+    - 可调：--sleep-request（同一只两次请求之间，默认 0.35 秒）、--sleep-code（两只之间，默认 0.5 秒）、--relogin-every（默认每 200 只重登一次）、
+      --retries（默认 3）、--extra-codes 文件（可选，每行一个 6 位代码；补充代码只落 CSV，不进第 3 步的延伸段）。
+
+  第 3 步  拼延伸段并核对（不联网；约 10–20 秒，内存约 250 MB）
+      PY -I -X utf8 prep\build_panel_extension.py --old-panel <评测者一侧提供的全量面板路径>
+    - 旧面板可以是按截断副本规则定锚的全量面板（evaluator\build_full.py 的产物），也可以是源面板；两种情况下输出都落在截断副本的同一个锚上
+      （脚本先用重叠日的 close_qfq 比值的中位数把新下载对到旧面板，再乘上与数据切分方相同的 close_raw[T] ÷ close_qfq[T]；旧面板已定锚时后一个因子恰好是 1）。
+    - 输出：data_new\ashare_mainboard_ext_<首个新日期>_<最后新日期>.npz（只含 2026-10-09 之后的日期；16 个成员、3,329 个代码、顺序与截断副本相同）
+      和 data_new\build_report.txt。
+
+四、预计耗时与大小
+  请求数   = 2 × 代码数 + 1（交易日历）+ 每 200 只一次登录 = 2 × 3,329 + 1 + 17 ≈ 6,676
+  耗时     = 代码数 ×（2 × 单次请求耗时 + 0.35 + 0.5 秒）；单次请求 0.6–1.5 秒时为 3,329 × 2.05–3.85 秒 = 1.9–3.6 小时
+             （旧项目记录：新会话每分钟约 28 只，折合 2.0 小时；27 个交易日 × 3,180 只的区间下载实际用了 2 小时 35 分）
+  大小     = 每只约 30 行 × 约 150 字节 ≈ 4.6 KB，合计约 15 MB（按 4 KB 簇约占磁盘 27 MB）；延伸段 npz 约 2 MB；baostock 包约 0.1 MB
+
+五、怎样验证结果
+  1. data_new\fetch_meta.json：status = COMPLETE，n_on_disk = 3,329，n_missing = 0。
+  2. data_new\build_report.txt：
+     - “per day” 表：每个新交易日“有记录的代码数”和“可交易数”与重叠日同一量级（约 3,100–3,200）；最后一天明显偏少说明当天数据还没入库完。
+     - “overlap check, raw members”：8 个原价/量额数组和 tradable、st 的不同单元格数都应为 0。
+     - “overlap check, qfq”：最大离散度应远小于 1e-5（float32 舍入约 1e-7）；超过容差的代码数为 0。
+     - 末尾 RESULT 一行为 CLEAN。若为 NOT CLEAN，下面逐只列出原因（哪个数组、几天不同，或前复权比值离散度），先解决再用。
+     - “codes with g != 1”：旧面板已按截断副本定锚时为 0；传入的是源面板时为几百只，属正常。
+  3. 延伸段接到全量面板、并核对 2026-10-09 及以前逐位不变，是评测者一侧的事，这里没有写脚本。
+
+六、常见失败与处理
+  - FileExistsError …\data_new\fetch.lock：上一次运行还在，或被强行结束后锁没删。确认没有别的取数进程后手工删掉 fetch.lock 再跑。
+  - login failed，或 “attempt k of 4 failed” 反复出现（Baostock 网络错误，旧记录里出现过 10002007）：脚本每只最多重试 3 次、每次先重新登录；
+    连续 5 只失败就停（日志写 STOPPED）。过一会儿重跑同一条命令，已取完的不会重取。
+  - 报“用户未登录”（10001001）：机器上有另一个 Baostock 进程登出了同一个匿名会话。同一时间只能有一个 Baostock 进程；确认后重跑。
+  - 速度明显下降（每分钟从二十多只掉到十只以下）：Ctrl+C 停掉，加 --relogin-every 100 重跑。
+  - AssertionError “end … is later than the last day Baostock has finished loading”：把 --end 改成前一个交易日，或等到本地时间 02:00 以后。
+  - AssertionError “a resumed run must use the same range and code list”：续跑时改了区间或代码表。恢复原参数；确要换区间，换一个 --out 目录从头取。
+  - AssertionError 出在 rs.fields 或 “raw and qfq dates differ”：接口行为与脚本假设不同。停下交回，不要绕过。
+  - 第 3 步 “the fetch is not complete”：回第 2 步跑到 COMPLETE。
+  - 第 3 步 “the overlap days are not exactly the last days of the old panel”：交易日历与旧面板对不上（缺日或旧面板不是到 2026-10-09 的那份）。交回。
+  - 第 3 步 NOT CLEAN 且不同的单元格几乎都在“新数据标为不可交易”的行上：说明旧面板对停牌日的记法与本脚本不同
+    （本脚本：tradable = tradestatus 为 1，价格照 Baostock 原样保留）。这是映射规则问题，交回由协议方定，不逐只打补丁。
+
+七、需要研究者知道的事
+  - 要联网两次：装包一次（PyPI），取数一次（Baostock 服务器）。取数约 2–3.5 小时，期间机器不能休眠或断网；断了可以续跑。
+  - 占用：一个 Python 进程，单线程，BelowNormal 优先级，内存不到 100 MB，CPU 几乎都在等网络；机器可以照常使用。
+    它是运行超过 30 秒的 Python 进程，按计算名额规则算占一个名额。
+  - 磁盘约 30 MB，全部在本目录的 pylibs\ 和 data_new\ 下。
+  - 取回的只是公开行情；得到的新日子从 2026-10-12 起（到 2026-11-09 约 21 个交易日），是此后唯一没被任何人看过的数据。
+  - 2024-06-28 以后上市的股票不在代码表里，延伸段里没有它们；方案的股票池要求此前至少 750 个可交易日，它们在 2027 年年中以前进不了池。
+
+八、写脚本时拿不准、运行前要验证的点（代码里都用 “VERIFY BEFORE RUN” 标出）
+  1. baostock 的接口名、参数名和字段名（login、query_history_k_data_plus、query_trade_dates；字段 date,code,open,high,low,close,preclose,volume,amount,turn,tradestatus,isST；
+     adjustflag 3 = 不复权、2 = 前复权）是凭记忆写的。第 1 步专门验证这一点。
+  2. 成交量单位（股）、换手率单位（百分数）、preclose 是否为除权参考价：第 1 步的 CHECK 2、CHECK 4 和第 3 步的重叠日核对共同验证。
+  3. 停牌日 Baostock 是否返回行、旧面板对停牌日怎样记：只能靠第 3 步的重叠日核对发现。
+  4. Baostock 的入库时间（17:30、18:00）是凭记忆写的；保险起见 --end 取前一个交易日也可以。
+  5. 2026-09-25 休市是按“旧面板 08-24 至 10-09 共 29 个交易日”推出来的，没有查交易所日历；以第 1 步打印的交易日历为准。
+  6. socket 超时（默认 60 秒）对 baostock 内部连接是否生效没有验证；若出现长时间无输出，Ctrl+C 后续跑。
+
+九、2026-11-09 验证记录（实测；整批未运行）
+  装包     baostock 0.9.4（PyPI，--no-deps，装在 pylibs\，118 个文件 0.28 MB）；只依赖 pandas，没有补装别的。详见 pylibs\INSTALLED.txt。
+  接口     第八节第 1、2 条凭记忆写的内容全部正确，取数逻辑没有改：login() 不带参数；query_history_k_data_plus / query_trade_dates；12 个字段名；
+           adjustflag 3 = 原价、2 = 前复权；日期 YYYY-MM-DD；成交量单位股、成交额单位元、换手率是百分数；preclose 等于上一日收盘；
+           tradestatus 取 '1'/'0'，isST 取 '0'/'1'。原价 4 位小数，前复权价 10 位小数，换手率 6 位小数。
+  停牌日   有行：四个价格都等于停牌前收盘，volume、amount、turn 是空字符串（读成 NaN），tradestatus = 0。旧面板的记法完全相同。
+  退市     退市后没有行（30 只里有 2 只的行在 10 月中旬终止，2 只整个区间无行，得到只有表头的文件）。
+  交易日历 2026-09-21 至 2026-11-09 共 30 个交易日 = 重叠 9 天（到 10-09）+ 新 21 天（10-12 至 11-09）；09-25 确实休市。
+  对账     30 只 × 9 个重叠日 = 270 格：8 个原价/量额数组、tradable、st 与旧面板逐格相同（0 格不同）；前复权比值离散度最大 7.5e-08；
+           30 只里 4 只的比例不等于 1（10-09 之后有除权）。延伸段 16 个成员的名称、顺序、类型与截断副本相同。
+           旧面板 close_qfq × g 与截断副本 close_qfq 的最大相对差 5.9e-08（30 只，2024-06-28 及以前全部日期），定锚因子与数据切分方一致。
+  速度     每次请求平均 0.49 秒（0.2 至 1.4 秒）；60 次日线请求 0 次失败；每只连同两段间隔约 1.8 秒，每分钟约 33 只。
+           整批 3,329 只预计约 1.7 小时（会话变慢时到 2.5 小时）；CSV 每只约 4.05 KB，合计约 13.5 MB（占磁盘约 27 MB）；延伸段约 2.5 MB。
+  续跑     取到第 3 只时按 PID 强行结束，再跑同一条命令：从第 4 只接着取，已有的 3 只没有重取，没有残留 .tmp。
+           强行结束后 fetch.lock 会留下，要手工删掉才能再跑（Ctrl+C 或正常结束不会留）。
+  重试     人为弄断连接两种情况（本地套接字被关、对端关闭连接）：都是第 1 次失败、重新登录后第 2 次成功，各约 6 秒。
+  脚本改动（fetch_baostock_range.py；build_panel_extension.py 只改了文件头的状态说明）
+    1. 新增 --blind-after（默认 2026-10-09）：--dry-run-one 对这个日期之后的行只打印格式掩码（N.dddd），不打印数值；CHECK 2 对这些行只打印 True/False。
+    2. 新增 GuardedSocket：baostock 0.9.4 的收包循环在服务器关闭连接时会无限空转（recv 一直返回空），超时不起作用；
+       现在这种情况变成 10002007 错误，进入原有的重登重试。
+    3. 导入 baostock 的几行移到 load_baostock()；文件头状态说明更新。
+  整批运行（一条 PowerShell 命令；-I 会忽略 PYTHONPATH，包路径由 --pylibs 给出，所以不需要设 PYTHONPATH）
+    & 'python' -I -X utf8 '<BLIND_ROOT>\prep\fetch_baostock_range.py' --start 2026-09-21 --end 2026-11-09 --pylibs '<BLIND_ROOT>\pylibs' --out '<BLIND_ROOT>\data_new\raw' | Out-File -Encoding utf8 '<BLIND_ROOT>\data_new\fetch_stdout.txt'; exit $LASTEXITCODE
+    进度日志（脚本自己写，UTF-8，逐只一行）：data_new\fetch_log.txt；状态：data_new\fetch_meta.json。退出码 0 = COMPLETE，3 = 未取完（再跑同一条）。
+    日志第一行的 pid 才是真正的 Python 进程；Scripts\python.exe 是虚拟环境的启动器，它的 PID 不同。
+  拼接（整批 COMPLETE 之后；不联网，约 10–20 秒）
+    & 'python' -I -X utf8 '<BLIND_ROOT>\prep\build_panel_extension.py' --old-panel '<DATA_ROOT>\mainboard_live_20261009.npz' --raw-dir '<BLIND_ROOT>\data_new\raw'
+    输出 data_new\ashare_mainboard_ext_20261012_20261109.npz 和 data_new\build_report.txt。报告会打印新日期每天“有记录的代码数、可交易数”（不含价格）。
+  其他文件 data_new\overlap_old_tail.npz：旧面板最后 15 个交易日（2026-09-11 至 2026-10-09）× 3,404 个代码 × 16 个成员，1.6 MB。
+           它不能直接当 --old-panel 用：定锚因子 g 要用 2024-06-30 以前的行，只有全量旧面板里有。
+           data_new\trial30\：30 只试跑的全部产物（代码表、CSV、日志、延伸段、报告），可以删。

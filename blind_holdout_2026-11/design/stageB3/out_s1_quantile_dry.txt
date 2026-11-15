@@ -1,0 +1,7 @@
+# s1_quantile_dry  avail_MB_at_start=3317  job_cap_1GiB=True
+mode=dry  signal days 2022-07-01..2022-12-30  rows in window=125  pool mean names/day=2685
+signal | matured signal days | cold1 | cold10 | cold30 | seg10_50 | hot10 | psi = cold10/(cold10-hot10) | cold1 < seg10_50
+S1_max20 | 104 | +2.80 | +3.36 | +3.92 | +3.64 | -6.59 | 0.338 | yes
+S2_vol20 | 104 | +3.34 | +2.66 | +3.18 | +3.53 | -8.40 | 0.241 | yes
+S3_comp4 | 104 | +4.07 | +5.91 | +5.31 | +3.77 | -10.76 | 0.354 | no
+# done  elapsed_s=3.6  peak_workingset_MB=359  peak_commit_MB=351

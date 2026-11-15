@@ -1,0 +1,4 @@
+# s3_baseline_sel  avail_MB_at_start=3314  job_cap_1GiB=True
+mode=sel  window 2023-01-03..2024-06-28  days=359  pool=2822  board events in window (pool)=1981  stamp 0.1% days=158
+annualised excess %=1.099  daily ratio=0.2586  t=4.90  mean out-of-market share %=0.479
+# done  elapsed_s=1.9  peak_workingset_MB=595  peak_commit_MB=587

@@ -1,0 +1,16 @@
+# c2_v2_random  avail_MB_at_start=3234  job_cap_1GiB=True
+scores read from scratch cache <TMP>/c2_cache_v2.npz
+# [  2.6s] scores and market ready; rows 2019-11-26..2024-06-28  peak_ws_MB=356
+
+==== WINDOW V target 4, version 2, conservative: random selection in the same buyable set, exact engine, 200 seeds ====
+  final NAV: strategy 2.1190 | B 1.2218 | random mean 1.0055 sd 0.1066 min 0.7475 median 1.0005 q97.5 1.2206 max 1.3805 | strategy above 200 of 200 | z 10.44 | target 4: PASS
+  last-close valuation (report only): strategy 2.1190 | random mean 1.0066 q97.5 1.2206
+  rhythm: strategy mean holdings 49.23 buys 3680 ended 0 | random mean holdings 49.92 buys 3680 ended per run 0.06
+# [ 39.0s] random V  peak_ws_MB=356
+
+==== WINDOW SEL target 4, version 2, conservative: random selection in the same buyable set, exact engine, 200 seeds ====
+  final NAV: strategy 1.0808 | B 0.8634 | random mean 0.7765 sd 0.0478 min 0.6556 median 0.7743 q97.5 0.8779 max 0.9280 | strategy above 200 of 200 | z 6.37 | target 4: PASS
+  last-close valuation (report only): strategy 1.0839 | random mean 0.7783 q97.5 0.8780
+  rhythm: strategy mean holdings 49.42 buys 1840 ended 1 | random mean holdings 49.95 buys 1840 ended per run 0.14
+# [ 57.3s] random SEL  peak_ws_MB=356
+# done  elapsed_s=57.3  peak_workingset_MB=356  peak_commit_MB=347

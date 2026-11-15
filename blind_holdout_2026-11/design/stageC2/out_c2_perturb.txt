@@ -1,0 +1,22 @@
+# c2_perturb  avail_MB_at_start=3332  job_cap_1GiB=True
+scores read from scratch cache <TMP>/c2_cache.npz
+# [  2.1s] scores and market ready; rows 2019-11-26..2024-06-28  peak_ws_MB=355
+
+==== WINDOW V target 5: 20 perturbed runs (start shift 0-4 days x 4 seeds); annualised net excess over B, %/yr ====
+  shift 0 (start 2020-01-03, 727 days) | unperturbed   20.39 | perturbed   20.39   20.39   20.39   20.39
+  shift 1 (start 2020-01-06, 726 days) | unperturbed   21.01 | perturbed   21.01   21.01   21.01   21.01
+  shift 2 (start 2020-01-07, 725 days) | unperturbed   20.90 | perturbed   20.90   21.21   21.21   20.90
+  shift 3 (start 2020-01-08, 724 days) | unperturbed   20.47 | perturbed   20.76   20.47   20.47   20.47
+  shift 4 (start 2020-01-09, 723 days) | unperturbed   20.74 | perturbed   20.74   21.04   20.74   20.74
+  20 runs: min 20.39 | mean 20.76 | sd 0.29 | sd/mean 0.014 | target 5 (min > 0 and sd <= mean/3): PASS
+# [  9.2s] perturb V  peak_ws_MB=355
+
+==== WINDOW SEL target 5: 20 perturbed runs (start shift 0-4 days x 4 seeds); annualised net excess over B, %/yr ====
+  shift 0 (start 2023-01-03, 359 days) | unperturbed   15.42 | perturbed   15.42   15.42   15.42   15.42
+  shift 1 (start 2023-01-04, 358 days) | unperturbed   14.97 | perturbed   14.97   14.97   14.97   14.97
+  shift 2 (start 2023-01-05, 357 days) | unperturbed   14.82 | perturbed   14.82   14.82   14.82   14.82
+  shift 3 (start 2023-01-06, 356 days) | unperturbed   15.14 | perturbed   15.14   15.14   15.14   15.14
+  shift 4 (start 2023-01-09, 355 days) | unperturbed   15.64 | perturbed   15.64   15.64   15.64   15.64
+  20 runs: min 14.82 | mean 15.20 | sd 0.30 | sd/mean 0.020 | target 5 (min > 0 and sd <= mean/3): PASS
+# [ 12.7s] perturb SEL  peak_ws_MB=355
+# done  elapsed_s=12.7  peak_workingset_MB=355  peak_commit_MB=347

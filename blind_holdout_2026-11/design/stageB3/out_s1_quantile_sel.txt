@@ -1,0 +1,7 @@
+# s1_quantile_sel  avail_MB_at_start=3316  job_cap_1GiB=True
+mode=sel  signal days 2023-01-03..2024-06-28  rows in window=359  pool mean names/day=2780
+signal | matured signal days | cold1 | cold10 | cold30 | seg10_50 | hot10 | psi = cold10/(cold10-hot10) | cold1 < seg10_50
+S1_max20 | 338 | +4.43 | +4.71 | +3.50 | +2.32 | -8.43 | 0.358 | no
+S2_vol20 | 338 | +8.12 | +5.50 | +3.92 | +2.22 | -9.96 | 0.356 | no
+S3_comp4 | 338 | +4.15 | +3.52 | +3.23 | +2.45 | -10.68 | 0.248 | no
+# done  elapsed_s=4.9  peak_workingset_MB=375  peak_commit_MB=367

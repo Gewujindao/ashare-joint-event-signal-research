@@ -1,0 +1,25 @@
+{
+ "criterion": {
+  "lgb_rank": {
+   "years": 5,
+   "ratio_wins": 4,
+   "ic_wins": 5,
+   "both_wins": 4,
+   "passes": true
+  },
+  "lgb_bin": {
+   "years": 5,
+   "ratio_wins": 0,
+   "ic_wins": 1,
+   "both_wins": 0,
+   "passes": false
+  }
+ },
+ "benchmark": {
+  "cagr": 0.0035834461416301977,
+  "mdd": 0.38106328783944166,
+  "ret": 0.016688577290827178,
+  "yearly": "{\"2022\": -0.1388, \"2023\": -0.0311, \"2024\": 0.0068, \"2025\": 0.2818, \"2026\": -0.0559}"
+ },
+ "seconds": 48
+}

@@ -1,0 +1,4 @@
+# s3_baseline_dry  avail_MB_at_start=3316  job_cap_1GiB=True
+mode=dry  window 2022-07-01..2022-12-30  days=125  pool=2782  board events in window (pool)=1050  stamp 0.1% days=125
+annualised excess %=1.512  daily ratio=0.3756  t=4.20  mean out-of-market share %=0.741
+# done  elapsed_s=1.7  peak_workingset_MB=536  peak_commit_MB=528

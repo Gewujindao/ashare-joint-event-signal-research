@@ -1,0 +1,11 @@
+# c4_pool  avail_MB_at_start=4963  job_cap_1GiB=True
+data rows 3102, last date 2026-10-09 ; mode extend ; tag pool
+# [  7.7s] stage1  peak_ws_MB=629
+# [ 12.1s] stage2  peak_ws_MB=710
+# [ 32.6s] stage3  peak_ws_MB=789
+# [ 35.6s] stage4  peak_ws_MB=789
+# [ 43.5s] stage5  peak_ws_MB=789
+pool: first day 2015-01-12 (row 250); fit segment ends 2019-12-31 (row 1463)
+t0 250 (2015-01-12); r0 225 (2014-12-04); rows 3102; pool size on t0 1727
+# peak_ws_MB=789
+# done  elapsed_s=44.8  peak_workingset_MB=789  peak_commit_MB=781

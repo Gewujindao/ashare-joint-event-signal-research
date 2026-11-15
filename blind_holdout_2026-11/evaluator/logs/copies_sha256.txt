@@ -1,0 +1,10 @@
+﻿design\stage2\common.py | 0985643AFB8F3602 | COPY IDENTICAL
+design\stageC1\c1_run.py | 4ADAF5F5952BD6D5 | COPY IDENTICAL
+design\stageC1\record_SEL.npz | 0DBA174014A9AD5C | COPY IDENTICAL
+design\stageC2\c2_core.py | 731C01A18DD0B4FA | COPY IDENTICAL
+design\stageC2\c2b_run.py | D4D7A10477D00B46 | COPY IDENTICAL
+design\stageC2\c2_prefix_check.py | E0632DF31E4C6C3E | COPY IDENTICAL
+design\stageC2\c2_test.py | 411DFD12B4169DAA | COPY IDENTICAL
+design\stageC2\record_c2_v2_V.npz | A0AD8B1F13A14C70 | COPY IDENTICAL
+design\stageC2\record_c2_v2_SEL.npz | 346A675B91CC3556 | COPY IDENTICAL
+design\stageC1\g_model.pkl | 1BC646C0CF1925C9 | read in place

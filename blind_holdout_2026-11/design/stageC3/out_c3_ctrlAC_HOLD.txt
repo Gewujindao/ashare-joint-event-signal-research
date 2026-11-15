@@ -1,0 +1,26 @@
+# c3_ctrlAC_HOLD  avail_MB_at_start=6090  job_cap_1GiB=True
+# [  4.1s] ready; rows 2019-11-26..2026-10-09  peak_ws_MB=666
+
+==== WINDOW HOLD  2024-07-01..2026-10-09  551 days | ctrlAC | seeds done 200 ====
+  plan: final NAV 2.3661, ann 48.27, maxDD 29.45, excess over B 27.17 %/yr, t 2.33 | B: final NAV 1.5200, ann 21.11
+  control final NAV: mean 1.8411 sd 0.1436 min 1.4809 median 1.8325 q97.5 2.1518 max 2.2590 | plan above 200 of 200 | z 3.66 | plan > q97.5: YES
+  control annualised %: mean 32.10 sd 4.68 q2.5 24.19 q97.5 41.97 | maxDD %: mean 24.63 (min 18.17 max 30.72) | excess over B %/yr: mean 11.00 | t vs B: mean 1.25, share >= 2: 0.085
+  rhythm: plan mean holdings 49.72 buys 2800 cost %/yr 7.43 | control mean holdings 49.82 buys 2798 ended/run 0.32 lot-unaffordable/run 16.2 cost %/yr 7.70
+  holdings by amt60 quintile (low..high | none): plan 0.677 0.119 0.044 0.023 0.135 0.001 | control (first 20 seeds) 0.603 0.168 0.062 0.028 0.133 0.006
+  plan minus mean control path: daily mean 4.68 bp, sd 0.409%, t 2.69 (the mean path has almost no selection noise of its own)
+  by quarter: plan % | control mean % | difference pts | plan above k of 200
+    2024Q3 64 d |   22.08 |   18.21 |    3.88 | 184
+    2024Q4 61 d |   22.43 |   11.43 |   11.00 | 198
+    2025Q1 57 d |   10.24 |    4.63 |    5.61 | 192
+    2025Q2 60 d |   26.07 |   14.62 |   11.44 | 200
+    2025Q3 66 d |   10.73 |   10.32 |    0.41 | 118
+    2025Q4 60 d |    5.34 |    5.05 |    0.29 | 120
+    2026Q1 56 d |    0.94 |    2.99 |   -2.05 | 47
+    2026Q2 60 d |  -20.78 |  -14.08 |   -6.71 | 0
+    2026Q3 65 d |   21.88 |   13.02 |    8.86 | 200
+    2026Q4  2 d |    0.21 |    0.59 |   -0.38 | 37
+    2026-04 21 d |    2.29 |    3.48 |   -1.19 | 47
+    2026-05 18 d |  -11.08 |   -7.20 |   -3.89 | 1
+    2026-06 21 d |  -12.90 |  -10.53 |   -2.37 | 17
+# [ 17.3s] window HOLD  peak_ws_MB=666
+# done  elapsed_s=17.3  peak_workingset_MB=666  peak_commit_MB=657

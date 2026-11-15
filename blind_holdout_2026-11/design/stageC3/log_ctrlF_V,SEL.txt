@@ -1,0 +1,21 @@
+# c3_ctrlF_VSEL  avail_MB_at_start=5745  job_cap_1GiB=True
+# [  3.5s] ready; rows 2019-11-26..2026-10-09  peak_ws_MB=665
+
+==== WINDOW SEL  2023-01-03..2024-06-28  359 days | ctrlF | seeds done 200 ====
+  plan: final NAV 1.0808, ann 5.61, maxDD 36.93, excess over B 15.35 %/yr, t 1.39 | B: final NAV 0.8641, ann -9.74
+  control final NAV: mean 0.9146 sd 0.0473 min 0.8110 median 0.9146 q97.5 1.0165 max 1.0421 | plan above 200 of 200 | z 3.52 | plan > q97.5: YES
+  control annualised %: mean -6.10 sd 3.40 q2.5 -11.87 q97.5 1.16 | maxDD %: mean 36.70 (min 32.20 max 41.29) | excess over B %/yr: mean 3.64 | t vs B: mean 0.50, share >= 2: 0.000
+  rhythm: plan mean holdings 49.42 buys 1840 cost %/yr 8.88 | control mean holdings 49.40 buys 1837 ended/run 0.16 lot-unaffordable/run 24.0 cost %/yr 9.03
+  holdings by amt60 quintile (low..high | none): plan 0.742 0.114 0.033 0.015 0.090 0.005 | control (first 20 seeds) 0.681 0.150 0.055 0.021 0.089 0.004
+  plan minus mean control path: daily mean 4.88 bp, sd 0.339%, t 2.72 (the mean path has almost no selection noise of its own)
+# [ 12.4s] window SEL  peak_ws_MB=665
+
+==== WINDOW V  2020-01-03..2022-12-30  727 days | ctrlF | seeds done 200 ====
+  plan: final NAV 2.1190, ann 29.73, maxDD 19.15, excess over B 22.54 %/yr, t 2.90 | B: final NAV 1.2218, ann 7.19
+  control final NAV: mean 1.4794 sd 0.1314 min 1.0929 median 1.4746 q97.5 1.7705 max 1.8431 | plan above 200 of 200 | z 4.87 | plan > q97.5: YES
+  control annualised %: mean 14.44 sd 3.53 q2.5 7.93 q97.5 21.90 | maxDD %: mean 21.73 (min 18.15 max 26.67) | excess over B %/yr: mean 7.25 | t vs B: mean 1.05, share >= 2: 0.035
+  rhythm: plan mean holdings 49.23 buys 3680 cost %/yr 8.97 | control mean holdings 49.14 buys 3664 ended/run 0.00 lot-unaffordable/run 106.2 cost %/yr 9.38
+  holdings by amt60 quintile (low..high | none): plan 0.691 0.113 0.037 0.031 0.126 0.001 | control (first 20 seeds) 0.639 0.149 0.051 0.032 0.126 0.003
+  plan minus mean control path: daily mean 4.98 bp, sd 0.324%, t 4.15 (the mean path has almost no selection noise of its own)
+# [ 32.7s] window V  peak_ws_MB=665
+# done  elapsed_s=32.7  peak_workingset_MB=665  peak_commit_MB=657

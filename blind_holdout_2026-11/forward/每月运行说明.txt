@@ -1,0 +1,45 @@
+说明：下文路径中的 <BLIND_ROOT> 指本目录（blind_holdout_2026-11）原来所在的位置。
+第 1、2 步加了 --panel（原默认的 data\ashare_mainboard_to_20240628.npz 已删除；这两步只用面板里的代码表，data_full_ext 里的全量面板代码集合和顺序相同）。
+三份 stageC1\c1_run.py 第 10 行为冻结原文（指向冻结时的目录；经 c2_core.py 调用时这一行不起作用，单独运行 c1_run.py 会因为找不到 common 而失败），c2_core.py 会校验它的哈希；以后搬目录不要改写这一行。
+
+每月前瞻读数的运行说明（下个月起原样重跑；方案和基线都不改）
+写定：2026-11-09，第 1 段用的就是这四步（第 1 段的旧面板是量化项目的 mainboard_live_20261009.npz，此后改用上一段的 data_full_ext）。
+
+记号（PowerShell；工作目录任意，路径都写全）
+  $PY  = 'python'
+  $Q   = "<BLIND_ROOT>"
+  $TAG = 本段标签，例如 202612；$START = 上一段面板最后 9 个交易日的第一天（第 2 段为 2026-10-28）；$END = 本段最后一个完整交易日（北京时间 18:00 已过）
+  $PREVFULL = 上一段的全量面板（第 2 段为 $Q\data_full_ext\ashare_mainboard_full_20261109.npz）；$PREVSER = 上一段的序列文件（第 2 段为 $Q\forward\forward_series.npz）
+  第 2 段可以直接复制的赋值（其中 $TAG、$END 两行只是格式示例，要按上面的约定改成本段的实际值）：
+    $TAG      = '202612'        # 示例，改成本段的标签
+    $START    = '2026-10-28'
+    $END      = '2026-12-31'    # 示例，改成本段最后一个完整交易日
+    $PREVFULL = "$Q\data_full_ext\ashare_mainboard_full_20261109.npz"
+    $PREVSER  = "$Q\forward\forward_series.npz"
+  第 1、2 步的 --panel 指向的 data_full_ext\ashare_mainboard_full_20261109.npz 以后清理时不能删（它给出代码表和顺序）。
+  资源：同一时间只跑一个 Python；启动前 \Memory\Available MBytes ≥ 2,000；C 盘剩余 ≥ 20 GB（每段全量面板约 300 MB）。
+
+第 1 步  取数（联网，约 2 小时；中断后重跑同一条命令续跑；退出码 0 = COMPLETE，3 = 再跑一次）
+  New-Item -ItemType Directory -Force "$Q\data_new_$TAG" | Out-Null; & $PY -I -X utf8 "$Q\prep\fetch_baostock_range.py" --start $START --end $END --pylibs "$Q\pylibs" --out "$Q\data_new_$TAG\raw" --panel "<BLIND_ROOT>\data_full_ext\ashare_mainboard_full_20261109.npz" | Out-File -Encoding utf8 "$Q\data_new_$TAG\fetch_stdout.txt"
+  看 $Q\data_new_$TAG\fetch_meta.json：status = COMPLETE，n_missing = 0，failed_this_run 为空。
+  中断后重跑会覆盖 fetch_stdout.txt；完整记录以 fetch_log.txt 为准（脚本按追加方式写）。
+
+第 2 步  拼延伸段（不联网，约 10 秒）
+  & $PY -I -X utf8 "$Q\prep\build_panel_extension.py" --old-panel $PREVFULL --raw-dir "$Q\data_new_$TAG\raw" --panel "<BLIND_ROOT>\data_full_ext\ashare_mainboard_full_20261109.npz"
+  看 $Q\data_new_$TAG\build_report.txt：最后一天的“有记录 / 可交易”与前几日同一量级。
+  预期结果（第 2 段起）：RESULT 为 NOT CLEAN，列出的正好是 002084、002155、002445、002906、600984 这 5 只，每只只有一条原因
+  “has new rows but no overlap day with a valid close_qfq: qfq left as NaN”；脚本退出码 4（只要有一只被列出，退出码就是 4，不是 0）。
+  原因：这 5 只在第 1 段的旧源面板里 2026-08-21 之后无记录，没有锚点，延伸段前复权价留空；上一段全量面板在本段重叠日里它们的前复权价仍为空，于是又没有锚点。
+  它们的原始价、可交易标记在重叠日来自上一次的 Baostock 数据，正常情况下与本次一致，不会报 differs。
+  若列出别的代码、少了其中某只、这 5 只出现别的原因（例如某个成员 differs），或 RESULT 为 CLEAN，就先停下，不接第 3 步。
+
+第 3 步  接到全量面板并逐位核对（不联网，约 35 秒；末行 CHECK PASSED，退出码 0）
+  & $PY -I -X utf8 "$Q\forward\concat_ext.py" $PREVFULL (Get-ChildItem "$Q\data_new_$TAG\ashare_mainboard_ext_*.npz").FullName "$Q\data_full_ext\ashare_mainboard_full_$($END -replace '-','').npz"
+
+第 4 步  重跑与读数（不联网，约 2 分钟，峰值约 800 MB；每段只运行一次）
+  & $PY -X utf8 "$Q\forward\stageC2\fwd_run.py" "$Q\data_full_ext\ashare_mainboard_full_$($END -replace '-','').npz" $END fwd_$TAG "$Q\forward\forward_series_$TAG.npz" $PREVSER
+  输出 $Q\forward\stageC2\out_c2_fwd_$TAG.txt。脚本先核对 2026-10-09 以前与留出段记录、再核对上一段序列文件的全部日子，名单和净值都相同（PREFIX CHECK PASSED）才输出本段读数；
+  不通过则退出码 5，本段读数作废，先查原因，不改方案。其他退出码：4 = 名单核对失败（LIST CHECK FAILED，对 stageC1\record_SEL.npz），
+  3 = 超过 285 秒被看门狗停掉（stage2\common.py），1 = 断言失败或其他异常（包括启动时可用内存不足 2,000 MB）。
+  输出里没有 PREFIX CHECK PASSED、末尾没有“series saved”（序列已保存）这一行，这段读数就不算数；被看门狗停掉时换个机器空闲的时间重跑，不改方案。本段读数之后另有“all forward days”两行：全部前瞻日接起来的方案减基准 B、方案减基线的普通 t（读法见 PREDICTIONS_forward.txt“之后怎样累积”）。
+  下一段把 $PREVFULL 换成本段的全量面板，$PREVSER 换成 forward_series_$TAG.npz。

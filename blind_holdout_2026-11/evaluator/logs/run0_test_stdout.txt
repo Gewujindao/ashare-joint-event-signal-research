@@ -1,0 +1,34 @@
+﻿# c2_test  avail_MB_at_start=3173  job_cap_1GiB=True
+1 day0 build: A 4900 sh, B 1500 sh, min commission twice       engine 101620.514015  hand 101620.514015  OK
+2 day1 sell A at 10.50 (old stamp) + buy C 2500 sh             engine 104926.506125  hand 104926.506124  OK
+3 day2 sell B blocked (limit-down open) + buy D blocked        engine 100576.506125  hand 100576.506124  OK
+4 day3 pending B sold at 29.00 + E capped at 1% ADV (1900 sh)  engine 98759.519965  hand 98759.519964  OK
+5 day4 F: one lot unaffordable; G cut by cash to 3600 sh       engine 99388.159605  hand 99388.159605  OK
+6 day5 E series ended: main keeps last close                   engine 98528.159605  hand 98528.159605  OK
+7 day5 E series ended: conservative marks it 0                 engine 89028.159605  hand 89028.159605  OK
+7b conservative equals main before the end of the series       engine 99388.159605  hand 99388.159605  OK
+7c conservative overlay on the last-close account, day5 (丙二补 main reading) engine 89028.159605  hand 89028.159605  OK
+7c conservative overlay, day4 (nothing ended yet)              engine 99388.159605  hand 99388.159605  OK
+12b decide (version 2): best candidate (2) excluded by X -> buy 3, sell 0 engine 1.000000  hand 1.000000  OK
+12b decide (version 2): held stock flagged by X is not sold for that reason; no candidate left engine 1.000000  hand 1.000000  OK
+8 counter nbuy                                                 engine 5.000000  hand 5.000000  OK
+8 counter nsell                                                engine 2.000000  hand 2.000000  OK
+8 counter pend_days                                            engine 1.000000  hand 1.000000  OK
+8 counter fail_block                                           engine 1.000000  hand 1.000000  OK
+8 counter fail_lot                                             engine 1.000000  hand 1.000000  OK
+8 counter cap_bind                                             engine 1.000000  hand 1.000000  OK
+8 counter cash_cut                                             engine 1.000000  hand 1.000000  OK
+8 counter fail_cash                                            engine 0.000000  hand 0.000000  OK
+8 positions that met a series end                              engine 1.000000  hand 1.000000  OK
+9 NAV at the open of day1 before trading (4900*10.5+1500*33.6+cash) engine 103240.514015  hand 103240.514015  OK
+10 fractional mode (decomposition only): 4995.004995 sh of A   engine 100943.550949  hand 100943.550949  OK
+11 benchmark hold account (49,900 sh of G) equity              engine 499446.055110  hand 499446.055110  OK
+12 decide: sell lowest held (0), buy best candidate (2)        engine 1.000000  hand 1.000000  OK
+12 decide: lowest held unsellable -> next lowest (1) is sold   engine 1.000000  hand 1.000000  OK
+12 decide: candidate not higher -> no swap                     engine 1.000000  hand 1.000000  OK
+12 decide: held stock out of pool is sold first                engine 1.000000  hand 1.000000  OK
+12 decide: empty slot filled by best buyable (3), then swap 0 -> 1 engine 1.000000  hand 1.000000  OK
+13 max drawdown 100 -> 110 -> 99 -> 120                        engine 0.100000  hand 0.100000  OK
+13 readings: daily difference day0 = 1%, day1 = 2% - 1%        engine 0.020000  hand 0.020000  OK
+ALL CHECKS PASSED
+# done  elapsed_s=0.0  peak_workingset_MB=28  peak_commit_MB=19

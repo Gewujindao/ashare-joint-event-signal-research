@@ -1,0 +1,4 @@
+# prefix_check  avail_MB_at_start=3250  job_cap_1GiB=True
+rows 700: events identical True ; decisions identical True ; out decisions in prefix 15638
+rows 1500: events identical True ; decisions identical True ; out decisions in prefix 24225
+# done  elapsed_s=2.1  peak_workingset_MB=600  peak_commit_MB=593

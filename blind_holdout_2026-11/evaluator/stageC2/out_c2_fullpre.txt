@@ -1,0 +1,95 @@
+# c2_fullpre  avail_MB_at_start=3188  job_cap_1GiB=True
+data rows 2551, last date 2024-06-28 ; mode extend ; tag fullpre
+# [  5.3s] stage1  peak_ws_MB=527
+# [  8.0s] stage2  peak_ws_MB=594
+# [ 22.5s] stage3  peak_ws_MB=661
+# [ 24.7s] stage4  peak_ws_MB=661
+# [ 29.2s] stage5  peak_ws_MB=661
+pool: first day 2015-01-12 (row 250); fit segment ends 2019-12-31 (row 1463)
+model file bytes 408799
+list check (frozen rule, no exclusions): decide() in set mode against record_SEL.npz, 1085 days 2020-01-03..2024-06-27 ; max |x diff| 0.000e+00 ; max |buys diff| 0.0
+# [ 81.6s] scores and market ready; rows 2019-11-26..2024-06-28  peak_ws_MB=661
+
+==== WINDOW V  2020-01-03..2022-12-30  727 days ====
+exclusions on decision days: frozen-pool stock-days 1841409 | X1 0.535% | X2 0.022% | X1 or X2 0.538% | mean pool size 2533, mean excluded per day 13.6
+benchmark B: frozen pool of 2020-01-02 = 2255 stocks (series ended 33) | version-2 pool = 2252 stocks (series ended 31)
+v1 last-close (round-1 main)         n=727 | annS   27.71 annB    7.32 | T1 excess %/yr   20.39 (arith   17.05) | T2 t  2.64 t551  2.30 TE %/d 0.692 | T3 ddS  17.75 ddB  26.15 | NAV S 2.0252 B 1.2262
+v1 conservative, round-1 sizing      n=727 | annS   21.10 annB    7.16 | T1 excess %/yr   13.95 (arith   11.90) | T2 t  1.77 t551  1.54 TE %/d 0.718 | T3 ddS  17.61 ddB  26.24 | NAV S 1.7374 B 1.2207
+v1 CONSERVATIVE (overlay)            n=727 | annS   21.69 annB    7.16 | T1 excess %/yr   14.53 (arith   12.55) | T2 t  1.84 t551  1.61 TE %/d 0.728 | T3 ddS  18.18 ddB  26.24 | NAV S 1.7618 B 1.2207
+v2 MAIN = CONSERVATIVE (overlay)     n=727 | annS   29.73 annB    7.19 | T1 excess %/yr   22.54 (arith   18.95) | T2 t  2.90 t551  2.53 TE %/d 0.698 | T3 ddS  19.15 ddB  26.26 | NAV S 2.1190 B 1.2218
+v2 last-close (report only)          n=727 | annS   29.73 annB    7.33 | T1 excess %/yr   22.40 (arith   18.83) | T2 t  2.89 t551  2.51 TE %/d 0.698 | T3 ddS  19.15 ddB  26.18 | NAV S 2.1190 B 1.2263
+v2 conservative, round-1 sizing      n=727 | annS   29.73 annB    7.19 | T1 excess %/yr   22.54 (arith   18.95) | T2 t  2.90 t551  2.53 TE %/d 0.698 | T3 ddS  19.15 ddB  26.26 | NAV S 2.1190 B 1.2218
+v2 conservative vs frozen-pool B     n=727 | annS   29.73 annB    7.16 | T1 excess %/yr   22.57 (arith   18.98) | T2 t  2.91 t551  2.53 TE %/d 0.698 | T3 ddS  19.15 ddB  26.24 | NAV S 2.1190 B 1.2207
+v2 slip 0.02% conservative (report)  n=727 | annS   35.27 annB    7.22 | T1 excess %/yr   28.05 (arith   23.11) | T2 t  3.54 t551  3.08 TE %/d 0.699 | T3 ddS  18.48 ddB  26.26 | NAV S 2.3904 B 1.2227
+v2 20k conservative (report)         n=727 | annS  -13.68 annB    6.97 | T1 excess %/yr  -20.65 (arith  -23.60) | T2 t -2.03 t551 -1.77 TE %/d 1.245 | T3 ddS  34.58 ddB  25.70 | NAV S 0.6542 B 1.2146
+v2 account: mean holdings 49.23 (min 45) | cash share mean 0.0742 | buys 3680 sells 3630 | turnover /yr 24.14 | cost %/yr 8.97 | gross excess (arith net + cost) 27.92 | cost / gross 0.321
+v2 account events: buy blocked 0 | one lot unaffordable 562 | no cash for one lot 0 | cut by cash 0 | 1% cap binding 0 | pending-sell days 0 | pending at end 0
+v2 holdings by amt60 quintile (lowest..highest | not in pool): 0.691 0.113 0.037 0.031 0.126 0.001
+series ended: v1 positions 8, carried 13.01% of last-close NAV | v2 positions 0, carried 0.00% of last-close NAV (0 CNY)
+VERSION 1 positions whose series ended:
+  code | decision day t | bought | last tradable | close_raw[t] | min close_raw rows t-20..t-1 | X1 (st in t-60..t) | X2 (close<1 in t-20..t) | ret5 %% | ret20 %% | limit-down closes rows t-9..t | amt60 quintile | score rank from top / pool | value last close / buy open | last 5 tradable closes (L = limit-down close)
+  000018 | 2020-01-02 | 2020-01-03 | 2020-01-06 | 0.27 | 0.24 | 1 | 1 |    3.8 |  -25.0 | 0 | 0 | 1 / 2255 | 1.000 | 12-30:0.27 12-31:0.27 01-02:0.27 01-03:0.27 01-06:0.27
+  000585 | 2022-05-18 | 2022-05-19 | 2022-05-23 | 0.35 | 0.32 | 1 | 1 |    2.9 |  -64.3 | 0 | 0 | 11 / 2627 | 1.000 | 05-17:0.35 05-18:0.35 05-19:0.35 05-20:0.35 05-23:0.35
+  000835 | 2022-05-13 | 2022-05-16 | 2022-05-20 | 0.32 | 0.31 | 1 | 1 |    0.0 |  -68.9 | 2 | 0 | 18 / 2627 | 1.094 | 05-16:0.33 05-17:0.33 05-18:0.33 05-19:0.33 05-20:0.35
+  002464 | 2022-06-23 | 2022-06-24 | 2022-06-27 | 0.27 | 0.28 | 1 | 1 |  -10.0 |  -87.1 | 0 | 0 | 1 / 2658 | 1.000 | 06-21:0.28 06-22:0.28 06-23:0.27 06-24:0.24L 06-27:0.26
+  002684 | 2022-06-23 | 2022-06-24 | 2022-06-24 | 0.63 | 0.61 | 1 | 1 |   -4.5 |  -72.1 | 0 | 0 | 14 / 2658 | 1.113 | 06-20:0.68 06-21:0.70 06-22:0.66 06-23:0.63 06-24:0.69
+  600086 | 2021-03-03 | 2021-03-04 | 2021-03-10 | 0.18 | 0.19 | 1 | 1 |  -10.0 |  -64.0 | 0 | 0 | 9 / 2519 | 0.889 | 03-04:0.18 03-05:0.17 03-08:0.18 03-09:0.17 03-10:0.16
+  600652 | 2022-06-14 | 2022-06-15 | 2022-06-15 | 1.08 | 0.80 | 1 | 1 |  -16.3 |    5.9 | 1 | 0 | 10 / 2650 | 1.102 | 06-09:1.14 06-10:1.19 06-13:1.20 06-14:1.08L 06-15:1.19
+  603996 | 2022-05-13 | 2022-05-16 | 2022-05-17 | 0.38 | 0.35 | 1 | 1 |    8.6 |  -60.4 | 2 | 0 | 11 / 2627 | 1.000 | 05-11:0.38 05-12:0.38 05-13:0.38 05-16:0.39 05-17:0.39
+VERSION 2 positions whose series ended:
+  code | decision day t | bought | last tradable | close_raw[t] | min close_raw rows t-20..t-1 | X1 (st in t-60..t) | X2 (close<1 in t-20..t) | ret5 %% | ret20 %% | limit-down closes rows t-9..t | amt60 quintile | score rank from top / pool | value last close / buy open | last 5 tradable closes (L = limit-down close)
+  v2 main YEAR 2020 | days 242 | strategy   25.86% | B   12.25% | difference   13.62 pts
+  v2 main YEAR 2021 | days 243 | strategy   33.59% | B   23.39% | difference   10.20 pts
+  v2 main YEAR 2022 | days 242 | strategy   26.03% | B  -11.79% | difference   37.81 pts
+  v2 main QUARTER 2020Q1 | days  57 | strategy    0.18% | B   -6.98% | difference    7.16 pts
+  v2 main QUARTER 2020Q2 | days  59 | strategy   11.17% | B    9.62% | difference    1.55 pts
+  v2 main QUARTER 2020Q3 | days  66 | strategy   15.26% | B    6.75% | difference    8.51 pts
+  v2 main QUARTER 2020Q4 | days  60 | strategy   -1.94% | B    3.12% | difference   -5.06 pts
+  v2 main QUARTER 2021Q1 | days  58 | strategy    8.17% | B   -1.33% | difference    9.51 pts
+  v2 main QUARTER 2021Q2 | days  60 | strategy    5.91% | B    9.12% | difference   -3.21 pts
+  v2 main QUARTER 2021Q3 | days  64 | strategy    4.15% | B    6.64% | difference   -2.49 pts
+  v2 main QUARTER 2021Q4 | days  61 | strategy   11.95% | B    7.46% | difference    4.49 pts
+  v2 main QUARTER 2022Q1 | days  58 | strategy    5.40% | B   -8.99% | difference   14.40 pts
+  v2 main QUARTER 2022Q2 | days  59 | strategy    9.29% | B    3.26% | difference    6.03 pts
+  v2 main QUARTER 2022Q3 | days  65 | strategy    0.57% | B  -10.27% | difference   10.84 pts
+  v2 main QUARTER 2022Q4 | days  60 | strategy    8.78% | B    4.60% | difference    4.18 pts
+record saved: <BLIND_ROOT>\evaluator\stageC2\record_c2_fullpre_V.npz (0.06 MB)
+# [ 82.9s] window V  peak_ws_MB=661
+
+==== WINDOW SEL  2023-01-03..2024-06-28  359 days ====
+exclusions on decision days: frozen-pool stock-days 997453 | X1 0.249% | X2 0.041% | X1 or X2 0.282% | mean pool size 2778, mean excluded per day 7.8
+benchmark B: frozen pool of 2022-12-30 = 2708 stocks (series ended 39) | version-2 pool = 2702 stocks (series ended 39)
+v1 last-close (round-1 main)         n=359 | annS    5.83 annB   -9.59 | T1 excess %/yr   15.42 (arith   17.53) | T2 t  1.43 t551  1.77 TE %/d 0.920 | T3 ddS  36.12 ddB  29.16 | NAV S 1.0840 B 0.8662
+v1 conservative, round-1 sizing      n=359 | annS   -0.23 annB   -9.86 | T1 excess %/yr    9.64 (arith   12.03) | T2 t  0.97 t551  1.20 TE %/d 0.933 | T3 ddS  35.79 ddB  29.31 | NAV S 0.9968 B 0.8625
+v1 CONSERVATIVE (overlay)            n=359 | annS   -0.33 annB   -9.86 | T1 excess %/yr    9.53 (arith   12.28) | T2 t  0.93 t551  1.15 TE %/d 0.996 | T3 ddS  37.43 ddB  29.31 | NAV S 0.9953 B 0.8625
+v2 MAIN = CONSERVATIVE (overlay)     n=359 | annS    5.61 annB   -9.80 | T1 excess %/yr   15.41 (arith   17.81) | T2 t  1.40 t551  1.73 TE %/d 0.960 | T3 ddS  36.93 ddB  29.29 | NAV S 1.0808 B 0.8634
+v2 last-close (report only)          n=359 | annS    5.82 annB   -9.53 | T1 excess %/yr   15.35 (arith   17.72) | T2 t  1.39 t551  1.72 TE %/d 0.961 | T3 ddS  36.93 ddB  29.14 | NAV S 1.0839 B 0.8671
+v2 conservative, round-1 sizing      n=359 | annS    5.61 annB   -9.80 | T1 excess %/yr   15.41 (arith   17.81) | T2 t  1.40 t551  1.73 TE %/d 0.960 | T3 ddS  36.93 ddB  29.29 | NAV S 1.0808 B 0.8634
+v2 conservative vs frozen-pool B     n=359 | annS    5.61 annB   -9.86 | T1 excess %/yr   15.47 (arith   17.88) | T2 t  1.40 t551  1.74 TE %/d 0.959 | T3 ddS  36.93 ddB  29.31 | NAV S 1.0808 B 0.8625
+v2 slip 0.02% conservative (report)  n=359 | annS    9.63 annB   -9.75 | T1 excess %/yr   19.38 (arith   21.51) | T2 t  1.68 t551  2.08 TE %/d 0.962 | T3 ddS  36.70 ddB  29.29 | NAV S 1.1399 B 0.8640
+v2 20k conservative (report)         n=359 | annS  -22.96 annB   -9.31 | T1 excess %/yr  -13.65 (arith  -17.99) | T2 t -1.31 t551 -1.62 TE %/d 1.034 | T3 ddS  31.05 ddB  28.17 | NAV S 0.6896 B 0.8700
+v2 account: mean holdings 49.42 (min 46) | cash share mean 0.0747 | buys 1840 sells 1790 | turnover /yr 24.16 | cost %/yr 8.88 | gross excess (arith net + cost) 26.69 | cost / gross 0.333
+v2 account events: buy blocked 0 | one lot unaffordable 210 | no cash for one lot 0 | cut by cash 0 | 1% cap binding 0 | pending-sell days 0 | pending at end 0
+v2 holdings by amt60 quintile (lowest..highest | not in pool): 0.742 0.114 0.033 0.015 0.090 0.005
+series ended: v1 positions 5, carried 8.19% of last-close NAV | v2 positions 1, carried 0.29% of last-close NAV (1554 CNY)
+VERSION 1 positions whose series ended:
+  code | decision day t | bought | last tradable | close_raw[t] | min close_raw rows t-20..t-1 | X1 (st in t-60..t) | X2 (close<1 in t-20..t) | ret5 %% | ret20 %% | limit-down closes rows t-9..t | amt60 quintile | score rank from top / pool | value last close / buy open | last 5 tradable closes (L = limit-down close)
+  002288 | 2024-04-11 | 2024-04-12 | 2024-06-26 | 2.78 | 2.82 | 0 | 0 |  -10.3 |   -5.8 | 0 | 1 | 14 / 2867 | 0.133 | 06-20:0.45L 06-21:0.43L 06-24:0.41L 06-25:0.39L 06-26:0.37L
+  002781 | 2023-06-28 | 2023-06-29 | 2023-07-04 | 0.44 | 0.40 | 1 | 1 |    4.8 |  -73.2 | 0 | 0 | 2 / 2731 | 0.955 | 06-28:0.44 06-29:0.43 06-30:0.42 07-03:0.41 07-04:0.42
+  600242 | 2023-06-16 | 2023-06-19 | 2023-06-20 | 0.24 | 0.23 | 1 | 1 |   -4.0 |  -46.7 | 0 | 0 | 1 / 2725 | 1.042 | 06-14:0.23 06-15:0.23 06-16:0.24 06-19:0.24 06-20:0.25
+  600306 | 2024-06-18 | 2024-06-19 | 2024-06-19 | 0.31 | 0.29 | 1 | 1 |   -3.1 |  -84.4 | 0 | 0 | 11 / 2853 | 0.935 | 06-13:0.31 06-14:0.29 06-17:0.31 06-18:0.31 06-19:0.29
+  603133 | 2024-06-25 | 2024-06-26 | 2024-06-26 | 0.29 | 0.30 | 1 | 1 |   -9.4 |  -85.4 | 0 | 0 | 10 / 2860 | 1.000 | 06-20:0.31 06-21:0.31 06-24:0.31 06-25:0.29 06-26:0.29
+VERSION 2 positions whose series ended:
+  code | decision day t | bought | last tradable | close_raw[t] | min close_raw rows t-20..t-1 | X1 (st in t-60..t) | X2 (close<1 in t-20..t) | ret5 %% | ret20 %% | limit-down closes rows t-9..t | amt60 quintile | score rank from top / pool | value last close / buy open | last 5 tradable closes (L = limit-down close)
+  002288 | 2024-04-11 | 2024-04-12 | 2024-06-26 | 2.78 | 2.82 | 0 | 0 |  -10.3 |   -5.8 | 0 | 1 | 14 / 2867 | 0.133 | 06-20:0.45L 06-21:0.43L 06-24:0.41L 06-25:0.39L 06-26:0.37L
+  v2 main YEAR 2023 | days 242 | strategy   19.34% | B    3.75% | difference   15.59 pts
+  v2 main YEAR 2024 | days 117 | strategy   -9.43% | B  -16.79% | difference    7.35 pts
+  v2 main QUARTER 2023Q1 | days  59 | strategy    7.89% | B    7.51% | difference    0.38 pts
+  v2 main QUARTER 2023Q2 | days  59 | strategy    1.52% | B   -0.47% | difference    1.99 pts
+  v2 main QUARTER 2023Q3 | days  64 | strategy    4.99% | B   -2.99% | difference    7.98 pts
+  v2 main QUARTER 2023Q4 | days  60 | strategy    3.78% | B   -0.04% | difference    3.83 pts
+  v2 main QUARTER 2024Q1 | days  58 | strategy   -2.52% | B   -6.25% | difference    3.73 pts
+  v2 main QUARTER 2024Q2 | days  59 | strategy   -7.09% | B  -11.24% | difference    4.15 pts
+record saved: <BLIND_ROOT>\evaluator\stageC2\record_c2_fullpre_SEL.npz (0.04 MB)
+# [ 83.6s] window SEL  peak_ws_MB=661
+# done  elapsed_s=83.6  peak_workingset_MB=661  peak_commit_MB=653

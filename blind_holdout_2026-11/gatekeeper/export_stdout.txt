@@ -1,0 +1,14 @@
+pid 47172
+wrote open_raw 3.0 s
+wrote high_raw 4.8 s
+wrote low_raw 6.8 s
+wrote close_raw 8.8 s
+wrote preclose_raw 10.6 s
+wrote open_qfq 12.2 s
+wrote high_qfq 13.8 s
+wrote low_qfq 15.5 s
+wrote close_qfq 17.1 s
+wrote volume_shares 18.6 s
+wrote amount_cny 20.2 s
+wrote turnover_pct 21.6 s
+{"source": "mainboard_live_20261009.npz", "dest": "<BLIND_ROOT>\\data\\ashare_mainboard_to_20240628.npz", "cut": "2024-06-30", "n_dates": 2551, "n_codes": 3329, "n_codes_source": 3404, "first_date": "2014-01-02", "last_date": "2024-06-28", "codes_without_anchor": 0, "members": {"dates": [[2551], "<U10"], "codes": [[3329], "<U6"], "tradable": [[2551, 3329], "bool"], "st": [[2551, 3329], "bool"], "open_raw": [[2551, 3329], "float32"], "high_raw": [[2551, 3329], "float32"], "low_raw": [[2551, 3329], "float32"], "close_raw": [[2551, 3329], "float32"], "preclose_raw": [[2551, 3329], "float32"], "open_qfq": [[2551, 3329], "float32"], "high_qfq": [[2551, 3329], "float32"], "low_qfq": [[2551, 3329], "float32"], "close_qfq": [[2551, 3329], "float32"], "volume_shares": [[2551, 3329], "float32"], "amount_cny": [[2551, 3329], "float32"], "turnover_pct": [[2551, 3329], "float32"]}, "bytes": 252881737, "seconds": 21.6, "peak_working_set_mb": 191.4, "peak_commit_mb": 182.5}

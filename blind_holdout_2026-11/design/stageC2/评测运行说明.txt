@@ -1,0 +1,55 @@
+丙二 给评测者的运行说明（第二版；2026-11-09 根定口径后更新，取代同日较早的第一版说明）
+评测对象：冻结模型 G + 持有 50 只、每天限额换 5 只的逐笔账户，加两条买入排除条件 X1、X2（第二版）。主口径 = 保守口径（价格序列终止的持仓记 0）。
+规则原件：design\stageC1\丙一_冻结与预测_运行前写定.txt（模型与规则）、stageC2\丙二_执行约定_运行前写定.txt（账户执行）、stageC2\丙二补_第二版与口径_运行前写定.txt（X1、X2 与口径）。
+设计者与实现方都没有见过留出段；本说明里的脚本只在截至 2024-06-28 的数据上跑过。
+
+一、需要的文件（都在 design\ 下，不要改动）
+  stageC1\c1_run.py（SHA256 前 16 位 4ADAF5F5952BD6D5，运行前自动核对）、stageC1\g_model.pkl（1BC646C0CF1925C9）、stageC1\record_SEL.npz
+  stage2\common.py
+  stageC2\c2_core.py、c2b_run.py（第二版的入口）、c2_test.py、c2_prefix_check.py
+  stageC2\record_c2_v2_V.npz、record_c2_v2_SEL.npz（截断数据上第二版的逐日名单与净值，前缀检查的对照）
+  （c2_run.py 是第一版的入口，评测不用。）
+数据：全量 npz 与截断副本同一格式（同 16 个成员），dates 升序且包含 2014-01-02 起的全部行。
+  注意：截断副本的 qfq 数组是整体乘以常数重新定锚的 float32；全量文件的 qfq 若不是同一批数乘以同一个常数，float32 舍入可能使个别特征排名并列处不同。
+  前缀检查就是用来发现这种情况的；不通过就按协议判评测作废，不要调整。
+
+二、资源与环境
+  解释器 python -X utf8；不装包。common.py 自动设置：单线程、BelowNormal、1 GiB 作业内存上限、285 秒看门狗、启动前可用内存 >= 2,000 MB。
+  同一时间只跑一个进程。截断数据上实测：main 82 秒、perturb 约 15 秒、random 约 60 秒，峰值工作集 656 MB。全量数据多约 570 行，
+  按行数外推 main 约 100 秒、峰值约 800 MB（接近 1 GiB 上限，未实测；若内存不足报错，原样报告协议方，不要改脚本）。
+  CACHE 参数是可选的临时文件（约 15 MB，窗口行的冻结分数），由 main 写、perturb 与 random 读；放在临时目录，评完删除。不给这个参数则每一步各自重算。
+
+三、运行顺序（工作目录 design\stageC2；FULL = 全量 npz 的路径；END = 全量数据最后一个交易日，应为 2026-10-09）
+  0. python c2_test.py                                     合成例子对手算，末行必须是 ALL CHECKS PASSED。
+  1. python c2b_run.py FULL 2024-06-28 main fullpre         只读到 2024-06-28 的行（脚本载入后立即截断），输出 record_c2_fullpre_{V,SEL}.npz。这一步不产生任何留出段的数。
+  2. python c2_prefix_check.py v2 fullpre 2024-06-28        前缀不变性检查之一：全量文件截到 2024-06-28 与截断副本比。两个窗口都必须 IDENTICAL，末行 PREFIX CHECK PASSED。
+  3. python c2b_run.py FULL END main full CACHE              正式运行。输出 out_c2_full.txt 与 record_c2_full_{V,SEL,HOLD}.npz。
+     开头的 list check：冻结规则（不加 X1、X2）的集合模拟在 2020-01-03 至 2024-06-27 的 1,085 日上必须与 record_SEL.npz 逐日相同（两个最大差都是 0），
+     否则程序以退出码 4 结束，不出任何账户读数。
+  4. python c2_prefix_check.py v2 full 2024-06-28           前缀不变性检查之二：V 窗（727 日）与选择窗（359 日）每天的持仓名单、成交的买入与卖出名单（按股票代码比）、
+     按最后收盘价的策略净值与基准 B 净值，在截断数据与全量数据上必须逐日完全相同（差 0），末行 PREFIX CHECK PASSED（退出码 0）；否则评测作废。
+     同时会打印一行 “report only, conservative valuation”：保守口径净值在两份数据上的差。它不参与通过与否。预期：V 窗基准有极小差（短数据末日停牌、后来恢复交易的股票），
+     选择窗在 2024-06-20 之后可能有差（截断数据里 002288 等股票的最后可交易日紧挨数据末日，分不清终止还是停牌）。把这一行原样报告。
+     检查脚本的三种结局：PREFIX CHECK PASSED（退出码 0）；PREFIX CHECK FAILED（退出码 5，名单有任何一天不同，评测作废）；
+     “LISTS IDENTICAL, NAV NOT BITWISE IDENTICAL”（退出码 7，名单全同但净值不是逐位相同，多半是前复权数组的 float32 舍入）——这不算通过，把那一行报告协议方，由协议方决定。
+  5. python c2b_run.py FULL END perturb full_perturb CACHE   目标 5（每个窗口 20 次扰动运行）。
+  6. python c2b_run.py FULL END random full_random CACHE     目标 4（每个窗口 200 个随机选股种子，精确引擎）。
+  留出窗 = 2024-07-01 至 2026-10-09（应为 551 个交易日；脚本要求这两天都是数据里的交易日，否则断言失败——那时请报告协议方，不要改窗口）。窗口首日现金起步，
+  首日开盘按 2024-06-28 收盘的名单建仓；基准 B 用 2024-06-28 的冻结股票池去掉 X1、X2 为真的股票。
+
+四、要报的数（out_c2_full*.txt 的 “==== WINDOW HOLD” 段；主口径 = 保守口径）
+  目标 1：“v2 MAIN = CONSERVATIVE (overlay)” 行的 T1 excess %/yr（复利口径；括号里是算术口径）。门槛 > 5。
+  目标 2：同一行的 T2 t（551 日时与 t551 相同）。门槛 >= 2。
+  目标 3：同一行的 ddS 与 ddB。要求 ddS <= ddB。
+  目标 4：out_c2_full_random.txt 的 strategy 期末净值与 q97.5（都是保守口径）。要求 strategy > q97.5。
+  目标 5：out_c2_full_perturb.txt 的 20 runs: min、mean、sd（保守口径）。要求 min > 0 且 sd <= mean/3。
+  两种口径都要输出并报告：除上面的主口径行，还要报 “v2 last-close (report only)” 行（按最后收盘价留账），以及 “series ended” 行和 “VERSION 2 positions whose series ended” 明细
+  （几笔、代码、买入日、最后可交易日、买入决定日的价格与 X1/X2）。
+  关于保守口径在留出窗的含义：序列终止 = 该股最后可交易日之后到数据末日（2026-10-09）再无可交易日。数据末日附近长期停牌的持仓会被当成终止记 0；
+  请在明细里标出最后可交易日距数据末日不足 20 个交易日的持仓，由协议方判断。
+  只报告、不参与判定：v1 开头的各行（第一版，不加 X1、X2）、“v2 conservative, round-1 sizing”、“v2 conservative vs frozen-pool B”、slip 0.02% 行、20k 行、
+  v2 account 行（平均持仓只数、现金比例、年换手、成本占毛超额的比例）、成交额五档分布、exclusions 行（X1、X2 排除的股票·日占比）、YEAR 与 QUARTER 各行。
+  协议乙写的敏感性口径是滑点每侧 0.05%；脚本算的是 0.02%。需要 0.05% 时由协议方另行指定，不要自行改脚本。
+
+五、不要做的事
+  不重新拟合、不调参、不改 X1、X2、不改约定；留出窗只读一次；任何一步断言失败或检查不通过，原样报告，不修脚本后重跑留出窗。
