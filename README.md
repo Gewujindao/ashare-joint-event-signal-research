@@ -1,5 +1,13 @@
 # A-share Joint-Event Buy Signal Research
 
+## At a glance
+
+- Short-horizon stock-selection research on China A-share main-board stocks, ending in a blind test: split the data first, design on the training segment, freeze the scheme, then evaluate the holdout once.
+- Over the 551-day holdout (2024-07 to 2026-10) the frozen scheme returned 48.27% annualised against 21.11% for benchmark B, an excess of +27.17 points with t = 2.33.
+- Verified by a separate evaluation step that confirmed identical decisions on truncated and full data before the single holdout run, with predictions written down in advance (section 6).
+
+![Blind holdout: annualised return vs. benchmark B, final NAV vs. random selection, and excess return across perturbed reruns](figures/summary.png)
+
 **中文简介**：本仓库是一个中国内地 A 股（沪深主板）短线选股研究的公开精简版。核心问题是：能否用动量、波动率和流动性特征，预测一只股票在买入后约两周内"先涨到 +5% 且始终没有跌到 -5%"这一联合事件，并据此排序选股。仓库包含特征代码、联合事件建模与去重叠分析脚本、几组模型比较实验，以及原样保留数字的结果报告；另含 2026 年 11 月的一次盲测（训练/选择/留出三段切分，方案冻结后留出段只评估一次，见第 6 节）。行情数据不随仓库分发，完整复现需要自行准备本地数据缓存。
 
 ---
