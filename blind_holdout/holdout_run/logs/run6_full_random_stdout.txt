@@ -1,0 +1,22 @@
+# c2_full_random
+scores read from scratch cache <BLIND_ROOT>\evaluator\tmp\c2_cache_full.npz
+# [  3.2s] scores and market ready; rows 2019-11-26..2026-10-09
+
+==== WINDOW V target 4, version 2, conservative: random selection in the same buyable set, exact engine, 200 seeds ====
+  final NAV: strategy 2.1190 | B 1.2218 | random mean 1.0055 sd 0.1066 min 0.7475 median 1.0005 q97.5 1.2206 max 1.3805 | strategy above 200 of 200 | z 10.44 | target 4: PASS
+  last-close valuation (report only): strategy 2.1190 | random mean 1.0066 q97.5 1.2206
+  rhythm: strategy mean holdings 49.23 buys 3680 ended 0 | random mean holdings 49.92 buys 3680 ended per run 0.06
+# [ 38.3s] random V
+
+==== WINDOW SEL target 4, version 2, conservative: random selection in the same buyable set, exact engine, 200 seeds ====
+  final NAV: strategy 1.0808 | B 0.8641 | random mean 0.7774 sd 0.0478 min 0.6556 median 0.7747 q97.5 0.8779 max 0.9280 | strategy above 200 of 200 | z 6.35 | target 4: PASS
+  last-close valuation (report only): strategy 1.0839 | random mean 0.7783 q97.5 0.8780
+  rhythm: strategy mean holdings 49.42 buys 1840 ended 1 | random mean holdings 49.95 buys 1840 ended per run 0.08
+# [ 56.7s] random SEL
+
+==== WINDOW HOLD target 4, version 2, conservative: random selection in the same buyable set, exact engine, 200 seeds ====
+  final NAV: strategy 2.3661 | B 1.5200 | random mean 1.3184 sd 0.1121 min 1.0573 median 1.3052 q97.5 1.5785 max 1.7135 | strategy above 200 of 200 | z 9.35 | target 4: PASS
+  last-close valuation (report only): strategy 2.3661 | random mean 1.3271 q97.5 1.5794
+  rhythm: strategy mean holdings 49.72 buys 2800 ended 0 | random mean holdings 49.97 buys 2800 ended per run 0.37
+# [ 86.8s] random HOLD
+# done  elapsed_s=86.8

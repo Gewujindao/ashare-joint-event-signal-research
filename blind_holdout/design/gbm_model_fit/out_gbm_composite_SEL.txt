@@ -1,0 +1,65 @@
+# c1_SEL
+data rows 2551, last date 2024-06-28 ; mode extend ; tag SEL
+# [  5.0s] stage1
+# [  7.6s] stage2
+# [ 21.8s] stage3
+# [ 23.6s] stage4
+# [ 27.5s] stage5
+pool: first day 2015-01-12 (row 250); fit segment ends 2019-12-31 (row 1463)
+model file bytes 408799
+# [ 76.7s] scores
+# [ 77.7s] quota
+prefix check against record_V.npz: 726 days 2020-01-03..2022-12-29 ; max |x diff| 0.000e+00 ; max |buys diff| 0.0
+
+SEGMENT TABLE (costs: strict 35.2bp, mine 19.2bp per round trip; drag 0.5bp/day; t(n) = ordinary t of the daily net series)
+F        | 2015-01-14..2019-12-31 n=1212 | gross bp/d  26.09 | TE %/d 0.693 (annual % 11.01) | holding days 10.0 | strict net %/yr   55.61  t(n)  11.08  t551(net/TE)   7.47 | mine net %/yr   59.64  t(n)  11.88  t551(net/TE)   8.01
+F        | share of holdings in smallest amount quintile A0 0.510 | decomposition bp/d: style   3.74  within-stratum  22.35  cash   0.00 | sd %/d: style 0.165 within 0.661 | gross t(n): style 7.90 within 11.77
+V20-22   | 2020-01-03..2022-12-30 n=727 | gross bp/d   8.97 | TE %/d 0.601 (annual % 9.55) | holding days 10.0 | strict net %/yr   12.48  t(n)   2.22  t551(net/TE)   1.93 | mine net %/yr   16.51  t(n)   2.94  t551(net/TE)   2.56
+V20-22   | share of holdings in smallest amount quintile A0 0.668 | decomposition bp/d: style   4.25  within-stratum   4.72  cash   0.00 | sd %/d: style 0.262 within 0.463 | gross t(n): style 4.37 within 2.75
+ALL_OOS  | 2020-01-03..2024-06-27 n=1085 | gross bp/d   8.89 | TE %/d 0.680 (annual % 10.80) | holding days 10.0 | strict net %/yr   12.28  t(n)   2.36  t551(net/TE)   1.68 | mine net %/yr   16.31  t(n)   3.13  t551(net/TE)   2.23
+ALL_OOS  | share of holdings in smallest amount quintile A0 0.683 | decomposition bp/d: style   3.88  within-stratum   5.01  cash   0.00 | sd %/d: style 0.251 within 0.538 | gross t(n): style 5.09 within 3.07
+REC      | 2020-01-03..2022-12-29 n=726 | gross bp/d   8.96 | TE %/d 0.602 (annual % 9.55) | holding days 10.0 | strict net %/yr   12.44  t(n)   2.21  t551(net/TE)   1.93 | mine net %/yr   16.47  t(n)   2.93  t551(net/TE)   2.55
+REC      | share of holdings in smallest amount quintile A0 0.668 | decomposition bp/d: style   4.25  within-stratum   4.71  cash   0.00 | sd %/d: style 0.262 within 0.463 | gross t(n): style 4.36 within 2.74
+NEW      | 2022-12-30..2024-06-27 n=359 | gross bp/d   8.77 | TE %/d 0.817 (annual % 12.98) | holding days 10.0 | strict net %/yr   11.96  t(n)   1.10  t551(net/TE)   1.36 | mine net %/yr   16.00  t(n)   1.47  t551(net/TE)   1.82
+NEW      | share of holdings in smallest amount quintile A0 0.712 | decomposition bp/d: style   3.15  within-stratum   5.61  cash   0.00 | sd %/d: style 0.228 within 0.665 | gross t(n): style 2.62 within 1.60
+NEWcal   | 2023-01-03..2024-06-27 n=358 | gross bp/d   8.73 | TE %/d 0.818 (annual % 12.99) | holding days 10.0 | strict net %/yr   11.87  t(n)   1.09  t551(net/TE)   1.35 | mine net %/yr   15.90  t(n)   1.46  t551(net/TE)   1.81
+NEWcal   | share of holdings in smallest amount quintile A0 0.712 | decomposition bp/d: style   3.14  within-stratum   5.59  cash   0.00 | sd %/d: style 0.228 within 0.666 | gross t(n): style 2.61 within 1.59
+REC+NEW  | 2020-01-03..2024-06-27 n=1085 | gross bp/d   8.89 | TE %/d 0.680 (annual % 10.80) | holding days 10.0 | strict net %/yr   12.28  t(n)   2.36  t551(net/TE)   1.68 | mine net %/yr   16.31  t(n)   3.13  t551(net/TE)   2.23
+REC+NEW  | share of holdings in smallest amount quintile A0 0.683 | decomposition bp/d: style   3.88  within-stratum   5.01  cash   0.00 | sd %/d: style 0.251 within 0.538 | gross t(n): style 5.09 within 3.07
+
+BLOCKS of 60 return days, 2020-01-03 .. 2022-12-30 only (training rows): start | n | gross bp/d | TE %/d | A0 share | within-stratum bp/d
+2020-01-03 | 60 |  10.98 | 0.856 | 0.569 |   9.72
+2020-04-07 | 60 |   4.50 | 0.488 | 0.412 |   4.39
+2020-07-07 | 60 |  18.52 | 0.614 | 0.743 |  12.91
+2020-09-29 | 60 |   2.03 | 0.429 | 0.567 |   2.14
+2020-12-30 | 60 |  16.52 | 0.721 | 0.629 |  12.51
+2021-04-01 | 60 |   2.68 | 0.458 | 0.704 |  -0.37
+2021-07-01 | 60 |  -6.74 | 0.566 | 0.636 |  -6.89
+2021-09-27 | 60 |   6.21 | 0.608 | 0.743 |   1.45
+2021-12-27 | 60 |  23.30 | 0.668 | 0.791 |  10.06
+2022-03-29 | 60 |  11.93 | 0.614 | 0.712 |   4.22
+2022-06-29 | 60 |  15.25 | 0.591 | 0.764 |   7.21
+2022-09-22 | 60 |   4.69 | 0.473 | 0.736 |   0.51
+sd across blocks: gross 8.45  TE 0.122  A0 0.109  within 5.90  (blocks 12)
+
+QUARTERS: quarter | n | net %/yr strict | net %/yr mine
+2020Q1 | 57 |   23.51 |   27.54
+2020Q2 | 59 |    3.55 |    7.59
+2020Q3 | 66 |   27.35 |   31.38
+2020Q4 | 60 |   -8.68 |   -4.65
+2021Q1 | 58 |   35.71 |   39.74
+2021Q2 | 60 |   -3.37 |    0.67
+2021Q3 | 64 |  -21.33 |  -17.30
+2021Q4 | 61 |    1.78 |    5.81
+2022Q1 | 58 |   49.85 |   53.89
+2022Q2 | 59 |   20.05 |   24.08
+2022Q3 | 65 |   28.93 |   32.96
+2022Q4 | 60 |   -5.43 |   -1.40
+2023Q1 | 59 |   -4.16 |   -0.13
+2023Q2 | 59 |    6.25 |   10.28
+2023Q3 | 64 |   23.56 |   27.60
+2023Q4 | 60 |    2.84 |    6.87
+2024Q1 | 58 |   18.03 |   22.06
+2024Q2 | 58 |   24.16 |   28.19
+record saved: <BLIND_ROOT>\design\stageC1\record_SEL.npz (1085 days 2020-01-03..2024-06-27)
+# done  elapsed_s=77.7

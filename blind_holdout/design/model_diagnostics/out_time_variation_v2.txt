@@ -1,0 +1,89 @@
+# d0_b2
+# [  4.7s] stage1 features
+# [  7.7s] stage2 features
+# [ 21.4s] stage3 features
+# [ 23.2s] stage4 features
+# [ 26.8s] stage5 features
+pool: first day 2015-01-12 (row 250); F rows 1212 (2015-01-14..2019-12-31); V rows 727 (2020-01-03..2022-12-30); mean names/day F 1905, V 2534
+# [ 29.7s] labels
+
+C1 rank IC (x100) of each feature with the 5d realisable relative return, by year 2015..2022 | F mean | V mean | years with t>2 / t<-2 (t uses days/5)
+ret1         |  -2.74  -1.20  -1.43  -1.14  -1.89  -1.75  -1.87  -2.41 | -1.72 | -2.03 | 0 / 0
+ret3         |  -6.71  -4.74  -3.04  -2.30  -3.18  -3.35  -2.06  -3.09 | -4.04 | -2.83 | 0 / 2
+ret5         |  -7.51  -5.79  -2.91  -2.21  -4.13  -3.63  -2.30  -3.74 | -4.56 | -3.20 | 0 / 4
+ovn5         |  +0.40  +0.90  +3.40  +2.35  +1.71  -0.12  +1.98  +1.16 | +1.73 | +1.01 | 3 / 0
+intra5       |  -8.37  -5.91  -3.99  -3.07  -4.86  -3.45  -3.10  -4.67 | -5.29 | -3.71 | 0 / 7
+ovn20        |  -1.88  +0.09  +3.09  +2.94  +0.58  +0.78  +1.83  +2.04 | +0.98 | +1.55 | 3 / 0
+intra20      |  -7.45  -7.82  -4.66  -6.46  -8.55  -3.84  -4.08  -6.55 | -6.95 | -4.81 | 0 / 8
+abn_turn     |  -4.95  -4.88  -2.55  -2.84  -7.38  -4.73  -3.12  -5.21 | -4.52 | -4.33 | 0 / 7
+turn5_60     |  -4.60  -4.71  -1.89  -2.38  -7.12  -4.08  -3.36  -5.74 | -4.11 | -4.36 | 0 / 6
+turn20       |  -2.23  -5.43  -7.98  -7.68  -6.16  -6.53  -6.36  -7.61 | -5.89 | -6.86 | 0 / 6
+pv_corr20    |  -4.62  -4.54  -4.25  -2.95  -3.30  -0.40  -1.44  -3.64 | -3.88 | -1.80 | 0 / 6
+amihud20     |  +9.64  +8.28  -2.44  +2.57  +0.34  +0.21  +5.24  +6.39 | +3.61 | +3.93 | 4 / 0
+amt60        |  -9.91  -8.81  -0.38  -4.01  -1.99  -1.68  -6.53  -8.18 | -4.96 | -5.45 | 0 / 4
+logprice     |  -3.33  -3.11  +0.21  -1.17  +1.18  +1.57  -4.11  -4.44 | -1.28 | -2.31 | 0 / 0
+fcap         |  -9.77  -5.83  +6.16  +0.89  +1.61  +2.31  -4.26  -3.76 | -1.31 | -1.87 | 1 / 2
+dist_high60  |  -7.19  -3.76  +1.94  -1.38  -1.52  +1.45  -1.05  -1.71 | -2.33 | -0.40 | 0 / 1
+dist_low60   |  -7.93  -7.99  -4.08  -2.35  -7.67  -4.46  -7.02  -6.89 | -5.95 | -6.12 | 0 / 7
+clv5         |  -4.87  -1.75  -1.30  -1.27  -2.30  -0.83  -1.29  -1.25 | -2.34 | -1.12 | 0 / 1
+dist_high250 |  -9.45  -3.58  +3.31  +0.01  -1.25  +2.40  -1.48  -3.83 | -2.12 | -0.93 | 0 / 3
+streak       |  -5.02  -1.94  -0.82  -0.12  -1.69  -1.98  -0.85  -2.18 | -1.93 | -1.66 | 0 / 1
+lu20         |  -6.15  -4.21  -2.61  -2.40  -5.85  -4.12  -4.34  -5.97 | -4.20 | -4.80 | 0 / 8
+ld20         |  +1.73  +1.91  +0.56  +2.75  -0.35  +0.46  -0.62  -0.47 | +1.32 | -0.20 | 1 / 0
+max20        |  -5.88  -8.29  -7.49  -6.50  -7.77  -6.35  -7.53  -8.41 | -7.16 | -7.43 | 0 / 8
+vol20        |  -3.19  -6.05  -6.92  -5.39  -7.05  -6.80  -8.18  -8.32 | -5.72 | -7.78 | 0 / 7
+downshare20  |  +9.56  +7.58  +4.18  +4.48  +7.86  +2.92  +3.29  +5.87 | +6.68 | +4.00 | 6 / 0
+hl20         |  -4.79  -6.20  -6.96  -6.25  -7.14  -6.57  -8.04  -8.90 | -6.25 | -7.86 | 0 / 7
+ret20        |  -9.45  -8.48  -3.60  -5.19  -8.67  -3.72  -2.96  -5.23 | -7.03 | -3.95 | 0 / 6
+ret60        | -10.75  -6.86  -1.00  -3.77  -6.53  -2.33  -5.92  -6.10 | -5.70 | -4.76 | 0 / 5
+ret120       | -10.35  -4.82  +0.83  -1.76  -4.82  -0.27  -4.20  -7.88 | -4.11 | -4.08 | 0 / 4
+mom250_20    |  -3.94  -1.57  +2.95  +1.14  +0.30  +2.12  -2.46  -1.47 | -0.21 | -0.59 | 0 / 1
+C1 summary: sign(F mean) != sign(V mean): 1 of 30 (ld20) ; significant in both directions in different years: 1 (fcap) ; same sign in all 8 years: 20 (ret1,ret3,ret5,intra5,intra20,abn_turn,turn5_60,turn20,pv_corr20,amt60,dist_low60,clv5,streak,lu20,max20,vol20,downshare20,hl20,ret20,ret60) ; lost at least half of |IC| or flipped from F to V: 5 ; mean |IC| F 0.0393 ; mean of sign(F)*IC in V 0.0351 (ratio 0.89) ; correlation of the 30-feature IC vector between consecutive years: 0.89 0.46 0.82 0.85 0.85 0.66 0.95
+
+C2 feature-level: 28 dates x 30 features. corr(trailing 250d IC, next 60d IC) 0.597 ; corr(trailing 60d, next 60d) 0.438 ; corr(expanding mean, next 60d) 0.581 ; corr(trailing 250d minus expanding, next 60d minus expanding) 0.271 ; corr(trailing 60d minus expanding, next 60d minus expanding) 0.135 ; sign agreement with next 60d: trailing 250d 0.811, trailing 60d 0.744, expanding 0.812
+C2 directional IC on V (mean over 30 features of weight x daily IC, x100): scheme | V | 2020 | 2021 | 2022
+C2 fixed sign from F                                          | 3.482 | 2.170 | 3.654 | 4.622
+C2 sign of expanding mean                                     | 3.418 | 2.092 | 3.540 | 4.622
+C2 sign of trailing 250d                                      | 3.292 | 2.549 | 2.837 | 4.490
+C2 sign of trailing 60d                                       | 2.527 | 2.109 | 1.653 | 3.823
+C2 expanding sign, switched off when trailing 250d disagrees  | 3.355 | 2.321 | 3.188 | 4.556
+C2 weights = expanding mean IC                                | 4.522 | 3.328 | 4.499 | 5.737
+C2 weights = trailing 250d IC                                 | 4.682 | 3.771 | 4.533 | 5.744
+C2 weights = F mean IC                                        | 4.440 | 3.286 | 4.409 | 5.624
+# [ 30.7s] c: feature drift
+
+A3 ONCE (fit days every 5th in F, rows 458019, iterations 100): R2 % in-sample 4.926 ; row-random validation 3.336 ; V 1.891 ; V by iteration 1:0.315 5:1.113 10:1.551 20:1.833 30:1.909 50:1.943 75:1.924 100:1.891 ; best on V 52 (1.948)
+A3 ONCE row-random validation R2 %% by iteration 1:0.355 5:1.245 10:1.839 20:2.427 30:2.711 50:3.048 75:3.234 100:3.336
+# [ 59.4s] ONCE fit
+
+A4 day-block validation: fit on the first 80% of F fit days (348515 rows, to 2018-12-03, no early stopping), held out the last 20% (107355 rows, from 2018-12-17)
+A4 in-sample R2 %% by iteration 1:0.379 5:1.459 10:2.251 20:3.099 30:3.662 50:4.459 75:5.192 100:5.806
+A4 held-out-days R2 %% by iteration 1:0.317 5:1.158 10:1.639 20:1.995 30:2.088 50:2.035 75:1.993 100:1.944 ; best iteration 30 (2.088)
+A4 V R2 %% by iteration 1:0.304 5:1.089 10:1.537 20:1.847 30:1.908 50:1.909 75:1.873 100:1.806 ; at the held-out-best iteration 1.908 ; best on V 42 (1.920)
+# [ 68.7s] day-block fit
+RAW fit: rows 458019, iterations 89
+# [ 89.1s] RAW fit
+ROLL3 fits: 2020: rows 290058, iter 100 ; 2021: rows 314025, iter 100 ; 2022: rows 341665, iter 100
+# [120.0s] ROLL3 fits
+EXPAND fits (fit days every 10th to stay inside the memory cap): 2021: rows 286366, iter 100 ; 2022: rows 347883, iter 100
+# [142.2s] EXPAND fits
+
+C3 models on V (labels: 10d relative return rank unless noted): model | span | rank IC 10d | top-50 drift bp/day H=5 | H=10 | top 10% H=5
+C3 ONCE 2015-2019                                             | V | +0.1205 |  10.89 |   8.96 |   9.01
+C3 ONCE model-level: corr(trailing 60d realised IC known at t, next 20d IC) over 32 non-overlapping points 0.022 ; daily IC mean 0.1205 sd 0.1132 ; share of days with IC < 0: 0.134
+C3 ONCE 2015-2019                                             | 2020 | +0.1146 |   9.04 |   6.59 |   7.56
+C3 ONCE 2015-2019                                             | 2021 | +0.1011 |   7.30 |   6.25 |   6.18
+C3 ONCE 2015-2019                                             | 2022 | +0.1471 |  16.47 |  14.29 |  13.42
+C3 RAW label (10d relative return, squared loss), 2015-2019   | V | +0.1042 |   6.90 |   5.45 |   8.44
+C3 RAW label (10d relative return, squared loss), 2015-2019   | 2020 | +0.0873 |  -2.49 |  -3.90 |   3.73
+C3 RAW label (10d relative return, squared loss), 2015-2019   | 2021 | +0.0889 |   7.31 |   7.24 |   6.76
+C3 RAW label (10d relative return, squared loss), 2015-2019   | 2022 | +0.1379 |  16.11 |  13.36 |  14.99
+C3 ROLL3 (previous 3 years, refit yearly)                     | V | +0.1083 |   7.09 |   5.91 |   6.43
+C3 ROLL3 (previous 3 years, refit yearly)                     | 2020 | +0.1222 |  12.71 |  12.01 |   7.31
+C3 ROLL3 (previous 3 years, refit yearly)                     | 2021 | +0.0809 |  -1.70 |  -2.36 |   1.76
+C3 ROLL3 (previous 3 years, refit yearly)                     | 2022 | +0.1225 |  10.37 |   8.23 |  10.34
+C3 EXPAND (all years so far, refit yearly; 2020 = ONCE)       | V | +0.1172 |   9.45 |   7.25 |   8.48
+C3 EXPAND (all years so far, refit yearly; 2020 = ONCE)       | 2020 | +0.1146 |   9.04 |   6.59 |   7.56
+C3 EXPAND (all years so far, refit yearly; 2020 = ONCE)       | 2021 | +0.0960 |   5.29 |   3.59 |   4.79
+C3 EXPAND (all years so far, refit yearly; 2020 = ONCE)       | 2022 | +0.1422 |  14.15 |  11.79 |  13.23
+# done  elapsed_s=142.2

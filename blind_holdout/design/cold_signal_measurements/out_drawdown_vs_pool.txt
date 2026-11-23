@@ -1,0 +1,61 @@
+# m4_drawdown
+
+window 2014-04-04..2016-04-07  names=1922  benchmark(buy-hold) MDD=0.507  peak 2015-06-15 trough 2016-01-29 (0.62 yr)  end NAV=1.968 | daily-EW pool MDD=0.520 end NAV=2.235 | TE(buy-hold vs daily-EW)=0.798%/day
+  signal q | MDD gross | MDD net | minus benchmark (net) | basket rel. return in benchmark peak->trough (net) | end NAV net | pass
+  S1_max20 0.1 | 0.515 | 0.516 | +0.010 | -0.002 | 2.143 | NO
+  S1_max20 0.2 | 0.512 | 0.514 | +0.007 | +0.032 | 2.423 | NO
+  S1_max20 0.3 | 0.512 | 0.514 | +0.007 | +0.041 | 2.527 | NO
+  S2_vol20 0.1 | 0.476 | 0.490 | -0.017 | +0.017 | 2.069 | yes
+  S2_vol20 0.2 | 0.458 | 0.472 | -0.034 | +0.034 | 2.232 | yes
+  S2_vol20 0.3 | 0.467 | 0.472 | -0.035 | +0.035 | 2.293 | yes
+  S3_comp4 0.1 | 0.537 | 0.539 | +0.032 | +0.050 | 2.609 | NO
+  S3_comp4 0.2 | 0.535 | 0.537 | +0.030 | +0.041 | 2.558 | NO
+  S3_comp4 0.3 | 0.530 | 0.531 | +0.025 | +0.052 | 2.595 | NO
+
+window 2016-03-31..2018-07-04  names=1802  benchmark(buy-hold) MDD=0.316  peak 2016-11-23 trough 2018-06-29 (1.55 yr)  end NAV=0.796 | daily-EW pool MDD=0.341 end NAV=0.786 | TE(buy-hold vs daily-EW)=0.139%/day
+  signal q | MDD gross | MDD net | minus benchmark (net) | basket rel. return in benchmark peak->trough (net) | end NAV net | pass
+  S1_max20 0.1 | 0.324 | 0.360 | +0.044 | -0.042 | 0.739 | NO
+  S1_max20 0.2 | 0.305 | 0.336 | +0.021 | -0.016 | 0.790 | NO
+  S1_max20 0.3 | 0.297 | 0.331 | +0.015 | -0.009 | 0.811 | NO
+  S2_vol20 0.1 | 0.263 | 0.308 | -0.008 | +0.014 | 0.802 | yes
+  S2_vol20 0.2 | 0.283 | 0.329 | +0.013 | -0.011 | 0.793 | NO
+  S2_vol20 0.3 | 0.287 | 0.332 | +0.017 | -0.016 | 0.797 | NO
+  S3_comp4 0.1 | 0.351 | 0.392 | +0.076 | -0.066 | 0.716 | NO
+  S3_comp4 0.2 | 0.341 | 0.380 | +0.065 | -0.056 | 0.740 | NO
+  S3_comp4 0.3 | 0.334 | 0.372 | +0.057 | -0.050 | 0.752 | NO
+
+window 2018-06-28..2020-09-29  names=1945  benchmark(buy-hold) MDD=0.247  peak 2019-04-22 trough 2020-02-04 (0.75 yr)  end NAV=1.247 | daily-EW pool MDD=0.247 end NAV=1.294 | TE(buy-hold vs daily-EW)=0.108%/day
+  signal q | MDD gross | MDD net | minus benchmark (net) | basket rel. return in benchmark peak->trough (net) | end NAV net | pass
+  S1_max20 0.1 | 0.230 | 0.255 | +0.008 | -0.008 | 1.200 | NO
+  S1_max20 0.2 | 0.224 | 0.250 | +0.002 | -0.002 | 1.344 | NO
+  S1_max20 0.3 | 0.224 | 0.249 | +0.002 | -0.002 | 1.387 | NO
+  S2_vol20 0.1 | 0.217 | 0.242 | -0.005 | +0.005 | 1.195 | yes
+  S2_vol20 0.2 | 0.222 | 0.248 | +0.001 | -0.001 | 1.286 | NO
+  S2_vol20 0.3 | 0.222 | 0.247 | +0.000 | -0.000 | 1.326 | NO
+  S3_comp4 0.1 | 0.231 | 0.256 | +0.009 | -0.009 | 1.305 | NO
+  S3_comp4 0.2 | 0.233 | 0.258 | +0.011 | -0.011 | 1.310 | NO
+  S3_comp4 0.3 | 0.230 | 0.255 | +0.008 | -0.008 | 1.337 | NO
+
+window 2020-09-23..2022-12-30  names=2412  benchmark(buy-hold) MDD=0.268  peak 2022-01-05 trough 2022-04-27 (0.29 yr)  end NAV=1.084 | daily-EW pool MDD=0.253 end NAV=1.199 | TE(buy-hold vs daily-EW)=0.212%/day
+  signal q | MDD gross | MDD net | minus benchmark (net) | basket rel. return in benchmark peak->trough (net) | end NAV net | pass
+  S1_max20 0.1 | 0.211 | 0.220 | -0.048 | +0.053 | 1.113 | yes
+  S1_max20 0.2 | 0.222 | 0.231 | -0.037 | +0.042 | 1.191 | yes
+  S1_max20 0.3 | 0.227 | 0.236 | -0.033 | +0.036 | 1.216 | yes
+  S2_vol20 0.1 | 0.181 | 0.191 | -0.078 | +0.084 | 1.079 | yes
+  S2_vol20 0.2 | 0.202 | 0.211 | -0.057 | +0.063 | 1.139 | yes
+  S2_vol20 0.3 | 0.214 | 0.224 | -0.045 | +0.051 | 1.193 | yes
+  S3_comp4 0.1 | 0.278 | 0.287 | +0.018 | -0.016 | 1.048 | NO
+  S3_comp4 0.2 | 0.269 | 0.278 | +0.010 | -0.008 | 1.098 | NO
+  S3_comp4 0.3 | 0.262 | 0.271 | +0.003 | -0.003 | 1.107 | NO
+
+windows where the net basket MDD exceeds the benchmark MDD (of 4):
+  S1_max20 0.1 : 3
+  S1_max20 0.2 : 3
+  S1_max20 0.3 : 3
+  S2_vol20 0.1 : 0
+  S2_vol20 0.2 : 2
+  S2_vol20 0.3 : 2
+  S3_comp4 0.1 : 4
+  S3_comp4 0.2 : 4
+  S3_comp4 0.3 : 4
+# done  elapsed_s=12.9

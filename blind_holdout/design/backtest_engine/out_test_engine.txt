@@ -1,0 +1,32 @@
+# test_engine
+A day0 equity after first buy                        engine 499446.055110  hand 499446.055110  OK
+A day1 equity                                        engine 509426.055110  hand 509426.055110  OK
+A day2 equity after sell at 10.50                    engine 523291.102195  hand 523291.102194  OK
+A day4 equity after buy-back at 10.00                engine 527931.624775  hand 527931.624775  OK
+A day5 final equity                                  engine 533151.624775  hand 533151.624775  OK
+A number of buys                                     engine 2.000000  hand 2.000000  OK
+A number of sells                                    engine 1.000000  hand 1.000000  OK
+A hold account final equity                          engine 509426.055110  hand 509426.055110  OK
+B day4 equity (buy blocked, still cash)              engine 523291.102195  hand 523291.102194  OK
+B day4 holding flag (0 = not bought)                 engine 0.000000  hand 0.000000  OK
+B day5 final equity (bought at 11.50)                engine 527251.513764  hand 527251.513764  OK
+C day2 equity (sell blocked, still holding)          engine 458528.055110  hand 458528.055110  OK
+C day3 equity (sold at 9.00)                         engine 448598.952611  hand 448598.952611  OK
+C day5 final equity (stays in cash)                  engine 448598.952611  hand 448598.952611  OK
+D day2 equity                                        engine 519406.055110  hand 519406.055110  OK
+D day3 equity (suspended: unchanged)                 engine 519406.055110  hand 519406.055110  OK
+D day4 equity (sold at 10.00)                        engine 498393.719000  hand 498393.719000  OK
+E 20k day0 equity (1900 shares, fee 5)               engine 19975.809810  hand 19975.809810  OK
+E2 10,014 CNY day0 equity (900 shares)               engine 9999.909910  hand 9999.909910  OK
+F ST: buy at +5% open blocked (0)                    engine 0.000000  hand 0.000000  OK
+F non-ST: buy at +5% open allowed (1)                engine 1.000000  hand 1.000000  OK
+F ST: sell at -5% open blocked (0)                   engine 0.000000  hand 0.000000  OK
+G want sequence (binary 11000111 = 199)              engine 199.000000  hand 199.000000  OK
+G sell blocked on day 2 (11000011 = 195)             engine 195.000000  hand 195.000000  OK
+H t of [1,2,3,4] = 2*2.5/1.290994                    engine 3.872983  hand 3.872983  OK
+H max drawdown of 100 -> 110 -> 99 -> 120            engine 0.100000  hand 0.100000  OK
+I day2 return difference (523291.10/509426.06 - 518960+446.06 ...) engine 0.007626  hand 0.007626  OK
+I fast-model NAV vs hand 1.071*(1-0.00111)^2*(1-0.00211) engine 1.066369  hand 1.066369  OK
+I exact engine NAV 1.066303 vs fast model 1.066369 (difference = idle cash from whole lots)
+ALL CHECKS PASSED
+# done  elapsed_s=0.0

@@ -1,0 +1,5 @@
+# s2_inzone_dry
+mode=dry  return days 2022-07-01..2022-12-29  n=124
+residence days=53.1  names in set=1278  beta=0.900  TE vs pool=0.326%  sigma_e set=1.857%  sigma_F=0.322%
+gross drift bp/day=4.24  mean round-trip cost bp=40.2  net bp/day (K=50)=3.48  annualised net %=8.77  TE(50)=0.416%  daily ratio=0.0838  t=0.93
+# done  elapsed_s=3.5

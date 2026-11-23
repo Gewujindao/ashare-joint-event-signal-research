@@ -1,0 +1,20 @@
+dates          trunc (2551,) <U10 | full-prefix (2551,) <U10 | differing bytes 0 | IDENTICAL
+codes          trunc (3329,) <U6 | full-prefix (3329,) <U6 | differing bytes 0 | IDENTICAL
+tradable       trunc (2551, 3329) bool | full-prefix (2551, 3329) bool | differing bytes 0 | IDENTICAL
+st             trunc (2551, 3329) bool | full-prefix (2551, 3329) bool | differing bytes 0 | IDENTICAL
+open_raw       trunc (2551, 3329) float32 | full-prefix (2551, 3329) float32 | differing bytes 0 | IDENTICAL
+high_raw       trunc (2551, 3329) float32 | full-prefix (2551, 3329) float32 | differing bytes 0 | IDENTICAL
+low_raw        trunc (2551, 3329) float32 | full-prefix (2551, 3329) float32 | differing bytes 0 | IDENTICAL
+close_raw      trunc (2551, 3329) float32 | full-prefix (2551, 3329) float32 | differing bytes 0 | IDENTICAL
+preclose_raw   trunc (2551, 3329) float32 | full-prefix (2551, 3329) float32 | differing bytes 0 | IDENTICAL
+open_qfq       trunc (2551, 3329) float32 | full-prefix (2551, 3329) float32 | differing bytes 0 | IDENTICAL
+high_qfq       trunc (2551, 3329) float32 | full-prefix (2551, 3329) float32 | differing bytes 0 | IDENTICAL
+low_qfq        trunc (2551, 3329) float32 | full-prefix (2551, 3329) float32 | differing bytes 0 | IDENTICAL
+close_qfq      trunc (2551, 3329) float32 | full-prefix (2551, 3329) float32 | differing bytes 0 | IDENTICAL
+volume_shares  trunc (2551, 3329) float32 | full-prefix (2551, 3329) float32 | differing bytes 0 | IDENTICAL
+amount_cny     trunc (2551, 3329) float32 | full-prefix (2551, 3329) float32 | differing bytes 0 | IDENTICAL
+turnover_pct   trunc (2551, 3329) float32 | full-prefix (2551, 3329) float32 | differing bytes 0 | IDENTICAL
+full panel: dates 3102 (2014-01-02..2026-10-09), prefix rows 2551 (last prefix date 2024-06-28), codes 3329
+rows after the prefix: 551 (first 2024-07-01)
+seconds 5.2
+STEP 1 CHECK PASSED: all 16 members bitwise identical on rows <= 2024-06-28

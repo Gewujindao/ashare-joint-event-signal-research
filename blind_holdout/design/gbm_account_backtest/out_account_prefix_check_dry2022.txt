@@ -1,0 +1,2 @@
+V | 727 days 2020-01-03..2022-12-30 | dates same | held: days that differ 0 | buys: days that differ 0 | sells: days that differ 0 | nav max |diff| 0.000e+00 | navB max |diff| 0.000e+00 | IDENTICAL
+PREFIX CHECK PASSED

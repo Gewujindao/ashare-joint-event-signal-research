@@ -1,0 +1,5 @@
+# s2_inzone_sel
+mode=sel  return days 2023-01-03..2024-06-27  n=358
+residence days=42.9  names in set=1303  beta=0.897  TE vs pool=0.287%  sigma_e set=1.750%  sigma_F=0.283%
+gross drift bp/day=3.26  mean round-trip cost bp=37.4  net bp/day (K=50)=2.39  annualised net %=6.01  TE(50)=0.376%  daily ratio=0.0635  t=1.20
+# done  elapsed_s=4.8

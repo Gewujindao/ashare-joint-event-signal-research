@@ -1,0 +1,124 @@
+{
+ "source": "mainboard_live_20261009.npz",
+ "dest": "<BLIND_ROOT>\\data\\ashare_mainboard_to_20240628.npz",
+ "cut": "2024-06-30",
+ "n_dates": 2551,
+ "n_codes": 3329,
+ "n_codes_source": 3404,
+ "first_date": "2014-01-02",
+ "last_date": "2024-06-28",
+ "codes_without_anchor": 0,
+ "members": {
+  "dates": [
+   [
+    2551
+   ],
+   "<U10"
+  ],
+  "codes": [
+   [
+    3329
+   ],
+   "<U6"
+  ],
+  "tradable": [
+   [
+    2551,
+    3329
+   ],
+   "bool"
+  ],
+  "st": [
+   [
+    2551,
+    3329
+   ],
+   "bool"
+  ],
+  "open_raw": [
+   [
+    2551,
+    3329
+   ],
+   "float32"
+  ],
+  "high_raw": [
+   [
+    2551,
+    3329
+   ],
+   "float32"
+  ],
+  "low_raw": [
+   [
+    2551,
+    3329
+   ],
+   "float32"
+  ],
+  "close_raw": [
+   [
+    2551,
+    3329
+   ],
+   "float32"
+  ],
+  "preclose_raw": [
+   [
+    2551,
+    3329
+   ],
+   "float32"
+  ],
+  "open_qfq": [
+   [
+    2551,
+    3329
+   ],
+   "float32"
+  ],
+  "high_qfq": [
+   [
+    2551,
+    3329
+   ],
+   "float32"
+  ],
+  "low_qfq": [
+   [
+    2551,
+    3329
+   ],
+   "float32"
+  ],
+  "close_qfq": [
+   [
+    2551,
+    3329
+   ],
+   "float32"
+  ],
+  "volume_shares": [
+   [
+    2551,
+    3329
+   ],
+   "float32"
+  ],
+  "amount_cny": [
+   [
+    2551,
+    3329
+   ],
+   "float32"
+  ],
+  "turnover_pct": [
+   [
+    2551,
+    3329
+   ],
+   "float32"
+  ]
+ },
+ "seconds": 21.6
+}

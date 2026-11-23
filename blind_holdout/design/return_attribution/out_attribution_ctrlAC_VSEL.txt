@@ -1,0 +1,21 @@
+# c3_ctrlAC_VSEL
+# [  4.2s] ready; rows 2019-11-26..2026-10-09
+
+==== WINDOW SEL  2023-01-03..2024-06-28  359 days | ctrlAC | seeds done 200 ====
+  plan: final NAV 1.0808, ann 5.61, maxDD 36.93, excess over B 15.35 %/yr, t 1.39 | B: final NAV 0.8641, ann -9.74
+  control final NAV: mean 0.8781 sd 0.0492 min 0.7384 median 0.8772 q97.5 0.9721 max 1.0585 | plan above 200 of 200 | z 4.12 | plan > q97.5: YES
+  control annualised %: mean -8.75 sd 3.59 q2.5 -14.68 q97.5 -1.97 | maxDD %: mean 36.37 (min 31.73 max 41.75) | excess over B %/yr: mean 0.99 | t vs B: mean 0.24, share >= 2: 0.000
+  rhythm: plan mean holdings 49.42 buys 1840 cost %/yr 8.88 | control mean holdings 49.50 buys 1838 ended/run 0.23 lot-unaffordable/run 15.8 cost %/yr 9.07
+  holdings by amt60 quintile (low..high | none): plan 0.742 0.114 0.033 0.015 0.090 0.005 | control (first 20 seeds) 0.675 0.152 0.055 0.021 0.089 0.008
+  plan minus mean control path: daily mean 6.10 bp, sd 0.391%, t 2.96 (the mean path has almost no selection noise of its own)
+# [ 15.4s] window SEL
+
+==== WINDOW V  2020-01-03..2022-12-30  727 days | ctrlAC | seeds done 200 ====
+  plan: final NAV 2.1190, ann 29.73, maxDD 19.15, excess over B 22.54 %/yr, t 2.90 | B: final NAV 1.2218, ann 7.19
+  control final NAV: mean 1.4494 sd 0.1297 min 1.1480 median 1.4523 q97.5 1.6980 max 1.8059 | plan above 200 of 200 | z 5.16 | plan > q97.5: YES
+  control annualised %: mean 13.63 sd 3.55 q2.5 5.59 q97.5 20.14 | maxDD %: mean 22.77 (min 18.33 max 27.59) | excess over B %/yr: mean 6.44 | t vs B: mean 0.99, share >= 2: 0.030
+  rhythm: plan mean holdings 49.23 buys 3680 cost %/yr 8.97 | control mean holdings 49.21 buys 3672 ended/run 0.00 lot-unaffordable/run 51.6 cost %/yr 9.42
+  holdings by amt60 quintile (low..high | none): plan 0.691 0.113 0.037 0.031 0.126 0.001 | control (first 20 seeds) 0.630 0.155 0.051 0.034 0.126 0.003
+  plan minus mean control path: daily mean 5.26 bp, sd 0.351%, t 4.04 (the mean path has almost no selection noise of its own)
+# [ 32.8s] window V
+# done  elapsed_s=32.8

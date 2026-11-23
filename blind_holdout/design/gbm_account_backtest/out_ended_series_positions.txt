@@ -1,0 +1,23 @@
+# c2_diag_dead
+
+V: code | bought | last tradable | days held until last tradable | of these: ST days, out-of-pool days, sellable opens | value at last close / value at buy open | same per 10,000 CNY bought | amt60 quintile at buy
+  000018 | 2020-01-03 | 2020-01-06 | 1 | 0, 0, 1 | 1.000 | 10000 | 0
+  000585 | 2022-05-19 | 2022-05-23 | 2 | 0, 0, 2 | 1.000 | 10000 | 0
+  000835 | 2022-05-16 | 2022-05-20 | 4 | 0, 0, 4 | 1.094 | 10938 | 0
+  002464 | 2022-06-24 | 2022-06-27 | 1 | 0, 0, 1 | 1.000 | 10000 | 0
+  002684 | 2022-06-24 | 2022-06-24 | 0 | 0, 0, 0 | 1.113 | 11129 | 0
+  600086 | 2021-03-04 | 2021-03-10 | 4 | 0, 0, 4 | 0.889 | 8889 | 0
+  600652 | 2022-06-15 | 2022-06-15 | 0 | 0, 0, 0 | 1.102 | 11019 | 0
+  603996 | 2022-05-16 | 2022-05-17 | 1 | 0, 0, 1 | 1.000 | 10000 | 0
+  benchmark B: accounts with an ended series 33 of 2255 ; B final NAV main 1.2262, ended=0 1.2207 (0.45% of NAV)
+  strategy: 8 ended positions out of 3680 buys ; carried value 13.01% of final NAV ; slots frozen at window end 8 of 50
+
+SEL: code | bought | last tradable | days held until last tradable | of these: ST days, out-of-pool days, sellable opens | value at last close / value at buy open | same per 10,000 CNY bought | amt60 quintile at buy
+  002288 | 2024-04-12 | 2024-06-26 | 49 | 37, 37, 11 | 0.133 | 1331 | 1
+  002781 | 2023-06-29 | 2023-07-04 | 3 | 0, 0, 3 | 0.955 | 9545 | 0
+  600242 | 2023-06-19 | 2023-06-20 | 1 | 0, 0, 1 | 1.042 | 10417 | 0
+  600306 | 2024-06-19 | 2024-06-19 | 0 | 0, 0, 0 | 0.935 | 9355 | 0
+  603133 | 2024-06-26 | 2024-06-26 | 0 | 0, 0, 0 | 1.000 | 10000 | 0
+  benchmark B: accounts with an ended series 39 of 2708 ; B final NAV main 0.8662, ended=0 0.8625 (0.43% of NAV)
+  strategy: 5 ended positions out of 1840 buys ; carried value 8.19% of final NAV ; slots frozen at window end 5 of 50
+# done  elapsed_s=2.1

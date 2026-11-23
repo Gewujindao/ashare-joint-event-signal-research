@@ -1,0 +1,135 @@
+phi_arith.py : fixed invested fraction phi, daily rebalanced, cash at zero interest, rebalancing cost ignored
+main reading = slippage 0.1% per side, conservative valuation (navz against navBz); all three windows are already-seen data
+
+==== WINDOW V  2020-01-03..2022-12-30  727 days ====
+file <BLIND_ROOT>\evaluator\stageC2\record_c2_full_V.npz
+members: dates(727,) nav(727,) navB(727,) navz(727,) navBz(727,) held(727, 50) buys(727, 55) sells(727, 12) codes(3329,)
+strategy daily series = navz (CNY, start capital 500000) ; benchmark B daily series = navBz (ratio to capital)
+phi = 1 reproduces out_c2_full.txt (annS 29.73 annB 7.19 T1 22.54 t 2.90 ddS 19.15 ddB 26.26)
+moments: mean r 11.18 bp/d | mean b 3.66 bp/d | sd r 1.300 %/d | sd b 1.342 %/d | corr 0.861 | slope of r on b 0.833 | phi that minimises the tracking error = cov/var(r) 0.889 | sum r^2 per year 0.0428
+  phi | annS %  | annB %  | T1 pts  >5 | t      >=2 | t551  | TE %/yr | ddS %  | ddB %  | T3 ddS<=ddB | ddS<=17 | approx annS | approx ddS | ignored rebalancing, x NAV/yr one way
+ 1.00 |   29.73 |    7.19 |   22.54 yes |  2.90  yes |  2.53 |   11.09 |  19.15 |  26.26 |     yes     |   no    |       29.73 |      19.15 |   0.00
+ 0.90 |   26.64 |    7.19 |   19.45 yes |  2.53  yes |  2.20 |   10.85 |  17.34 |  26.26 |     yes     |   no    |       26.64 |      17.41 |   0.22
+ 0.80 |   23.58 |    7.19 |   16.39 yes |  2.06  yes |  1.79 |   11.00 |  15.52 |  26.26 |     yes     |   yes   |       23.57 |      15.63 |   0.39
+ 0.75 |   22.05 |    7.19 |   14.86 yes |  1.80  no  |  1.57 |   11.22 |  14.60 |  26.26 |     yes     |   yes   |       22.05 |      14.73 |   0.45
+ 0.70 |   20.53 |    7.19 |   13.34 yes |  1.55  no  |  1.35 |   11.53 |  13.67 |  26.26 |     yes     |   yes   |       20.53 |      13.82 |   0.51
+ 0.60 |   17.51 |    7.19 |   10.32 yes |  1.05  no  |  0.92 |   12.38 |  11.79 |  26.26 |     yes     |   yes   |       17.51 |      11.97 |   0.58
+ 0.50 |   14.52 |    7.19 |    7.33 yes |  0.61  no  |  0.53 |   13.49 |   9.89 |  26.26 |     yes     |   yes   |       14.51 |      10.08 |   0.60
+ 0.40 |   11.55 |    7.19 |    4.36 no  |  0.23  no  |  0.20 |   14.81 |   7.96 |  26.26 |     yes     |   yes   |       11.54 |       8.15 |   0.58
+ 0.30 |    8.61 |    7.19 |    1.42 no  | -0.08  no  | -0.07 |   16.29 |   6.01 |  26.26 |     yes     |   yes   |        8.61 |       6.18 |   0.51
+grid phi = 0.001 .. 1.000 (step 0.001):
+  T1 (excess > 5 pts) holds on        : [0.422, 1.000]
+  T2 (t >= 2) holds on                : [0.789, 1.000]
+  report only, t scaled to 551 days: t551 >= 2 holds on [0.850, 1.000] ; T1 and t551 >= 2 and T3 hold on [0.850, 1.000]
+  T3 (ddS <= ddB) holds on            : [0.001, 1.000]
+  T1 and T2 and T3 hold on            : [0.789, 1.000]
+  T1 and T2 hold on                   : [0.789, 1.000]
+  ddS <= 17% holds on                 : [0.001, 0.881]
+  T1 and T2 and ddS <= 17% hold on    : [0.789, 0.881]
+  largest t on the grid       : phi 1.000 | annS  29.73 | T1  22.54 | t  2.90 (t551  2.53) | TE 11.09 | ddS 19.15 (ddB 26.26)
+  largest phi with T3         : phi 1.000 | annS  29.73 | T1  22.54 | t  2.90 (t551  2.53) | TE 11.09 | ddS 19.15 (ddB 26.26)
+  smallest phi with T1 and T2 : phi 0.789 | annS  23.24 | T1  16.05 | t  2.00 (t551  1.74) | TE 11.04 | ddS 15.32 (ddB 26.26)
+  largest phi with ddS <= 17% : phi 0.881 | annS  26.06 | T1  18.87 | t  2.44 (t551  2.13) | TE 10.85 | ddS 17.00 (ddB 26.26)
+implementation B (each buy scaled by phi, no extra rebalancing): minimum commission 5 CNY per trade, 7310 trades in the window
+  phi | position at start CNY | commission per side at start, bp | extra per round trip against phi=1: at start, bp | window mean, bp | extra drag on the account, pts/yr
+ 1.00 |                 10000 |                             5.00 |                                             0.00 |           -0.00 |                            -0.00
+ 0.90 |                  9000 |                             5.56 |                                             1.11 |            1.02 |                             0.23
+ 0.80 |                  8000 |                             6.25 |                                             2.50 |            2.32 |                             0.47
+ 0.75 |                  7500 |                             6.67 |                                             3.33 |            3.10 |                             0.59
+ 0.70 |                  7000 |                             7.14 |                                             4.29 |            4.00 |                             0.71
+ 0.60 |                  6000 |                             8.33 |                                             6.67 |            6.28 |                             0.95
+ 0.50 |                  5000 |                            10.00 |                                            10.00 |            9.50 |                             1.20
+ 0.40 |                  4000 |                            12.50 |                                            15.00 |           14.39 |                             1.46
+ 0.30 |                  3000 |                            16.67 |                                            23.33 |           22.60 |                             1.72
+
+==== WINDOW SEL  2023-01-03..2024-06-28  359 days ====
+file <BLIND_ROOT>\evaluator\stageC2\record_c2_full_SEL.npz
+members: dates(359,) nav(359,) navB(359,) navz(359,) navBz(359,) held(359, 50) buys(359, 55) sells(359, 12) codes(3329,)
+strategy daily series = navz (CNY, start capital 500000) ; benchmark B daily series = navBz (ratio to capital)
+phi = 1 reproduces out_c2_full.txt (annS 5.61 annB -9.74 T1 15.35 t 1.39 ddS 36.93 ddB 29.29)
+moments: mean r 3.78 bp/d | mean b -3.26 bp/d | sd r 1.793 %/d | sd b 1.265 %/d | corr 0.858 | slope of r on b 1.216 | phi that minimises the tracking error = cov/var(r) 0.606 | sum r^2 per year 0.0808
+  phi | annS %  | annB %  | T1 pts  >5 | t      >=2 | t551  | TE %/yr | ddS %  | ddB %  | T3 ddS<=ddB | ddS<=17 | approx annS | approx ddS | ignored rebalancing, x NAV/yr one way
+ 1.00 |    5.61 |   -9.74 |   15.35 yes |  1.39  no  |  1.72 |   15.24 |  36.93 |  29.29 |     no      |   no    |        5.61 |      36.93 |   0.00
+ 0.90 |    5.42 |   -9.74 |   15.16 yes |  1.51  no  |  1.87 |   13.28 |  33.87 |  29.29 |     no      |   no    |        5.42 |      33.96 |   0.27
+ 0.80 |    5.15 |   -9.74 |   14.89 yes |  1.62  no  |  2.00 |   11.70 |  30.68 |  29.29 |     no      |   no    |        5.14 |      30.84 |   0.48
+ 0.75 |    4.98 |   -9.74 |   14.72 yes |  1.65  no  |  2.05 |   11.10 |  29.03 |  29.29 |     yes     |   no    |        4.97 |      29.23 |   0.56
+ 0.70 |    4.79 |   -9.74 |   14.53 yes |  1.67  no  |  2.07 |   10.65 |  27.35 |  29.29 |     yes     |   no    |        4.78 |      27.58 |   0.63
+ 0.60 |    4.35 |   -9.74 |   14.09 yes |  1.61  no  |  2.00 |   10.31 |  23.89 |  29.29 |     yes     |   no    |        4.33 |      24.16 |   0.71
+ 0.50 |    3.82 |   -9.74 |   13.56 yes |  1.44  no  |  1.79 |   10.74 |  20.29 |  29.29 |     yes     |   no    |        3.81 |      20.59 |   0.74
+ 0.40 |    3.21 |   -9.74 |   12.95 yes |  1.21  no  |  1.50 |   11.86 |  16.54 |  29.29 |     yes     |   yes   |        3.20 |      16.84 |   0.71
+ 0.30 |    2.52 |   -9.74 |   12.27 yes |  0.98  no  |  1.21 |   13.49 |  12.65 |  29.29 |     yes     |   yes   |        2.52 |      12.92 |   0.62
+grid phi = 0.001 .. 1.000 (step 0.001):
+  T1 (excess > 5 pts) holds on        : [0.001, 1.000]
+  T2 (t >= 2) holds on                : empty
+  report only, t scaled to 551 days: t551 >= 2 holds on [0.601, 0.802] ; T1 and t551 >= 2 and T3 hold on [0.601, 0.757]
+  T3 (ddS <= ddB) holds on            : [0.001, 0.757]
+  T1 and T2 and T3 hold on            : empty
+  T1 and T2 hold on                   : empty
+  ddS <= 17% holds on                 : [0.001, 0.411]
+  T1 and T2 and ddS <= 17% hold on    : empty
+  largest t on the grid       : phi 0.695 | annS   4.77 | T1  14.51 | t  1.67 (t551  2.07) | TE 10.62 | ddS 27.18 (ddB 29.29)
+  largest phi with T3         : phi 0.757 | annS   5.00 | T1  14.75 | t  1.65 (t551  2.04) | TE 11.17 | ddS 29.26 (ddB 29.29)
+  largest phi with ddS <= 17% : phi 0.411 | annS   3.28 | T1  13.03 | t  1.24 (t551  1.53) | TE 11.70 | ddS 16.96 (ddB 29.29)
+implementation B (each buy scaled by phi, no extra rebalancing): minimum commission 5 CNY per trade, 3630 trades in the window
+  phi | position at start CNY | commission per side at start, bp | extra per round trip against phi=1: at start, bp | window mean, bp | extra drag on the account, pts/yr
+ 1.00 |                 10000 |                             5.00 |                                             0.00 |           -0.00 |                            -0.00
+ 0.90 |                  9000 |                             5.56 |                                             1.11 |            1.09 |                             0.25
+ 0.80 |                  8000 |                             6.25 |                                             2.50 |            2.46 |                             0.50
+ 0.75 |                  7500 |                             6.67 |                                             3.33 |            3.28 |                             0.63
+ 0.70 |                  7000 |                             7.14 |                                             4.29 |            4.22 |                             0.75
+ 0.60 |                  6000 |                             8.33 |                                             6.67 |            6.58 |                             1.01
+ 0.50 |                  5000 |                            10.00 |                                            10.00 |            9.89 |                             1.26
+ 0.40 |                  4000 |                            12.50 |                                            15.00 |           14.87 |                             1.52
+ 0.30 |                  3000 |                            16.67 |                                            23.33 |           23.18 |                             1.77
+
+==== WINDOW HOLD  2024-07-01..2026-10-09  551 days ====
+file <BLIND_ROOT>\evaluator\stageC2\record_c2_full_HOLD.npz
+members: dates(551,) nav(551,) navB(551,) navz(551,) navBz(551,) held(551, 50) buys(551, 55) sells(551, 12) codes(3329,)
+strategy daily series = navz (CNY, start capital 500000) ; benchmark B daily series = navBz (ratio to capital)
+phi = 1 reproduces out_c2_full.txt (annS 48.27 annB 21.11 T1 27.17 t 2.33 ddS 29.45 ddB 23.09)
+moments: mean r 16.81 bp/d | mean b 8.66 bp/d | sd r 1.524 %/d | sd b 1.455 %/d | corr 0.849 | slope of r on b 0.890 | phi that minimises the tracking error = cov/var(r) 0.811 | sum r^2 per year 0.0592
+  phi | annS %  | annB %  | T1 pts  >5 | t      >=2 | t551  | TE %/yr | ddS %  | ddB %  | T3 ddS<=ddB | ddS<=17 | approx annS | approx ddS | ignored rebalancing, x NAV/yr one way
+ 1.00 |   48.27 |   21.11 |   27.17 yes |  2.33  yes |  2.33 |   13.02 |  29.45 |  23.09 |     no      |   no    |       48.27 |      29.45 |   0.00
+ 0.90 |   42.93 |   21.11 |   21.82 yes |  1.95  no  |  1.95 |   12.38 |  26.83 |  23.09 |     no      |   no    |       42.93 |      26.95 |   0.25
+ 0.80 |   37.69 |   21.11 |   16.59 yes |  1.46  no  |  1.46 |   12.19 |  24.14 |  23.09 |     no      |   no    |       37.69 |      24.35 |   0.45
+ 0.75 |   35.12 |   21.11 |   14.01 yes |  1.20  no  |  1.20 |   12.27 |  22.77 |  23.09 |     yes     |   no    |       35.12 |      23.02 |   0.53
+ 0.70 |   32.57 |   21.11 |   11.47 yes |  0.93  no  |  0.93 |   12.48 |  21.38 |  23.09 |     yes     |   no    |       32.57 |      21.67 |   0.59
+ 0.60 |   27.56 |   21.11 |    6.46 yes |  0.40  no  |  0.40 |   13.21 |  18.54 |  23.09 |     yes     |   no    |       27.56 |      18.89 |   0.68
+ 0.50 |   22.67 |   21.11 |    1.57 no  | -0.07  no  | -0.07 |   14.32 |  15.63 |  23.09 |     yes     |   yes   |       22.67 |      16.01 |   0.71
+ 0.40 |   17.90 |   21.11 |   -3.20 no  | -0.46  no  | -0.46 |   15.73 |  12.65 |  23.09 |     yes     |   yes   |       17.90 |      13.02 |   0.68
+ 0.30 |   13.25 |   21.11 |   -7.86 no  | -0.78  no  | -0.78 |   17.36 |   9.60 |  23.09 |     yes     |   yes   |       13.24 |       9.94 |   0.59
+grid phi = 0.001 .. 1.000 (step 0.001):
+  T1 (excess > 5 pts) holds on        : [0.571, 1.000]
+  T2 (t >= 2) holds on                : [0.913, 1.000]
+  report only, t scaled to 551 days: t551 >= 2 holds on [0.913, 1.000] ; T1 and t551 >= 2 and T3 hold on empty
+  T3 (ddS <= ddB) holds on            : [0.001, 0.761]
+  T1 and T2 and T3 hold on            : empty
+  T1 and T2 hold on                   : [0.913, 1.000]
+  ddS <= 17% holds on                 : [0.001, 0.546]
+  T1 and T2 and ddS <= 17% hold on    : empty
+  largest t on the grid       : phi 1.000 | annS  48.27 | T1  27.17 | t  2.33 (t551  2.33) | TE 13.02 | ddS 29.45 (ddB 23.09)
+  largest phi with T3         : phi 0.761 | annS  35.68 | T1  14.58 | t  1.26 (t551  1.26) | TE 12.25 | ddS 23.07 (ddB 23.09)
+  smallest phi with T1 and T2 : phi 0.913 | annS  43.62 | T1  22.51 | t  2.00 (t551  2.00) | TE 12.44 | ddS 27.17 (ddB 23.09)
+  largest phi with ddS <= 17% : phi 0.546 | annS  24.91 | T1   3.80 | t  0.14 (t551  0.14) | TE 13.77 | ddS 16.98 (ddB 23.09)
+implementation B (each buy scaled by phi, no extra rebalancing): minimum commission 5 CNY per trade, 5550 trades in the window
+  phi | position at start CNY | commission per side at start, bp | extra per round trip against phi=1: at start, bp | window mean, bp | extra drag on the account, pts/yr
+ 1.00 |                 10000 |                             5.00 |                                             0.00 |           -0.00 |                            -0.00
+ 0.90 |                  9000 |                             5.56 |                                             1.11 |            0.95 |                             0.22
+ 0.80 |                  8000 |                             6.25 |                                             2.50 |            2.16 |                             0.44
+ 0.75 |                  7500 |                             6.67 |                                             3.33 |            2.90 |                             0.55
+ 0.70 |                  7000 |                             7.14 |                                             4.29 |            3.76 |                             0.67
+ 0.60 |                  6000 |                             8.33 |                                             6.67 |            5.94 |                             0.91
+ 0.50 |                  5000 |                            10.00 |                                            10.00 |            9.07 |                             1.15
+ 0.40 |                  4000 |                            12.50 |                                            15.00 |           13.84 |                             1.41
+ 0.30 |                  3000 |                            16.67 |                                            23.33 |           21.94 |                             1.67
+
+==== ALL THREE WINDOWS ====
+T1 and T2 and T3 in V, SEL and HOLD together : empty
+report only, with t551 in place of t        : empty
+ddS <= 17% in V, SEL and HOLD together       : [0.001, 0.411]
+  V    at the common phi 0.411 | annS  11.87 | T1   4.68 | t  0.27 (t551  0.24) | TE 14.66 | ddS  8.17 (ddB 26.26)
+  SEL  at the common phi 0.411 | annS   3.28 | T1  13.03 | t  1.24 (t551  1.53) | TE 11.70 | ddS 16.96 (ddB 29.29)
+  HOLD at the common phi 0.411 | annS  18.42 | T1  -2.69 | t -0.42 (t551 -0.42) | TE 15.56 | ddS 12.99 (ddB 23.09)
+  V    T1 and T2 at each listed phi: 1.00:  22.54, 2.90 | 0.90:  19.45, 2.53 | 0.80:  16.39, 2.06 | 0.75:  14.86, 1.80 | 0.70:  13.34, 1.55 | 0.60:  10.32, 1.05 | 0.50:   7.33, 0.61 | 0.40:   4.36, 0.23 | 0.30:   1.42, -0.08
+  SEL  T1 and T2 at each listed phi: 1.00:  15.35, 1.39 | 0.90:  15.16, 1.51 | 0.80:  14.89, 1.62 | 0.75:  14.72, 1.65 | 0.70:  14.53, 1.67 | 0.60:  14.09, 1.61 | 0.50:  13.56, 1.44 | 0.40:  12.95, 1.21 | 0.30:  12.27, 0.98
+  HOLD T1 and T2 at each listed phi: 1.00:  27.17, 2.33 | 0.90:  21.82, 1.95 | 0.80:  16.59, 1.46 | 0.75:  14.01, 1.20 | 0.70:  11.47, 0.93 | 0.60:   6.46, 0.40 | 0.50:   1.57, -0.07 | 0.40:  -3.20, -0.46 | 0.30:  -7.86, -0.78

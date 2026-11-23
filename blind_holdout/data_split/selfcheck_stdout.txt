@@ -1,0 +1,126 @@
+﻿{
+ "keys": [
+  "dates",
+  "codes",
+  "tradable",
+  "st",
+  "open_raw",
+  "high_raw",
+  "low_raw",
+  "close_raw",
+  "preclose_raw",
+  "open_qfq",
+  "high_qfq",
+  "low_qfq",
+  "close_qfq",
+  "volume_shares",
+  "amount_cny",
+  "turnover_pct"
+ ],
+ "n_keys": 16,
+ "dates": [
+  "2014-01-02",
+  "2024-06-28",
+  2551
+ ],
+ "dates_sorted_unique": true,
+ "max_date_le_20240628": true,
+ "n_codes": 3329,
+ "days_train_le_20221231": 2192,
+ "days_select": 359,
+ "shape": [
+  2551,
+  3329
+ ],
+ "all_codes_have_tradable_row": true,
+ "tradable_rows": 6788867,
+ "tradable_rows_train": 5647539,
+ "dtypes": {
+  "dates": [
+   "<U10",
+   [
+    2551
+   ]
+  ],
+  "codes": [
+   "<U6",
+   [
+    3329
+   ]
+  ],
+  "tradable": [
+   "bool",
+   [
+    2551,
+    3329
+   ]
+  ],
+  "st": [
+   "bool",
+   [
+    2551,
+    3329
+   ]
+  ],
+  "close_raw": [
+   "float32",
+   [
+    2551,
+    3329
+   ]
+  ],
+  "close_qfq": [
+   "float32",
+   [
+    2551,
+    3329
+   ]
+  ]
+ },
+ "anchor": {
+  "stocks_with_anchor": 3329,
+  "stocks_without_anchor": 0,
+  "exactly_equal": 3329,
+  "max_rel_diff": 0.0
+ },
+ "dates_match_source_prefix": true,
+ "next_source_date_after_cut": true,
+ "dropped_codes": 75,
+ "dropped_codes_have_no_tradable_row": true,
+ "tradable_equal_source": true,
+ "st_equal_source": true,
+ "close_qfq_nan_pattern_equal": true,
+ "close_qfq_factor_constant_all_stocks_max_rel_spread": 7.485779884852661e-08,
+ "five_random_stocks": {
+  "codes": [
+   "002484",
+   "600056",
+   "600978",
+   "600999",
+   "601601"
+  ],
+  "qfq_adjacent_ratio_max_rel_diff": {
+   "open_qfq": 1.1356612028556867e-07,
+   "high_qfq": 1.1370961194856477e-07,
+   "low_qfq": 1.1176357583853047e-07,
+   "close_qfq": 1.1032297519975032e-07
+  },
+  "unchanged_fields_equal": {
+   "open_raw": true,
+   "high_raw": true,
+   "low_raw": true,
+   "close_raw": true,
+   "preclose_raw": true,
+   "volume_shares": true,
+   "amount_cny": true,
+   "turnover_pct": true
+  },
+  "ratio_pairs_checked": {
+   "open_qfq": 11957,
+   "high_qfq": 11957,
+   "low_qfq": 11957,
+   "close_qfq": 11957
+  }
+ },
+ "seconds": 5.8
+}

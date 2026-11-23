@@ -1,0 +1,10 @@
+# Reproducible runtime for the versioned research lane on Python 3.10.11.
+# Optional CZSC and MOFA experiments use separate environments and lazy imports.
+numpy==2.2.6
+pandas==2.3.3
+scipy==1.15.3
+scikit-learn==1.7.2
+lightgbm==4.7.0
+joblib==1.5.3
+pytest==8.4.2
+tabulate==0.10.0

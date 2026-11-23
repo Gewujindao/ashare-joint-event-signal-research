@@ -1,0 +1,4 @@
+# prefix_check
+rows 700: events identical True ; decisions identical True ; out decisions in prefix 15638
+rows 1500: events identical True ; decisions identical True ; out decisions in prefix 24225
+# done  elapsed_s=2.1

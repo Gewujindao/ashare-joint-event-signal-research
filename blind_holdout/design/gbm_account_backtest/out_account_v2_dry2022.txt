@@ -1,0 +1,58 @@
+# c2_v2dry2022
+data rows 2192, last date 2022-12-30 ; mode extend ; tag v2dry2022
+# [  5.5s] stage1
+# [  8.1s] stage2
+# [ 21.8s] stage3
+# [ 23.6s] stage4
+# [ 27.4s] stage5
+pool: first day 2015-01-12 (row 250); fit segment ends 2019-12-31 (row 1463)
+model file bytes 408799
+list check (frozen rule, no exclusions): decide() in set mode against record_SEL.npz, 726 days 2020-01-03..2022-12-29 ; max |x diff| 0.000e+00 ; max |buys diff| 0.0
+# [ 70.8s] scores and market ready; rows 2019-11-26..2022-12-30
+
+==== WINDOW V  2020-01-03..2022-12-30  727 days ====
+exclusions on decision days: frozen-pool stock-days 1841409 | X1 0.535% | X2 0.022% | X1 or X2 0.538% | mean pool size 2533, mean excluded per day 13.6
+benchmark B: frozen pool of 2020-01-02 = 2255 stocks (series ended 37) | version-2 pool = 2252 stocks (series ended 35)
+v1 last-close (round-1 main)         n=727 | annS   27.71 annB    7.32 | T1 excess %/yr   20.39 (arith   17.05) | T2 t  2.64 t551  2.30 TE %/d 0.692 | T3 ddS  17.75 ddB  26.15 | NAV S 2.0252 B 1.2262
+v1 conservative, round-1 sizing      n=727 | annS   21.10 annB    7.09 | T1 excess %/yr   14.01 (arith   11.96) | T2 t  1.78 t551  1.55 TE %/d 0.718 | T3 ddS  17.61 ddB  26.24 | NAV S 1.7374 B 1.2185
+v1 CONSERVATIVE (overlay)            n=727 | annS   21.69 annB    7.09 | T1 excess %/yr   14.60 (arith   12.61) | T2 t  1.85 t551  1.61 TE %/d 0.728 | T3 ddS  18.18 ddB  26.24 | NAV S 1.7618 B 1.2185
+v2 MAIN = CONSERVATIVE (overlay)     n=727 | annS   29.73 annB    7.12 | T1 excess %/yr   22.61 (arith   19.01) | T2 t  2.91 t551  2.54 TE %/d 0.698 | T3 ddS  19.15 ddB  26.26 | NAV S 2.1190 B 1.2196
+v2 last-close (report only)          n=727 | annS   29.73 annB    7.33 | T1 excess %/yr   22.40 (arith   18.83) | T2 t  2.89 t551  2.51 TE %/d 0.698 | T3 ddS  19.15 ddB  26.18 | NAV S 2.1190 B 1.2263
+v2 conservative, round-1 sizing      n=727 | annS   29.73 annB    7.12 | T1 excess %/yr   22.61 (arith   19.01) | T2 t  2.91 t551  2.54 TE %/d 0.698 | T3 ddS  19.15 ddB  26.26 | NAV S 2.1190 B 1.2196
+v2 conservative vs frozen-pool B     n=727 | annS   29.73 annB    7.09 | T1 excess %/yr   22.64 (arith   19.04) | T2 t  2.92 t551  2.54 TE %/d 0.698 | T3 ddS  19.15 ddB  26.24 | NAV S 2.1190 B 1.2185
+v2 slip 0.02% conservative (report)  n=727 | annS   35.27 annB    7.15 | T1 excess %/yr   28.11 (arith   23.17) | T2 t  3.55 t551  3.09 TE %/d 0.699 | T3 ddS  18.48 ddB  26.26 | NAV S 2.3904 B 1.2206
+v2 20k conservative (report)         n=727 | annS  -13.68 annB    6.91 | T1 excess %/yr  -20.59 (arith  -23.54) | T2 t -2.02 t551 -1.76 TE %/d 1.246 | T3 ddS  34.58 ddB  25.70 | NAV S 0.6542 B 1.2125
+v2 account: mean holdings 49.23 (min 45) | cash share mean 0.0742 | buys 3680 sells 3630 | turnover /yr 24.14 | cost %/yr 8.97 | gross excess (arith net + cost) 27.98 | cost / gross 0.320
+v2 account events: buy blocked 0 | one lot unaffordable 562 | no cash for one lot 0 | cut by cash 0 | 1% cap binding 0 | pending-sell days 0 | pending at end 0
+v2 holdings by amt60 quintile (lowest..highest | not in pool): 0.691 0.113 0.037 0.031 0.126 0.001
+series ended: v1 positions 8, carried 13.01% of last-close NAV | v2 positions 0, carried 0.00% of last-close NAV (0 CNY)
+VERSION 1 positions whose series ended:
+  code | decision day t | bought | last tradable | close_raw[t] | min close_raw rows t-20..t-1 | X1 (st in t-60..t) | X2 (close<1 in t-20..t) | ret5 %% | ret20 %% | limit-down closes rows t-9..t | amt60 quintile | score rank from top / pool | value last close / buy open | last 5 tradable closes (L = limit-down close)
+  000018 | 2020-01-02 | 2020-01-03 | 2020-01-06 | 0.27 | 0.24 | 1 | 1 |    3.8 |  -25.0 | 0 | 0 | 1 / 2255 | 1.000 | 12-30:0.27 12-31:0.27 01-02:0.27 01-03:0.27 01-06:0.27
+  000585 | 2022-05-18 | 2022-05-19 | 2022-05-23 | 0.35 | 0.32 | 1 | 1 |    2.9 |  -64.3 | 0 | 0 | 11 / 2627 | 1.000 | 05-17:0.35 05-18:0.35 05-19:0.35 05-20:0.35 05-23:0.35
+  000835 | 2022-05-13 | 2022-05-16 | 2022-05-20 | 0.32 | 0.31 | 1 | 1 |    0.0 |  -68.9 | 2 | 0 | 18 / 2627 | 1.094 | 05-16:0.33 05-17:0.33 05-18:0.33 05-19:0.33 05-20:0.35
+  002464 | 2022-06-23 | 2022-06-24 | 2022-06-27 | 0.27 | 0.28 | 1 | 1 |  -10.0 |  -87.1 | 0 | 0 | 1 / 2658 | 1.000 | 06-21:0.28 06-22:0.28 06-23:0.27 06-24:0.24L 06-27:0.26
+  002684 | 2022-06-23 | 2022-06-24 | 2022-06-24 | 0.63 | 0.61 | 1 | 1 |   -4.5 |  -72.1 | 0 | 0 | 14 / 2658 | 1.113 | 06-20:0.68 06-21:0.70 06-22:0.66 06-23:0.63 06-24:0.69
+  600086 | 2021-03-03 | 2021-03-04 | 2021-03-10 | 0.18 | 0.19 | 1 | 1 |  -10.0 |  -64.0 | 0 | 0 | 9 / 2519 | 0.889 | 03-04:0.18 03-05:0.17 03-08:0.18 03-09:0.17 03-10:0.16
+  600652 | 2022-06-14 | 2022-06-15 | 2022-06-15 | 1.08 | 0.80 | 1 | 1 |  -16.3 |    5.9 | 1 | 0 | 10 / 2650 | 1.102 | 06-09:1.14 06-10:1.19 06-13:1.20 06-14:1.08L 06-15:1.19
+  603996 | 2022-05-13 | 2022-05-16 | 2022-05-17 | 0.38 | 0.35 | 1 | 1 |    8.6 |  -60.4 | 2 | 0 | 11 / 2627 | 1.000 | 05-11:0.38 05-12:0.38 05-13:0.38 05-16:0.39 05-17:0.39
+VERSION 2 positions whose series ended:
+  code | decision day t | bought | last tradable | close_raw[t] | min close_raw rows t-20..t-1 | X1 (st in t-60..t) | X2 (close<1 in t-20..t) | ret5 %% | ret20 %% | limit-down closes rows t-9..t | amt60 quintile | score rank from top / pool | value last close / buy open | last 5 tradable closes (L = limit-down close)
+  v2 main YEAR 2020 | days 242 | strategy   25.86% | B   12.25% | difference   13.62 pts
+  v2 main YEAR 2021 | days 243 | strategy   33.59% | B   23.39% | difference   10.20 pts
+  v2 main YEAR 2022 | days 242 | strategy   26.03% | B  -11.94% | difference   37.97 pts
+  v2 main QUARTER 2020Q1 | days  57 | strategy    0.18% | B   -6.98% | difference    7.16 pts
+  v2 main QUARTER 2020Q2 | days  59 | strategy   11.17% | B    9.62% | difference    1.55 pts
+  v2 main QUARTER 2020Q3 | days  66 | strategy   15.26% | B    6.75% | difference    8.51 pts
+  v2 main QUARTER 2020Q4 | days  60 | strategy   -1.94% | B    3.12% | difference   -5.06 pts
+  v2 main QUARTER 2021Q1 | days  58 | strategy    8.17% | B   -1.33% | difference    9.51 pts
+  v2 main QUARTER 2021Q2 | days  60 | strategy    5.91% | B    9.12% | difference   -3.21 pts
+  v2 main QUARTER 2021Q3 | days  64 | strategy    4.15% | B    6.64% | difference   -2.49 pts
+  v2 main QUARTER 2021Q4 | days  61 | strategy   11.95% | B    7.46% | difference    4.49 pts
+  v2 main QUARTER 2022Q1 | days  58 | strategy    5.40% | B   -8.99% | difference   14.40 pts
+  v2 main QUARTER 2022Q2 | days  59 | strategy    9.29% | B    3.26% | difference    6.03 pts
+  v2 main QUARTER 2022Q3 | days  65 | strategy    0.57% | B  -10.27% | difference   10.84 pts
+  v2 main QUARTER 2022Q4 | days  60 | strategy    8.78% | B    4.42% | difference    4.36 pts
+record saved: <BLIND_ROOT>\design\stageC2\record_c2_v2dry2022_V.npz (0.06 MB)
+# [ 72.1s] window V
+# done  elapsed_s=72.1

@@ -1,0 +1,52 @@
+# c4_run
+pool and ranks vs cache_c3_scores.npz on 1664 overlapping rows (2019-11-26..2026-10-09): IDENTICAL
+# [  1.2s] fcap
+# [  3.9s] market
+float-cap proxy recomputed: 200-bucket rank differs from the frozen fcap rank on 0 of 6798466 stock-days
+account: cash at the open of 2015-01-13 (signal day 2015-01-12, pool 1727) .. 2026-10-09 ; 2851 days
+benchmark B: pool 1727, bought 1727, ended series held 133
+# [  5.1s] accounts
+WHOLE 2015-01-13..2026-10-09 n=2851 | rule ann 22.85 maxDD 46.73 | B ann 3.84 maxDD 64.28 | ann diff 19.00 (arith 17.03) t 4.39 | NAV rule 10.2569 B 1.5321
+rule rhythm: mean held 50.0 | cash share 0.158 | buys 1866 sells 1816 | cost %/yr 0.94 | ended series ever held 0 | sells pending at end 0
+max drawdown rule 46.73% | peak 2017-01-09 -> trough 2018-10-18 (431 days) -> recovered 2021-08-25 (696 days after trough)
+max drawdown B    64.28% | peak 2015-06-12 -> trough 2018-10-18 (816 days) -> recovered not recovered by 2026-10-09 (-1 days after trough)
+
+-- by calendar year (account, close to close, conservative valuation; ann. = calendar year return) --
+year days | rule %% | B %% | rule-B pts | maxDD rule %% | maxDD B %% | rule mean held | stuck ended slots (mean / year end) | cash share | daily diff t
+2015 238 |  126.55 |   62.94 |   63.60 |  43.28 |  50.29 |  50.0 |  0.00 /  0 | 0.077 |  3.08
+2016 244 |   17.14 |  -11.54 |   28.68 |  24.62 |  30.51 |  50.0 |  0.00 /  0 | 0.096 |  4.25
+2017 244 |  -19.85 |  -10.26 |   -9.59 |  23.73 |  15.80 |  50.0 |  0.00 /  0 | 0.135 | -1.98
+2018 243 |  -17.53 |  -33.82 |   16.28 |  32.57 |  38.84 |  50.0 |  0.00 /  0 | 0.150 |  2.30
+2019 244 |   23.82 |   25.63 |   -1.81 |  17.69 |  20.95 |  50.0 |  0.00 /  0 | 0.131 | -0.16
+2020 243 |   10.17 |   22.24 |  -12.07 |  15.93 |  13.23 |  50.0 |  0.00 /  0 | 0.159 | -1.03
+2021 243 |   27.22 |   17.33 |    9.89 |  15.87 |   9.43 |  50.0 |  0.00 /  0 | 0.178 |  0.52
+2022 242 |   39.00 |  -14.36 |   53.36 |  16.25 |  26.75 |  50.0 |  0.00 /  0 | 0.207 |  3.45
+2023 242 |   34.41 |   -5.36 |   39.76 |  12.16 |  17.03 |  50.0 |  0.00 /  0 | 0.208 |  3.52
+2024 242 |    7.64 |    3.80 |    3.84 |  35.56 |  20.29 |  50.0 |  0.00 /  0 | 0.239 |  0.28
+2025 243 |   49.29 |   25.41 |   23.87 |  14.19 |  12.47 |  50.0 |  0.00 /  0 | 0.161 |  1.39
+2026 183 |   12.23 |   -5.87 |   18.10 |  20.63 |  18.19 |  50.0 |  0.00 /  0 | 0.152 |  1.13
+group 2015-2015  238 d | cum rule  126.55% B   62.94% | ann rule 137.71% B  67.69% diff  70.02 | maxDD rule 43.28 B 50.29
+group 2016-2018  731 d | cum rule  -22.57% B  -47.46% | ann rule  -8.44% B -19.90% diff  11.46 | maxDD rule 46.73 B 50.03
+group 2017-2018  487 d | cum rule  -33.90% B  -40.61% | ann rule -19.29% B -23.63% diff   4.35 | maxDD rule 46.73 B 45.13
+group 2019-2021  730 d | cum rule   73.55% B   80.19% | ann rule  20.96% B  22.54% diff  -1.58 | maxDD rule 25.21 B 20.95
+group 2022-2023  484 d | cum rule   86.83% B  -18.95% | ann rule  38.46% B -10.36% diff  48.82 | maxDD rule 16.25 B 26.75
+group 2024-2026  668 d | cum rule   80.35% B   22.54% | ann rule  24.92% B   7.97% diff  16.94 | maxDD rule 35.56 B 20.29
+group 2020-2026 1638 d | cum rule  372.24% B   42.46% | ann rule  26.97% B   5.60% diff  21.38 | maxDD rule 35.56 B 36.01
+group 2015-2019 1213 d | cum rule  117.20% B    7.55% | ann rule  17.48% B   1.52% diff  15.96 | maxDD rule 46.73 B 64.28
+
+-- gross equal-weighted quintile return minus pool return, by year, percentage points (compounded within the year; open-to-open) --
+year days | pool %% | cap q1(smallest) q2 q3 q4 q5 | amt60 q1(lowest) q2 q3 q4 q5
+2015 238 |   83.08 |   90.04   27.21   -3.00  -22.02  -61.87 |   72.23   30.57   -0.68  -20.68  -57.88
+2016 244 |   -9.38 |   18.32    2.23   -4.96   -7.76   -5.84 |   20.05    9.01   -0.78   -7.80  -16.46
+2017 244 |  -10.16 |  -12.70   -7.63   -3.58    4.05   23.43 |   -3.73   -0.40   -1.41    0.70    4.86
+2018 243 |  -29.10 |    4.87   -2.51   -3.61   -2.22    3.30 |    8.35    3.58   -1.07   -4.42   -6.01
+2019 244 |   28.23 |    5.18   -2.92   -4.11   -2.97    4.53 |    8.87    2.95   -4.29   -4.97   -2.60
+2020 243 |   15.24 |   -1.52   -2.94   -6.02    3.69    6.59 |    5.53    0.87   -4.72   -2.67    0.45
+2021 243 |   27.11 |    9.44    2.64    1.37    2.56  -15.93 |   10.83    3.70    2.90   -4.85  -12.99
+2022 242 |   -3.07 |   26.07    8.44   -5.42  -11.82  -13.12 |   34.15   14.86   -3.89  -12.32  -23.48
+2023 242 |    5.59 |   21.92    4.08   -4.55   -7.09  -11.75 |   20.29    7.49   -0.10   -7.92  -16.51
+2024 242 |    6.62 |   -1.05   -2.18   -5.22   -1.63    6.00 |    6.88    7.20    1.23   -6.70   -8.81
+2025 243 |   33.98 |   19.68    3.81   -2.86   -8.35  -11.33 |   23.07    1.80   -3.98   -8.87  -10.66
+2026 182 |   -3.40 |    8.47    1.69   -1.64   -4.65   -4.27 |   10.43    6.12   -2.86   -5.63   -8.40
+whole (annualised) |    9.54 |   12.63    1.52   -4.10   -4.79   -5.55 |   16.63    7.04   -1.80   -7.26  -13.17
+# done  elapsed_s=5.6

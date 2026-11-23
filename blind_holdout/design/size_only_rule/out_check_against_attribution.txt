@@ -1,0 +1,5 @@
+# c4_check
+V    rule ann 24.98 maxDD 25.61 | B ann 7.19 maxDD 26.26 | diff 17.79 t 2.13
+SEL  rule ann 3.36 maxDD 36.54 | B ann -9.74 maxDD 29.29 | diff 13.10 t 1.18
+HOLD rule ann 55.30 maxDD 20.76 | B ann 21.11 maxDD 23.09 | diff 34.19 t 2.76
+# done  elapsed_s=4.5

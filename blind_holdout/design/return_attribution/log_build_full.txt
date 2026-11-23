@@ -1,0 +1,16 @@
+pid 50244
+wrote open_raw 3.3 s
+wrote high_raw 5.9 s
+wrote low_raw 8.2 s
+wrote close_raw 10.5 s
+wrote preclose_raw 12.9 s
+wrote open_qfq 14.8 s
+wrote high_qfq 16.7 s
+wrote low_qfq 18.6 s
+wrote close_qfq 20.5 s
+wrote volume_shares 22.3 s
+wrote amount_cny 24.0 s
+wrote turnover_pct 25.8 s
+n_dates 3102 n_dates_prefix 2551 n_codes 3329 n_codes_source 3404 first_date 2014-01-02 last_date 2026-10-09 codes_without_anchor 0
+members {'dates': ([3102], '<U10'), 'codes': ([3329], '<U6'), 'tradable': ([3102, 3329], 'bool'), 'st': ([3102, 3329], 'bool'), 'open_raw': ([3102, 3329], 'float32'), 'high_raw': ([3102, 3329], 'float32'), 'low_raw': ([3102, 3329], 'float32'), 'close_raw': ([3102, 3329], 'float32'), 'preclose_raw': ([3102, 3329], 'float32'), 'open_qfq': ([3102, 3329], 'float32'), 'high_qfq': ([3102, 3329], 'float32'), 'low_qfq': ([3102, 3329], 'float32'), 'close_qfq': ([3102, 3329], 'float32'), 'volume_shares': ([3102, 3329], 'float32'), 'amount_cny': ([3102, 3329], 'float32'), 'turnover_pct': ([3102, 3329], 'float32')}
+seconds 25.8

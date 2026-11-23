@@ -1,0 +1,171 @@
+# c3_main
+# [  3.4s] ready; rows 2019-11-26..2026-10-09
+float-cap proxy recomputed for ordering: 200-bucket rank differs from the frozen feature rank on 0 of 4446497 stock-days (0.0000%)
+# [  4.4s] fcap
+
+==================== WINDOW V  2020-01-03..2022-12-30  727 days ====================
+-- accounts (same engine, 500k, slip 0.1%/side, conservative valuation; B = hold-all benchmark of the evaluation) --
+PLAN v2 (frozen)                         ann   29.73 | maxDD  19.15 | vs B: excess %/yr   22.54 (arith   18.95) t  2.90 | NAV 2.1190 | mean held   49.2 cash 0.074 buys  3680 cost %/yr  8.97
+benchmark B                              ann    7.19 | maxDD  26.26
+(ii) smallest-cap 50, 5 swaps/day        ann   24.98 | maxDD  25.61 | vs B: excess %/yr   17.79 (arith   15.26) t  2.13 | NAV 1.9028 | mean held   50.0 cash 0.162 buys   502 cost %/yr  1.19
+(ii-x) same, pool leavers kept           ann   25.81 | maxDD  22.54 | vs B: excess %/yr   18.62 (arith   15.57) t  2.20 | NAV 1.9395 | mean held   50.0 cash 0.201 buys   426 cost %/yr  1.03
+(iii-a) smallest 400, lots + min comm    ann   12.68 | maxDD  16.09 | vs B: excess %/yr    5.49 (arith    3.87) t  0.65 | NAV 1.4113 | mean held  363.4 cash 0.340 buys  1415 cost %/yr  0.99 | lot-unaffordable attempts 26658
+(iii-b) smallest 400, lots, no min comm  ann   13.46 | maxDD  15.77 | vs B: excess %/yr    6.27 (arith    4.55) t  0.76 | NAV 1.4394 | mean held  364.8 cash 0.342 buys  1418 cost %/yr  0.27 | lot-unaffordable attempts 25672
+(iii-c) smallest 400, no lots, no min c  ann   16.44 | maxDD  22.40 | vs B: excess %/yr    9.25 (arith    8.00) t  1.51 | NAV 1.5513 | mean held  400.3 cash 0.127 buys  1525 cost %/yr  0.37 | lot-unaffordable attempts 0
+daily return correlation with the plan: (ii) 0.936 | (iii-a) 0.949 | (iii-c) 0.947 | B 0.861
+plan minus (ii): daily mean 1.46 bp, t 0.84 | plan minus (iii-c): daily mean 4.34 bp, t 2.80
+-- decomposition, stage C1 method (weights 1/50, open-to-open, pool = daily equal-weighted pool) --
+set simulation v1 rule | amt60 quintiles     n=727 | gross bp/d   8.97 (t  4.02) | style   4.25 (  47%) sd 0.262% t  4.37 | within   4.72 (  53%) sd 0.463% t  2.75 | cash  0.00
+   set simulation: mean number of the 50 slots whose price series has already ended (stuck, return 0): 4.78 (last day 10)
+   check against stage C1 record_SEL.npz on 727 common days: max |style diff| 0.00e+00, max |within diff| 0.00e+00
+PLAN v2 account lists | (a) amt60 quintiles  n=727 | gross bp/d  10.25 (t  4.44) | style   4.80 (  47%) sd 0.305% t  4.25 | within   5.50 (  54%) sd 0.451% t  3.28 | cash -0.05
+PLAN v2 account lists | (b) cap 6 strata     n=727 | gross bp/d  10.25 (t  4.44) | style   4.16 (  41%) sd 0.376% t  2.98 | within   6.14 (  60%) sd 0.430% t  3.85 | cash -0.05
+PLAN v2 account lists | cap quintiles        n=727 | gross bp/d  10.25 (t  4.44) | style   3.46 (  34%) sd 0.327% t  2.86 | within   6.84 (  67%) sd 0.451% t  4.09 | cash -0.05
+PLAN v2 account lists | amt x cap 25 cells   n=727 | gross bp/d  10.25 (t  4.44) | style   5.93 (  58%) sd 0.375% t  4.26 | within   4.37 (  43%) sd 0.399% t  2.95 | cash -0.05
+PLAN v2 | cap 40 buckets (2.5%)              n=727 | gross bp/d  10.25 (t  4.44) | style   4.20 (  41%) sd 0.405% t  2.80 | within   6.10 (  59%) sd 0.399% t  4.12 | cash -0.05
+PLAN v2 | amt60 40 buckets (2.5%)            n=727 | gross bp/d  10.25 (t  4.44) | style   6.61 (  65%) sd 0.359% t  4.97 | within   3.69 (  36%) sd 0.422% t  2.36 | cash -0.05
+PLAN v2 | amt quintile x cap 5% bucket       n=727 | gross bp/d  10.25 (t  4.44) | style   6.34 (  62%) sd 0.431% t  3.97 | within   3.95 (  39%) sd 0.368% t  2.90 | cash -0.05
+PLAN v2 | amt decile x cap decile            n=727 | gross bp/d  10.25 (t  4.44) | style   6.88 (  67%) sd 0.430% t  4.32 | within   3.42 (  33%) sd 0.365% t  2.52 | cash -0.05
+   plan holdings share in the four smallest 2.5% cap buckets: 0.219 0.158 0.136 0.109 | in the four lowest 2.5% amt60 buckets: 0.323 0.140 0.076 0.052
+   plan holdings share by amt60 quintile (low..high | none): 0.691 0.113 0.037 0.031 0.126 0.001
+   plan holdings share by cap strata (smallest 10% | next 10% | q2 | q3 | q4 | q5 | none): 0.623 0.123 0.053 0.032 0.012 0.156 0.001
+(ii) smallest-cap 50 | amt60 quintiles       n=727 | gross bp/d   7.73 (t  2.64) | style   4.80 (  62%) sd 0.390% t  3.31 | within   2.93 (  38%) sd 0.605% t  1.31 | cash  0.00
+(ii) smallest-cap 50 | cap 6 strata          n=727 | gross bp/d   7.73 (t  2.64) | style   5.59 (  72%) sd 0.568% t  2.65 | within   2.14 (  28%) sd 0.409% t  1.41 | cash  0.00
+   (ii) holdings share by amt60 quintile: 0.701 0.220 0.056 0.016 0.002 0.004 | by cap strata: 0.996 0.000 0.000 0.000 0.000 0.000 0.004
+# [  8.2s] window V
+
+==================== WINDOW SEL  2023-01-03..2024-06-28  359 days ====================
+-- accounts (same engine, 500k, slip 0.1%/side, conservative valuation; B = hold-all benchmark of the evaluation) --
+PLAN v2 (frozen)                         ann    5.61 | maxDD  36.93 | vs B: excess %/yr   15.35 (arith   17.75) t  1.39 | NAV 1.0808 | mean held   49.4 cash 0.075 buys  1840 cost %/yr  8.88
+benchmark B                              ann   -9.74 | maxDD  29.29
+(ii) smallest-cap 50, 5 swaps/day        ann    3.36 | maxDD  36.54 | vs B: excess %/yr   13.10 (arith   15.38) t  1.18 | NAV 1.0482 | mean held   50.0 cash 0.147 buys   228 cost %/yr  0.97
+(ii-x) same, pool leavers kept           ann    0.49 | maxDD  35.49 | vs B: excess %/yr   10.23 (arith   12.36) t  0.98 | NAV 1.0070 | mean held   50.0 cash 0.158 buys   208 cost %/yr  0.89
+(iii-a) smallest 400, lots + min comm    ann   -5.28 | maxDD  28.14 | vs B: excess %/yr    4.46 (arith    4.62) t  0.59 | NAV 0.9256 | mean held  339.1 cash 0.351 buys   794 cost %/yr  1.06 | lot-unaffordable attempts 21946
+(iii-b) smallest 400, lots, no min comm  ann   -4.53 | maxDD  28.20 | vs B: excess %/yr    5.21 (arith    5.43) t  0.70 | NAV 0.9361 | mean held  341.0 cash 0.349 buys   799 cost %/yr  0.25 | lot-unaffordable attempts 21274
+(iii-c) smallest 400, no lots, no min c  ann   -6.79 | maxDD  38.03 | vs B: excess %/yr    2.95 (arith    4.80) t  0.46 | NAV 0.9046 | mean held  400.5 cash 0.063 buys   917 cost %/yr  0.35 | lot-unaffordable attempts 0
+daily return correlation with the plan: (ii) 0.950 | (iii-a) 0.967 | (iii-c) 0.968 | B 0.858
+plan minus (ii): daily mean 0.94 bp, t 0.32 | plan minus (iii-c): daily mean 5.14 bp, t 2.14
+-- decomposition, stage C1 method (weights 1/50, open-to-open, pool = daily equal-weighted pool) --
+set simulation v1 rule | amt60 quintiles     n=359 | gross bp/d   8.48 (t  1.96) | style   3.07 (  36%) sd 0.228% t  2.55 | within   5.41 (  64%) sd 0.666% t  1.54 | cash  0.00
+   set simulation: mean number of the 50 slots whose price series has already ended (stuck, return 0): 11.38 (last day 15)
+   check against stage C1 record_SEL.npz on 358 common days: max |style diff| 0.00e+00, max |within diff| 0.00e+00
+PLAN v2 account lists | (a) amt60 quintiles  n=359 | gross bp/d   9.89 (t  1.68) | style   4.00 (  40%) sd 0.323% t  2.34 | within   5.74 (  58%) sd 0.884% t  1.23 | cash  0.16
+PLAN v2 account lists | (b) cap 6 strata     n=359 | gross bp/d   9.89 (t  1.68) | style   4.89 (  49%) sd 0.853% t  1.09 | within   4.84 (  49%) sd 0.444% t  2.07 | cash  0.16
+PLAN v2 account lists | cap quintiles        n=359 | gross bp/d   9.89 (t  1.68) | style   3.41 (  35%) sd 0.749% t  0.86 | within   6.32 (  64%) sd 0.510% t  2.35 | cash  0.16
+PLAN v2 account lists | amt x cap 25 cells   n=359 | gross bp/d   9.89 (t  1.68) | style   5.61 (  57%) sd 0.757% t  1.40 | within   4.12 (  42%) sd 0.478% t  1.63 | cash  0.16
+PLAN v2 | cap 40 buckets (2.5%)              n=359 | gross bp/d   9.89 (t  1.68) | style   5.74 (  58%) sd 0.900% t  1.21 | within   3.99 (  40%) sd 0.409% t  1.85 | cash  0.16
+PLAN v2 | amt60 40 buckets (2.5%)            n=359 | gross bp/d   9.89 (t  1.68) | style   5.49 (  56%) sd 0.393% t  2.65 | within   4.24 (  43%) sd 0.836% t  0.96 | cash  0.16
+PLAN v2 | amt quintile x cap 5% bucket       n=359 | gross bp/d   9.89 (t  1.68) | style   7.28 (  74%) sd 0.902% t  1.53 | within   2.45 (  25%) sd 0.382% t  1.22 | cash  0.16
+PLAN v2 | amt decile x cap decile            n=359 | gross bp/d   9.89 (t  1.68) | style   6.86 (  69%) sd 0.875% t  1.49 | within   2.88 (  29%) sd 0.400% t  1.36 | cash  0.16
+   plan holdings share in the four smallest 2.5% cap buckets: 0.201 0.190 0.138 0.106 | in the four lowest 2.5% amt60 buckets: 0.333 0.175 0.065 0.062
+   plan holdings share by amt60 quintile (low..high | none): 0.742 0.114 0.033 0.015 0.090 0.005
+   plan holdings share by cap strata (smallest 10% | next 10% | q2 | q3 | q4 | q5 | none): 0.635 0.127 0.085 0.033 0.019 0.097 0.005
+(ii) smallest-cap 50 | amt60 quintiles       n=359 | gross bp/d   6.76 (t  0.88) | style   3.99 (  59%) sd 0.329% t  2.30 | within   2.77 (  41%) sd 1.234% t  0.43 | cash  0.00
+(ii) smallest-cap 50 | cap 6 strata          n=359 | gross bp/d   6.76 (t  0.88) | style   4.93 (  73%) sd 1.104% t  0.85 | within   1.84 (  27%) sd 0.505% t  0.69 | cash  0.00
+   (ii) holdings share by amt60 quintile: 0.662 0.187 0.106 0.035 0.008 0.002 | by cap strata: 0.998 0.000 0.000 0.000 0.000 0.000 0.002
+# [ 10.0s] window SEL
+
+==================== WINDOW HOLD  2024-07-01..2026-10-09  551 days ====================
+-- accounts (same engine, 500k, slip 0.1%/side, conservative valuation; B = hold-all benchmark of the evaluation) --
+PLAN v2 (frozen)                         ann   48.27 | maxDD  29.45 | vs B: excess %/yr   27.17 (arith   20.52) t  2.33 | NAV 2.3661 | mean held   49.7 cash 0.057 buys  2800 cost %/yr  7.43
+benchmark B                              ann   21.11 | maxDD  23.09
+(ii) smallest-cap 50, 5 swaps/day        ann   55.30 | maxDD  20.76 | vs B: excess %/yr   34.19 (arith   25.61) t  2.76 | NAV 2.6181 | mean held   50.0 cash 0.126 buys   381 cost %/yr  0.94
+(ii-x) same, pool leavers kept           ann   54.08 | maxDD  21.90 | vs B: excess %/yr   32.97 (arith   24.61) t  2.76 | NAV 2.5734 | mean held   50.0 cash 0.146 buys   316 cost %/yr  0.75
+(iii-a) smallest 400, lots + min comm    ann   31.30 | maxDD  19.47 | vs B: excess %/yr   10.19 (arith    7.38) t  1.06 | NAV 1.8137 | mean held  368.6 cash 0.273 buys  1166 cost %/yr  0.81 | lot-unaffordable attempts 17298
+(iii-b) smallest 400, lots, no min comm  ann   31.93 | maxDD  19.30 | vs B: excess %/yr   10.82 (arith    7.86) t  1.13 | NAV 1.8329 | mean held  369.3 cash 0.275 buys  1168 cost %/yr  0.25 | lot-unaffordable attempts 16901
+(iii-c) smallest 400, no lots, no min c  ann   40.27 | maxDD  22.39 | vs B: excess %/yr   19.16 (arith   15.00) t  2.12 | NAV 2.0956 | mean held  400.2 cash 0.100 buys  1259 cost %/yr  0.31 | lot-unaffordable attempts 0
+daily return correlation with the plan: (ii) 0.941 | (iii-a) 0.944 | (iii-c) 0.944 | B 0.849
+plan minus (ii): daily mean -2.02 bp, t -0.86 | plan minus (iii-c): daily mean 2.19 bp, t 1.01
+-- decomposition, stage C1 method (weights 1/50, open-to-open, pool = daily equal-weighted pool) --
+set simulation v1 rule | amt60 quintiles     n=550 | gross bp/d   4.55 (t  1.45) | style   2.67 (  59%) sd 0.224% t  2.80 | within   1.87 (  41%) sd 0.635% t  0.69 | cash  0.00
+   set simulation: mean number of the 50 slots whose price series has already ended (stuck, return 0): 15.95 (last day 19)
+PLAN v2 account lists | (a) amt60 quintiles  n=550 | gross bp/d  10.93 (t  3.28) | style   4.22 (  39%) sd 0.347% t  2.86 | within   6.68 (  61%) sd 0.573% t  2.73 | cash  0.02
+PLAN v2 account lists | (b) cap 6 strata     n=550 | gross bp/d  10.93 (t  3.28) | style   5.35 (  49%) sd 0.488% t  2.58 | within   5.55 (  51%) sd 0.471% t  2.77 | cash  0.02
+PLAN v2 account lists | cap quintiles        n=550 | gross bp/d  10.93 (t  3.28) | style   4.75 (  43%) sd 0.405% t  2.75 | within   6.16 (  56%) sd 0.510% t  2.83 | cash  0.02
+PLAN v2 account lists | amt x cap 25 cells   n=550 | gross bp/d  10.93 (t  3.28) | style   7.33 (  67%) sd 0.456% t  3.77 | within   3.58 (  33%) sd 0.454% t  1.85 | cash  0.02
+PLAN v2 | cap 40 buckets (2.5%)              n=550 | gross bp/d  10.93 (t  3.28) | style   5.80 (  53%) sd 0.526% t  2.59 | within   5.11 (  47%) sd 0.428% t  2.80 | cash  0.02
+PLAN v2 | amt60 40 buckets (2.5%)            n=550 | gross bp/d  10.93 (t  3.28) | style   4.69 (  43%) sd 0.396% t  2.78 | within   6.21 (  57%) sd 0.550% t  2.65 | cash  0.02
+PLAN v2 | amt quintile x cap 5% bucket       n=550 | gross bp/d  10.93 (t  3.28) | style   7.70 (  70%) sd 0.555% t  3.26 | within   3.21 (  29%) sd 0.380% t  1.98 | cash  0.02
+PLAN v2 | amt decile x cap decile            n=550 | gross bp/d  10.93 (t  3.28) | style   7.40 (  68%) sd 0.544% t  3.19 | within   3.51 (  32%) sd 0.393% t  2.09 | cash  0.02
+   plan holdings share in the four smallest 2.5% cap buckets: 0.207 0.180 0.149 0.107 | in the four lowest 2.5% amt60 buckets: 0.263 0.154 0.089 0.063
+   plan holdings share by amt60 quintile (low..high | none): 0.677 0.119 0.044 0.023 0.135 0.001
+   plan holdings share by cap strata (smallest 10% | next 10% | q2 | q3 | q4 | q5 | none): 0.644 0.109 0.054 0.022 0.014 0.156 0.001
+(ii) smallest-cap 50 | amt60 quintiles       n=550 | gross bp/d  12.21 (t  2.94) | style   5.26 (  43%) sd 0.464% t  2.66 | within   6.94 (  57%) sd 0.753% t  2.16 | cash  0.00
+(ii) smallest-cap 50 | cap 6 strata          n=550 | gross bp/d  12.21 (t  2.94) | style   7.63 (  63%) sd 0.742% t  2.41 | within   4.58 (  37%) sd 0.412% t  2.60 | cash  0.00
+   (ii) holdings share by amt60 quintile: 0.730 0.219 0.044 0.004 0.000 0.003 | by cap strata: 0.997 0.000 0.000 0.000 0.000 0.000 0.003
+-- hold-out by quarter: n | gross bp/d | (a) amt60: style, within | (b) cap 6 strata: style, within | amt x cap: style, within --
+  2024Q3 | 64 |   10.15 |    2.83    7.41 |    5.56    4.67 |    4.61    5.62
+  2024Q4 | 61 |   27.03 |    7.93   19.14 |   12.58   14.49 |   12.28   14.79
+  2025Q1 | 57 |   13.98 |    3.46   10.46 |    4.57    9.35 |    5.93    8.00
+  2025Q2 | 60 |   31.67 |    6.21   25.43 |   12.92   18.72 |   15.84   15.81
+  2025Q3 | 66 |   -0.19 |   -0.46    0.18 |   -1.43    1.15 |    1.78   -2.06
+  2025Q4 | 60 |    4.85 |    3.62    1.22 |    3.06    1.78 |    5.13   -0.28
+  2026Q1 | 56 |    2.46 |    4.73   -2.27 |    5.44   -2.98 |    6.29   -3.83
+  2026Q2 | 60 |  -25.15 |   -8.69  -16.52 |  -13.67  -11.54 |   -9.89  -15.32
+  2026Q3 | 65 |   31.57 |   17.13   14.41 |   17.98   13.55 |   22.75    8.78
+  2026Q4 |  1 |   54.80 |   44.91    8.54 |   41.60   11.84 |   37.25   16.19
+PLAN (a) amt60, hold-out without 2026Q2      n=490 | gross bp/d  15.34 (t  4.60) | style   5.81 (  38%) sd 0.318% t  4.04 | within   9.53 (  62%) sd 0.563% t  3.74 | cash  0.01
+PLAN (b) cap 6 strata, without 2026Q2        n=490 | gross bp/d  15.34 (t  4.60) | style   7.68 (  50%) sd 0.439% t  3.87 | within   7.65 (  50%) sd 0.478% t  3.54 | cash  0.01
+
+-- 2026Q2 by month (account NAV, close to close, conservative valuation) --
+  PLAN v2                2026-04    2.29% 2026-05  -11.08% 2026-06  -12.90% | quarter  -20.78%
+  benchmark B            2026-04    5.98% 2026-05   -3.10% 2026-06   -3.36% | quarter   -0.76%
+  (ii) smallest-cap 50   2026-04    5.64% 2026-05   -4.87% 2026-06   -8.63% | quarter   -8.18%
+  (iii-a)                2026-04    2.43% 2026-05   -5.85% 2026-06   -8.43% | quarter  -11.68%
+  (iii-b)                2026-04    2.45% 2026-05   -5.78% 2026-06   -8.36% | quarter  -11.55%
+  (iii-c)                2026-04    3.44% 2026-05   -6.30% 2026-06  -10.19% | quarter  -12.95%
+  cash share of NAV, mean over 2026Q2: plan 0.043 | (ii) 0.151 | (ii-x) 0.185 | (iii-a) 0.318 | (iii-c) 0.163 ; (ii-x) quarter -11.11%
+  by quarter, account NAV %: quarter | plan | (ii) | (iii-c) | B
+    2024Q3   22.08   31.22   22.44   17.88
+    2024Q4   22.43   17.14   13.79    5.84
+    2025Q1   10.24    2.30    6.03    3.12
+    2025Q2   26.07   20.07   16.65    7.41
+    2025Q3   10.73   10.93    9.43   13.75
+    2025Q4    5.34   11.77    7.54    4.24
+    2026Q1    0.94    5.43    4.08    0.93
+    2026Q2  -20.78   -8.18  -12.95   -0.76
+    2026Q3   21.88   15.42   13.43   -7.01
+    2026Q4    0.21    0.10    0.55   -0.39
+  2026Q2 sums, pts: PLAN | cap 40 buckets    gross  -15.09 | style   -8.16 | within   -6.96
+  2026Q2 sums, pts: PLAN | amt q x cap 5%    gross  -15.09 | style   -8.20 | within   -6.92
+-- 2026Q2 by month: equal-weighted close-to-close return of the pool by stratum (labels of the previous close) --
+  whole pool                    4.45%   -4.31%   -7.11%   -7.16%
+  amt60 quintile 0 (lowest)     3.97%   -6.73%  -10.79%  -13.50%
+  amt60 quintile 1              3.38%   -5.29%   -9.96%  -11.84%
+  amt60 quintile 2              2.37%   -4.75%   -8.82%  -11.10%
+  amt60 quintile 3              4.46%   -3.34%   -6.92%   -6.01%
+  amt60 quintile 4              8.09%   -1.41%    1.10%    7.74%
+  cap smallest 10%              4.29%   -7.85%  -12.48%  -15.90%
+  cap next 10%                  4.05%   -6.77%  -10.26%  -12.95%
+  cap quintile 2                3.73%   -5.26%   -9.59%  -11.14%
+  cap quintile 3                4.31%   -3.88%   -7.81%   -7.57%
+  cap quintile 4                4.19%   -2.92%   -4.62%   -3.52%
+  cap quintile 5                5.76%   -2.15%   -2.05%    1.36%
+  lowest amt x smallest cap     4.95%   -7.82%  -11.22%  -14.11%
+-- 2026Q2 holdings share: plan by amt60 quintile 0.737 0.139 0.045 0.008 0.061 0.009 | plan by cap strata 0.742 0.121 0.053 0.011 0.006 0.058 0.009
+                          (ii) by amt60 quintile 0.750 0.226 0.015 0.005 0.000 0.004 | (ii) by cap strata 0.996 0.000 0.000 0.000 0.000 0.000 0.004
+-- 2026Q2 sums of daily terms, percentage points (weights 1/50, open-to-open): gross vs pool = style + within (+cash) --
+  PLAN | amt60 quintiles     2026-04 gross   -2.15 | style   -0.61 | within   -1.53 | cash  0.00
+  PLAN | amt60 quintiles     2026-05 gross   -7.02 | style   -1.60 | within   -5.46 | cash  0.03
+  PLAN | amt60 quintiles     2026-06 gross   -5.92 | style   -3.00 | within   -2.92 | cash  0.00
+  PLAN | amt60 quintiles     Q       gross  -15.09 | style   -5.21 | within   -9.91 | cash  0.03
+  PLAN | cap 6 strata        2026-04 gross   -2.15 | style   -0.62 | within   -1.52 | cash  0.00
+  PLAN | cap 6 strata        2026-05 gross   -7.02 | style   -3.13 | within   -3.92 | cash  0.03
+  PLAN | cap 6 strata        2026-06 gross   -5.92 | style   -4.45 | within   -1.47 | cash  0.00
+  PLAN | cap 6 strata        Q       gross  -15.09 | style   -8.20 | within   -6.92 | cash  0.03
+  PLAN | amt x cap 25 cells  2026-04 gross   -2.15 | style    0.01 | within   -2.16 | cash  0.00
+  PLAN | amt x cap 25 cells  2026-05 gross   -7.02 | style   -2.75 | within   -4.30 | cash  0.03
+  PLAN | amt x cap 25 cells  2026-06 gross   -5.92 | style   -3.19 | within   -2.73 | cash  0.00
+  PLAN | amt x cap 25 cells  Q       gross  -15.09 | style   -5.93 | within   -9.19 | cash  0.03
+  (ii)  | amt60 quintiles    2026-04 gross    2.09 | style   -0.67 | within    2.76 | cash  0.00
+  (ii)  | amt60 quintiles    2026-05 gross   -3.03 | style   -2.15 | within   -0.88 | cash  0.00
+  (ii)  | amt60 quintiles    2026-06 gross   -3.12 | style   -3.83 | within    0.71 | cash  0.00
+  (ii)  | amt60 quintiles    Q       gross   -4.06 | style   -6.66 | within    2.60 | cash  0.00
+  (ii)  | cap 6 strata       2026-04 gross    2.09 | style   -0.42 | within    2.50 | cash  0.00
+  (ii)  | cap 6 strata       2026-05 gross   -3.03 | style   -4.01 | within    0.98 | cash  0.00
+  (ii)  | cap 6 strata       2026-06 gross   -3.12 | style   -5.59 | within    2.46 | cash  0.00
+  (ii)  | cap 6 strata       Q       gross   -4.06 | style  -10.01 | within    5.95 | cash  0.00
+  plan minus (ii), 2026Q2, cap 6 strata: gross -11.03 = style 1.81 + within -12.87 + cash 0.03
+  plan minus (ii), 2026Q2, amt60 quintiles: gross -11.03 = style 1.45 + within -12.51 + cash 0.03
+# [ 12.9s] window HOLD
+# done  elapsed_s=12.9

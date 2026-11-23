@@ -1,0 +1,236 @@
+# EAR same-event three-arm comparison of opportunity and downside at H5/H10/H15
+
+For the current named EAR entry version, observed upside opportunity is higher in same-day pairings within TRAIN and SEEN_DEV, while the drawdown is usually deeper.
+
+The common-pool comparison is especially weak in 2023Q4: at H15, EAR_COMMON versus JOINT_COMMON has a day2+ MFE mean increment of -0.284 percentage points and a MAE mean difference of -4.159 percentage points, on only 14 pairable origins. Full quarterly, monthly, fixed 12-month and recent-window results are all stored; annual or 24-month pooled results do not override this recent weakness.
+
+## Populations, dates and definitions
+
+The full R_event of the upstream event set has 21,235 events and the common G has 19,034; all 565 calendar origins keep their no-signal and input-gap records. ALL_SIGNALS counts for EAR_FULL / EAR_COMMON / JOINT_COMMON are 697 / 648 / 1086, and nominalH15 counts are 697 / 647 / 1081.
+
+EAR_FULL is compared with the full same-day R_event; EAR_COMMON and JOINT_COMMON are compared with the same G. EAR_COMMON uses the thresholds from the complete prior quarter in the original EAR scoring step, without retraining or changing thresholds on G. JOINT_COMMON is the top 4 by the frozen original W probability ranking, not an H15 probability; G additionally carries its old feature eligibility and the 5000-yuan origin-close affordability coverage. EAR_FULL is not silently replaced by this intersection.
+
+The entry anchor is strictly the open of the planned next trading day after the signal; the anchor is not changed because of later suspension, missing prices or price moves. The gross unfunded A/B uses the original provider qfq, raw open and the 15:00 conservative daily guard. This guard is an ex post development filter, not information known at 09:30 and not an actual fill.
+
+TRAIN_COHORT_2021SEP_2022 reads only through 2022-12-30; SEEN_DEV_2023 through 2023-12-29. The first 2021 year/Q3 is a partial window; the third anchored 12-month block is also incomplete. End-of-day source availability, unknowns and the segment cutoff all pass through unchanged.
+
+Of the 330,994 exact code-dates, 330,981 directly reuse existing formal quote components, and 13 unrequested dates are projected from local sources. One end-of-day entry status gap on a newly added date is kept as is. Unknowns already in the cache are not re-fetched from source; existing economic files are not read.
+
+## Main comparison: same day, equal weight per origin
+
+All units are percentage points. Δ is left arm minus right arm; a more negative MAE means a deeper drawdown. N is the number of origins at which both sides are observable for the channel, each origin carrying one weight; it is not a pooled per-stock mean difference. day2+ MFE remains an upper bound observed from future HIGH, not a realisable sell return.
+
+| Role | View | Left − right | H | N day1/day2+/MAE | Δday1 MFE | Δday2+ MFE | ΔMAE |
+|---|---|---|---:|---:|---:|---:|---:|
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_FULL − R_EVENT | 5 | 101/101/101 | 1.956 | 1.646 | -1.292 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_FULL − R_EVENT | 10 | 101/101/101 | 1.896 | 1.648 | -1.513 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_FULL − R_EVENT | 15 | 101/101/101 | 2.026 | 1.801 | -1.889 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON − G_COMMON | 5 | 91/91/91 | 1.915 | 1.546 | -1.298 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON − G_COMMON | 10 | 91/91/91 | 1.963 | 1.689 | -1.453 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON − G_COMMON | 15 | 91/91/91 | 2.279 | 2.042 | -1.704 |
+| SEEN_DEV_2023 | ALL_SIGNALS | JOINT_COMMON − G_COMMON | 5 | 145/145/145 | 0.161 | 0.183 | -0.063 |
+| SEEN_DEV_2023 | ALL_SIGNALS | JOINT_COMMON − G_COMMON | 10 | 144/144/144 | 0.080 | 0.096 | -0.100 |
+| SEEN_DEV_2023 | ALL_SIGNALS | JOINT_COMMON − G_COMMON | 15 | 144/144/144 | 0.157 | 0.165 | -0.207 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON − JOINT_COMMON | 5 | 91/91/91 | 1.700 | 1.309 | -1.194 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON − JOINT_COMMON | 10 | 91/91/91 | 1.857 | 1.568 | -1.310 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON − JOINT_COMMON | 15 | 91/91/91 | 2.077 | 1.838 | -1.385 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_FULL − R_EVENT | 5 | 101/101/101 | 1.956 | 1.646 | -1.292 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_FULL − R_EVENT | 10 | 101/101/101 | 1.896 | 1.648 | -1.513 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_FULL − R_EVENT | 15 | 101/101/101 | 2.026 | 1.801 | -1.889 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON − G_COMMON | 5 | 91/91/91 | 1.915 | 1.546 | -1.298 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON − G_COMMON | 10 | 91/91/91 | 1.963 | 1.689 | -1.453 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON − G_COMMON | 15 | 91/91/91 | 2.279 | 2.042 | -1.704 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON − G_COMMON | 5 | 145/145/145 | 0.161 | 0.183 | -0.068 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON − G_COMMON | 10 | 144/144/144 | 0.077 | 0.092 | -0.105 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON − G_COMMON | 15 | 144/144/144 | 0.156 | 0.163 | -0.213 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON − JOINT_COMMON | 5 | 91/91/91 | 1.701 | 1.309 | -1.187 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON − JOINT_COMMON | 10 | 91/91/91 | 1.862 | 1.573 | -1.302 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON − JOINT_COMMON | 15 | 91/91/91 | 2.080 | 1.842 | -1.376 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_FULL − R_EVENT | 5 | 143/143/143 | 2.056 | 1.704 | -1.195 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_FULL − R_EVENT | 10 | 141/141/141 | 3.057 | 2.731 | -1.433 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_FULL − R_EVENT | 15 | 141/141/141 | 3.047 | 2.754 | -1.482 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON − G_COMMON | 5 | 141/141/141 | 2.114 | 1.832 | -1.004 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON − G_COMMON | 10 | 139/139/139 | 3.000 | 2.730 | -1.285 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON − G_COMMON | 15 | 139/139/139 | 3.115 | 2.859 | -1.271 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | JOINT_COMMON − G_COMMON | 5 | 179/179/179 | 0.342 | 0.370 | -0.153 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | JOINT_COMMON − G_COMMON | 10 | 177/177/177 | 0.462 | 0.478 | -0.189 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | JOINT_COMMON − G_COMMON | 15 | 177/177/177 | 0.814 | 0.820 | -0.141 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON − JOINT_COMMON | 5 | 141/141/141 | 1.687 | 1.383 | -0.822 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON − JOINT_COMMON | 10 | 139/139/139 | 2.326 | 2.039 | -1.063 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON − JOINT_COMMON | 15 | 139/139/139 | 1.998 | 1.737 | -1.107 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_FULL − R_EVENT | 5 | 143/143/143 | 2.056 | 1.704 | -1.195 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_FULL − R_EVENT | 10 | 141/141/141 | 3.057 | 2.731 | -1.433 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_FULL − R_EVENT | 15 | 141/141/141 | 3.047 | 2.754 | -1.482 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON − G_COMMON | 5 | 141/141/141 | 2.143 | 1.860 | -1.011 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON − G_COMMON | 10 | 139/139/139 | 3.070 | 2.799 | -1.292 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON − G_COMMON | 15 | 139/139/139 | 3.223 | 2.967 | -1.278 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON − G_COMMON | 5 | 179/179/179 | 0.338 | 0.366 | -0.152 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON − G_COMMON | 10 | 177/177/177 | 0.466 | 0.482 | -0.188 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON − G_COMMON | 15 | 177/177/177 | 0.836 | 0.842 | -0.140 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON − JOINT_COMMON | 5 | 141/141/141 | 1.721 | 1.416 | -0.831 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON − JOINT_COMMON | 10 | 139/139/139 | 2.391 | 2.104 | -1.071 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON − JOINT_COMMON | 15 | 139/139/139 | 2.077 | 1.816 | -1.116 |
+
+## Pooled distributions of the three selection arms by role
+
+In each row n/N is the known count for the channel / the original selected count. Percentages are pre-cost opportunity or downside observations. Full controls, all quantiles, both views and all time windows are in summary.json and the full tables.
+
+| Role | View | Arm | H | Channel | n/N | mean% | median% | q10% | q90% | >0 | ≥3% | ≥5% | ≥10% |
+|---|---|---|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_FULL | 5 | MFE_DAY1_TO_H | 279/283 | 6.067 | 4.514 | 0.963 | 12.996 | 273 | 169 | 130 | 57 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_FULL | 5 | MFE_T1_DAY2_TO_H | 279/283 | 5.180 | 3.750 | -0.774 | 12.013 | 235 | 153 | 120 | 50 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_FULL | 5 | MAE_DAY1_TO_H | 279/283 | -4.904 | -3.671 | -11.134 | -0.810 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_FULL | 10 | MFE_DAY1_TO_H | 279/283 | 7.833 | 5.472 | 1.192 | 17.114 | 276 | 191 | 151 | 78 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_FULL | 10 | MFE_T1_DAY2_TO_H | 279/283 | 7.157 | 5.145 | -0.018 | 17.114 | 250 | 178 | 144 | 72 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_FULL | 10 | MAE_DAY1_TO_H | 279/283 | -6.417 | -5.020 | -14.303 | -1.019 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_FULL | 15 | MFE_DAY1_TO_H | 279/283 | 9.439 | 6.655 | 1.377 | 20.248 | 277 | 208 | 169 | 95 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_FULL | 15 | MFE_T1_DAY2_TO_H | 279/283 | 8.838 | 6.211 | 0.430 | 20.248 | 253 | 196 | 162 | 91 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_FULL | 15 | MAE_DAY1_TO_H | 279/283 | -7.741 | -6.456 | -16.355 | -1.311 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON | 5 | MFE_DAY1_TO_H | 258/262 | 5.918 | 4.156 | 0.747 | 13.047 | 252 | 153 | 115 | 50 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON | 5 | MFE_T1_DAY2_TO_H | 258/262 | 4.996 | 3.527 | -0.777 | 12.059 | 216 | 137 | 104 | 44 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON | 5 | MAE_DAY1_TO_H | 258/262 | -4.812 | -3.537 | -11.112 | -0.780 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON | 10 | MFE_DAY1_TO_H | 258/262 | 7.686 | 5.443 | 1.073 | 16.926 | 255 | 174 | 137 | 68 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON | 10 | MFE_T1_DAY2_TO_H | 258/262 | 7.002 | 5.087 | -0.027 | 16.926 | 231 | 161 | 130 | 62 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON | 10 | MAE_DAY1_TO_H | 258/262 | -6.253 | -4.905 | -13.666 | -0.885 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON | 15 | MFE_DAY1_TO_H | 258/262 | 9.407 | 6.465 | 1.333 | 20.252 | 256 | 190 | 155 | 87 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON | 15 | MFE_T1_DAY2_TO_H | 258/262 | 8.815 | 6.076 | 0.279 | 20.252 | 234 | 178 | 148 | 83 |
+| SEEN_DEV_2023 | ALL_SIGNALS | EAR_COMMON | 15 | MAE_DAY1_TO_H | 258/262 | -7.391 | -5.710 | -15.638 | -1.112 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | ALL_SIGNALS | JOINT_COMMON | 5 | MFE_DAY1_TO_H | 488/491 | 4.161 | 2.854 | 0.491 | 9.706 | 476 | 232 | 142 | 46 |
+| SEEN_DEV_2023 | ALL_SIGNALS | JOINT_COMMON | 5 | MFE_T1_DAY2_TO_H | 488/491 | 3.757 | 2.675 | -0.464 | 9.588 | 405 | 218 | 138 | 44 |
+| SEEN_DEV_2023 | ALL_SIGNALS | JOINT_COMMON | 5 | MAE_DAY1_TO_H | 488/491 | -3.201 | -2.484 | -6.328 | -0.489 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | ALL_SIGNALS | JOINT_COMMON | 10 | MFE_DAY1_TO_H | 487/491 | 5.967 | 3.980 | 0.643 | 12.821 | 477 | 293 | 200 | 86 |
+| SEEN_DEV_2023 | ALL_SIGNALS | JOINT_COMMON | 10 | MFE_T1_DAY2_TO_H | 487/491 | 5.681 | 3.764 | -0.183 | 12.821 | 426 | 282 | 196 | 85 |
+| SEEN_DEV_2023 | ALL_SIGNALS | JOINT_COMMON | 10 | MAE_DAY1_TO_H | 487/491 | -4.472 | -3.704 | -9.306 | -0.678 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | ALL_SIGNALS | JOINT_COMMON | 15 | MFE_DAY1_TO_H | 487/491 | 7.519 | 4.831 | 0.842 | 17.263 | 477 | 322 | 239 | 120 |
+| SEEN_DEV_2023 | ALL_SIGNALS | JOINT_COMMON | 15 | MFE_T1_DAY2_TO_H | 487/491 | 7.264 | 4.725 | 0.000 | 17.263 | 436 | 311 | 235 | 120 |
+| SEEN_DEV_2023 | ALL_SIGNALS | JOINT_COMMON | 15 | MAE_DAY1_TO_H | 487/491 | -5.520 | -4.651 | -11.307 | -0.736 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 5 | MFE_DAY1_TO_H | 279/283 | 6.067 | 4.514 | 0.963 | 12.996 | 273 | 169 | 130 | 57 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 5 | MFE_T1_DAY2_TO_H | 279/283 | 5.180 | 3.750 | -0.774 | 12.013 | 235 | 153 | 120 | 50 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 5 | MAE_DAY1_TO_H | 279/283 | -4.904 | -3.671 | -11.134 | -0.810 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 10 | MFE_DAY1_TO_H | 279/283 | 7.833 | 5.472 | 1.192 | 17.114 | 276 | 191 | 151 | 78 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 10 | MFE_T1_DAY2_TO_H | 279/283 | 7.157 | 5.145 | -0.018 | 17.114 | 250 | 178 | 144 | 72 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 10 | MAE_DAY1_TO_H | 279/283 | -6.417 | -5.020 | -14.303 | -1.019 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 15 | MFE_DAY1_TO_H | 279/283 | 9.439 | 6.655 | 1.377 | 20.248 | 277 | 208 | 169 | 95 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 15 | MFE_T1_DAY2_TO_H | 279/283 | 8.838 | 6.211 | 0.430 | 20.248 | 253 | 196 | 162 | 91 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 15 | MAE_DAY1_TO_H | 279/283 | -7.741 | -6.456 | -16.355 | -1.311 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 5 | MFE_DAY1_TO_H | 258/262 | 5.918 | 4.156 | 0.747 | 13.047 | 252 | 153 | 115 | 50 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 5 | MFE_T1_DAY2_TO_H | 258/262 | 4.996 | 3.527 | -0.777 | 12.059 | 216 | 137 | 104 | 44 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 5 | MAE_DAY1_TO_H | 258/262 | -4.812 | -3.537 | -11.112 | -0.780 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 10 | MFE_DAY1_TO_H | 258/262 | 7.686 | 5.443 | 1.073 | 16.926 | 255 | 174 | 137 | 68 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 10 | MFE_T1_DAY2_TO_H | 258/262 | 7.002 | 5.087 | -0.027 | 16.926 | 231 | 161 | 130 | 62 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 10 | MAE_DAY1_TO_H | 258/262 | -6.253 | -4.905 | -13.666 | -0.885 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 15 | MFE_DAY1_TO_H | 258/262 | 9.407 | 6.465 | 1.333 | 20.252 | 256 | 190 | 155 | 87 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 15 | MFE_T1_DAY2_TO_H | 258/262 | 8.815 | 6.076 | 0.279 | 20.252 | 234 | 178 | 148 | 83 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 15 | MAE_DAY1_TO_H | 258/262 | -7.391 | -5.710 | -15.638 | -1.112 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 5 | MFE_DAY1_TO_H | 486/489 | 4.168 | 2.867 | 0.489 | 9.738 | 474 | 232 | 142 | 46 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 5 | MFE_T1_DAY2_TO_H | 486/489 | 3.764 | 2.690 | -0.464 | 9.602 | 403 | 218 | 138 | 44 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 5 | MAE_DAY1_TO_H | 486/489 | -3.204 | -2.484 | -6.331 | -0.488 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 10 | MFE_DAY1_TO_H | 485/489 | 5.976 | 3.980 | 0.642 | 12.863 | 475 | 292 | 200 | 86 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 10 | MFE_T1_DAY2_TO_H | 485/489 | 5.688 | 3.764 | -0.184 | 12.863 | 424 | 281 | 196 | 85 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 10 | MAE_DAY1_TO_H | 485/489 | -4.479 | -3.709 | -9.311 | -0.677 | 0 | 0 | 0 | 0 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 15 | MFE_DAY1_TO_H | 485/489 | 7.534 | 4.831 | 0.839 | 17.302 | 475 | 321 | 239 | 120 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 15 | MFE_T1_DAY2_TO_H | 485/489 | 7.278 | 4.725 | 0.000 | 17.302 | 434 | 310 | 235 | 120 |
+| SEEN_DEV_2023 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 15 | MAE_DAY1_TO_H | 485/489 | -5.529 | -4.658 | -11.308 | -0.732 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_FULL | 5 | MFE_DAY1_TO_H | 404/414 | 7.737 | 5.123 | 0.933 | 17.716 | 389 | 279 | 207 | 101 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_FULL | 5 | MFE_T1_DAY2_TO_H | 404/414 | 6.621 | 4.477 | -1.062 | 17.716 | 336 | 251 | 187 | 95 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_FULL | 5 | MAE_DAY1_TO_H | 404/414 | -6.642 | -5.119 | -14.043 | -1.155 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_FULL | 10 | MFE_DAY1_TO_H | 402/414 | 10.957 | 6.816 | 1.108 | 24.651 | 390 | 310 | 248 | 152 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_FULL | 10 | MFE_T1_DAY2_TO_H | 402/414 | 10.065 | 6.556 | -0.717 | 24.651 | 347 | 289 | 231 | 148 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_FULL | 10 | MAE_DAY1_TO_H | 402/414 | -9.165 | -7.539 | -19.329 | -1.823 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_FULL | 15 | MFE_DAY1_TO_H | 402/414 | 13.154 | 8.273 | 1.676 | 28.708 | 393 | 329 | 277 | 178 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_FULL | 15 | MFE_T1_DAY2_TO_H | 402/414 | 12.391 | 8.065 | -0.409 | 28.708 | 355 | 310 | 262 | 175 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_FULL | 15 | MAE_DAY1_TO_H | 402/414 | -11.023 | -9.148 | -22.762 | -2.219 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON | 5 | MFE_DAY1_TO_H | 378/386 | 7.746 | 5.102 | 0.951 | 17.401 | 366 | 260 | 192 | 99 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON | 5 | MFE_T1_DAY2_TO_H | 378/386 | 6.723 | 4.528 | -0.870 | 17.401 | 314 | 235 | 177 | 94 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON | 5 | MAE_DAY1_TO_H | 378/386 | -6.289 | -4.909 | -13.492 | -1.083 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON | 10 | MFE_DAY1_TO_H | 376/386 | 10.955 | 7.103 | 1.233 | 24.555 | 367 | 290 | 235 | 143 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON | 10 | MFE_T1_DAY2_TO_H | 376/386 | 10.142 | 6.819 | -0.507 | 24.555 | 326 | 272 | 222 | 139 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON | 10 | MAE_DAY1_TO_H | 376/386 | -8.731 | -6.827 | -18.833 | -1.703 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON | 15 | MFE_DAY1_TO_H | 376/386 | 13.279 | 8.273 | 1.809 | 28.454 | 369 | 311 | 268 | 166 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON | 15 | MFE_T1_DAY2_TO_H | 376/386 | 12.570 | 8.065 | -0.232 | 28.454 | 334 | 294 | 255 | 163 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | EAR_COMMON | 15 | MAE_DAY1_TO_H | 376/386 | -10.443 | -8.765 | -21.638 | -2.103 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | JOINT_COMMON | 5 | MFE_DAY1_TO_H | 592/595 | 5.554 | 3.833 | 0.578 | 12.603 | 568 | 348 | 227 | 91 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | JOINT_COMMON | 5 | MFE_T1_DAY2_TO_H | 592/595 | 4.857 | 3.493 | -0.995 | 12.451 | 479 | 325 | 215 | 91 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | JOINT_COMMON | 5 | MAE_DAY1_TO_H | 592/595 | -5.330 | -4.172 | -11.337 | -1.002 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | JOINT_COMMON | 10 | MFE_DAY1_TO_H | 590/595 | 7.994 | 5.477 | 0.897 | 17.453 | 572 | 401 | 314 | 159 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | JOINT_COMMON | 10 | MFE_T1_DAY2_TO_H | 590/595 | 7.493 | 5.253 | -0.522 | 17.453 | 511 | 384 | 304 | 159 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | JOINT_COMMON | 10 | MAE_DAY1_TO_H | 590/595 | -7.612 | -6.296 | -15.798 | -1.281 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | JOINT_COMMON | 15 | MFE_DAY1_TO_H | 590/595 | 10.144 | 6.773 | 1.072 | 21.271 | 577 | 438 | 360 | 209 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | JOINT_COMMON | 15 | MFE_T1_DAY2_TO_H | 590/595 | 9.707 | 6.672 | 0.000 | 21.271 | 528 | 423 | 350 | 209 |
+| TRAIN_COHORT_2021SEP_2022 | ALL_SIGNALS | JOINT_COMMON | 15 | MAE_DAY1_TO_H | 590/595 | -9.319 | -8.091 | -18.067 | -1.623 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 5 | MFE_DAY1_TO_H | 404/414 | 7.737 | 5.123 | 0.933 | 17.716 | 389 | 279 | 207 | 101 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 5 | MFE_T1_DAY2_TO_H | 404/414 | 6.621 | 4.477 | -1.062 | 17.716 | 336 | 251 | 187 | 95 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 5 | MAE_DAY1_TO_H | 404/414 | -6.642 | -5.119 | -14.043 | -1.155 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 10 | MFE_DAY1_TO_H | 402/414 | 10.957 | 6.816 | 1.108 | 24.651 | 390 | 310 | 248 | 152 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 10 | MFE_T1_DAY2_TO_H | 402/414 | 10.065 | 6.556 | -0.717 | 24.651 | 347 | 289 | 231 | 148 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 10 | MAE_DAY1_TO_H | 402/414 | -9.165 | -7.539 | -19.329 | -1.823 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 15 | MFE_DAY1_TO_H | 402/414 | 13.154 | 8.273 | 1.676 | 28.708 | 393 | 329 | 277 | 178 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 15 | MFE_T1_DAY2_TO_H | 402/414 | 12.391 | 8.065 | -0.409 | 28.708 | 355 | 310 | 262 | 175 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_FULL | 15 | MAE_DAY1_TO_H | 402/414 | -11.023 | -9.148 | -22.762 | -2.219 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 5 | MFE_DAY1_TO_H | 377/385 | 7.748 | 5.082 | 0.951 | 17.424 | 365 | 259 | 191 | 99 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 5 | MFE_T1_DAY2_TO_H | 377/385 | 6.722 | 4.527 | -0.893 | 17.424 | 313 | 234 | 176 | 94 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 5 | MAE_DAY1_TO_H | 377/385 | -6.292 | -4.889 | -13.520 | -1.081 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 10 | MFE_DAY1_TO_H | 375/385 | 10.942 | 7.094 | 1.232 | 24.579 | 366 | 289 | 234 | 142 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 10 | MFE_T1_DAY2_TO_H | 375/385 | 10.127 | 6.799 | -0.526 | 24.579 | 325 | 271 | 221 | 138 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 10 | MAE_DAY1_TO_H | 375/385 | -8.740 | -6.841 | -18.843 | -1.698 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 15 | MFE_DAY1_TO_H | 375/385 | 13.272 | 8.271 | 1.804 | 28.538 | 368 | 310 | 267 | 165 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 15 | MFE_T1_DAY2_TO_H | 375/385 | 12.561 | 8.048 | -0.241 | 28.538 | 333 | 293 | 254 | 162 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | EAR_COMMON | 15 | MAE_DAY1_TO_H | 375/385 | -10.456 | -8.790 | -21.641 | -2.103 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 5 | MFE_DAY1_TO_H | 589/592 | 5.539 | 3.789 | 0.577 | 12.488 | 565 | 345 | 225 | 90 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 5 | MFE_T1_DAY2_TO_H | 589/592 | 4.839 | 3.475 | -0.998 | 12.422 | 476 | 322 | 213 | 90 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 5 | MAE_DAY1_TO_H | 589/592 | -5.347 | -4.251 | -11.341 | -1.014 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 10 | MFE_DAY1_TO_H | 587/592 | 7.976 | 5.442 | 0.897 | 17.424 | 569 | 398 | 311 | 157 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 10 | MFE_T1_DAY2_TO_H | 587/592 | 7.473 | 5.212 | -0.522 | 17.424 | 508 | 381 | 301 | 157 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 10 | MAE_DAY1_TO_H | 587/592 | -7.641 | -6.316 | -15.828 | -1.286 | 0 | 0 | 0 | 0 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 15 | MFE_DAY1_TO_H | 587/592 | 10.133 | 6.765 | 1.067 | 21.590 | 574 | 435 | 357 | 207 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 15 | MFE_T1_DAY2_TO_H | 587/592 | 9.694 | 6.618 | 0.000 | 21.590 | 525 | 420 | 347 | 207 |
+| TRAIN_COHORT_2021SEP_2022 | NOMINAL_H15_NONOVERLAP | JOINT_COMMON | 15 | MAE_DAY1_TO_H | 587/592 | -9.357 | -8.128 | -18.071 | -1.625 | 0 | 0 | 0 | 0 |
+
+## Fixed quarterly and 12/24-month comparisons
+
+H15 ALL_SIGNALS is listed below; H5/H10, the nominal view, months and all metrics are kept, and the full tables contain every fixed cell. 2021Q3 covers only September 2021, and BLOCK_3_PARTIAL only 2023, months 9 to 12; cross-role windows do not change the TRAIN/SEEN_DEV labels.
+
+| Period | Pair | N | Δday2+ MFE pp | ΔMAE pp |
+|---|---|---:|---:|---:|
+| 2021Q3 | EAR_FULL − R_EVENT | 7 | 2.903 | 0.726 |
+| 2021Q3 | EAR_COMMON − JOINT_COMMON | 6 | 2.499 | 2.568 |
+| 2021Q4 | EAR_FULL − R_EVENT | 18 | 3.954 | -1.515 |
+| 2021Q4 | EAR_COMMON − JOINT_COMMON | 18 | -0.557 | -1.733 |
+| 2022Q1 | EAR_FULL − R_EVENT | 48 | 1.702 | -1.491 |
+| 2022Q1 | EAR_COMMON − JOINT_COMMON | 47 | 2.050 | -0.777 |
+| 2022Q2 | EAR_FULL − R_EVENT | 20 | 5.649 | -2.505 |
+| 2022Q2 | EAR_COMMON − JOINT_COMMON | 20 | 4.092 | -1.685 |
+| 2022Q3 | EAR_FULL − R_EVENT | 32 | 1.279 | -1.146 |
+| 2022Q3 | EAR_COMMON − JOINT_COMMON | 32 | -0.273 | -1.568 |
+| 2022Q4 | EAR_FULL − R_EVENT | 16 | 3.821 | -1.774 |
+| 2022Q4 | EAR_COMMON − JOINT_COMMON | 16 | 4.190 | -1.105 |
+| 2023Q1 | EAR_FULL − R_EVENT | 35 | 2.064 | -0.684 |
+| 2023Q1 | EAR_COMMON − JOINT_COMMON | 30 | 1.454 | 0.016 |
+| 2023Q2 | EAR_FULL − R_EVENT | 22 | 1.438 | -3.027 |
+| 2023Q2 | EAR_COMMON − JOINT_COMMON | 22 | 2.572 | -2.263 |
+| 2023Q3 | EAR_FULL − R_EVENT | 29 | 2.180 | -1.400 |
+| 2023Q3 | EAR_COMMON − JOINT_COMMON | 25 | 2.842 | -0.740 |
+| 2023Q4 | EAR_FULL − R_EVENT | 15 | 0.990 | -3.977 |
+| 2023Q4 | EAR_COMMON − JOINT_COMMON | 14 | -0.284 | -4.159 |
+| BLOCK_1 | EAR_FULL − R_EVENT | 123 | 2.734 | -1.344 |
+| BLOCK_1 | EAR_COMMON − JOINT_COMMON | 121 | 1.509 | -1.044 |
+| BLOCK_2 | EAR_FULL − R_EVENT | 100 | 2.209 | -1.726 |
+| BLOCK_2 | EAR_COMMON − JOINT_COMMON | 92 | 2.561 | -1.078 |
+| BLOCK_3_PARTIAL | EAR_FULL − R_EVENT | 19 | 0.688 | -3.255 |
+| BLOCK_3_PARTIAL | EAR_COMMON − JOINT_COMMON | 17 | -0.556 | -3.197 |
+| PREVIOUS_COMPLETE_12M | EAR_FULL − R_EVENT | 116 | 2.558 | -1.610 |
+| PREVIOUS_COMPLETE_12M | EAR_COMMON − JOINT_COMMON | 115 | 2.057 | -1.201 |
+| LAST_COMPLETE_12M | EAR_FULL − R_EVENT | 101 | 1.801 | -1.889 |
+| LAST_COMPLETE_12M | EAR_COMMON − JOINT_COMMON | 91 | 1.838 | -1.385 |
+| LAST_COMPLETE_24M | EAR_FULL − R_EVENT | 217 | 2.206 | -1.740 |
+| LAST_COMPLETE_24M | EAR_COMMON − JOINT_COMMON | 206 | 1.960 | -1.282 |
+
+## Peaks, giveback, gaps and reusable outputs
+
+peak_timing in summary.json counts the first-peak holding day for each channel over both the original and the observable denominators; tied peaks take the earliest date. The secondary metrics keep the quantiles and missing counts of peak_close_gap, next_open_gap and prior_session_adverse_before_peak. Pre-peak adverse uses only the LOW of sessions fully completed before the peak and does not assume that the peak-day LOW precedes the HIGH. All gaps are divided by the entry open.
+
+The day1 HIGH cannot be sold under T+1; the H15 day15 HIGH comes after the horizon open and serves only as a post-cap diagnostic. The next-open gap may extend beyond the original H window but is subject to the same segment cutoff; a tail that cannot be observed is unknown.
+
+The pooled R_EVENT / G_COMMON tables keep the complete original riskset; the AT_*_SIGNAL_ORIGINS tables further restrict to dates on which the arm actually has a signal in that view, still without separately deduplicating control securities. EAR_COMMON-minus-JOINT_COMMON is paired only on dates where the metric is observable on both sides. Counts of origins with no signal, one-sided observability, or a selection with an unknown metric are all in equal_origin_rows and are not filled in as zero cash returns.
+
+The file index is publication_pointer.json; summary.json contains 2352 rows of pooled population/window summaries and 1176 rows of equal-origin paired summaries, covering 49 predefined role/year/quarter/month/12-month/24-month window groups. primary_all_periods.md and paired_all_periods.md give readable full tables of the main metrics. event_identity.jsonl.gz / sealed_event_index.npz / event_windows keep the exact events, membership, entry status and the values of the three windows; per_origin_statistics.npz and two per_origin JSONL files hold the pairing basis.

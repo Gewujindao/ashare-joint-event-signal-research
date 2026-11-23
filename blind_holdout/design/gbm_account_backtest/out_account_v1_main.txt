@@ -1,0 +1,84 @@
+# c2_main
+data rows 2551, last date 2024-06-28 ; mode extend ; tag main
+# [  5.1s] stage1
+# [  7.7s] stage2
+# [ 21.7s] stage3
+# [ 23.4s] stage4
+# [ 27.4s] stage5
+pool: first day 2015-01-12 (row 250); fit segment ends 2019-12-31 (row 1463)
+model file bytes 408799
+list check: decide() in set mode against record_SEL.npz, 1085 days 2020-01-03..2024-06-27 ; max |x diff| 0.000e+00 ; max |buys diff| 0.0
+# [ 84.8s] scores and market ready; rows 2019-11-26..2024-06-28
+
+==== WINDOW V  2020-01-03..2022-12-30  727 days ====
+benchmark B: pool of 2020-01-02 = 2255 stocks, bought 2255, series ended inside the window 33
+MAIN 500k slip0.1%         n=727 | annS   27.71 annB    7.32 | T1 excess %/yr   20.39 (arith   17.05) | T2 t  2.64 t551  2.30 TE %/d 0.692 | T3 ddS  17.75 ddB  26.15 | NAV S 2.0252 B 1.2262
+CONSERVATIVE (ended=0)     n=727 | annS   21.10 annB    7.16 | T1 excess %/yr   13.95 (arith   11.90) | T2 t  1.77 t551  1.54 TE %/d 0.718 | T3 ddS  17.61 ddB  26.24 | NAV S 1.7374 B 1.2207
+  cons. strategy vs main B n=727 | annS   21.10 annB    7.32 | T1 excess %/yr   13.78 (arith   11.75) | T2 t  1.75 t551  1.53 TE %/d 0.717 | T3 ddS  17.61 ddB  26.15 | NAV S 1.7374 B 1.2262
+slip 0.02% (report only)   n=727 | annS   32.99 annB    7.35 | T1 excess %/yr   25.63 (arith   21.08) | T2 t  3.26 t551  2.84 TE %/d 0.692 | T3 ddS  17.19 ddB  26.15 | NAV S 2.2760 B 1.2272
+20k tier (report only)     n=727 | annS  -13.69 annB    7.10 | T1 excess %/yr  -20.79 (arith  -23.72) | T2 t -2.04 t551 -1.78 TE %/d 1.243 | T3 ddS  34.60 ddB  25.59 | NAV S 0.6540 B 1.2190
+20k tier: mean holdings 5.4, cash share 0.895, buys 801, lot-unaffordable 32405, B bought 2254 of 2255
+account: mean holdings 49.23 (min 45) | cash share mean 0.0818 | buys 3680 sells 3630 | turnover /yr 24.13 | cost %/yr 9.00 | gross excess (arith net + cost) 26.06 | cost / gross 0.346
+account events: buy blocked 0 | one lot unaffordable 557 | no cash for one lot 0 | cut by cash 0 | 1% cap binding 0 | pending-sell days 0 | pending at end 0
+holdings by amt60 quintile (lowest..highest | not in pool): 0.649 0.107 0.036 0.030 0.120 0.058
+series ended: positions 8 (codes 000018,000585,000835,002464,002684,600086,600652,603996; last tradable 2020-01-06,2022-05-23,2022-05-20,2022-06-27,2022-06-24,2021-03-10,2022-06-15,2022-05-17) | value carried at window end 131710 CNY = 13.007% of NAV | conservative NAV 1.7374 vs main 2.0252
+DECOMPOSITION (726 open-to-open days; %/yr, arithmetic)
+  set sim, continuous path from 2015 (= record): gross 22.57 | net strict 35.2bp 12.44
+  set sim restarted empty at the window start  : gross 23.40 | net strict 35.2bp 13.15 | buys/day 5.062
+  set sim, continuous path from 2015 (= record): gross 22.57 | net mine 19.2bp 16.47
+  set sim restarted empty at the window start  : gross 23.40 | net mine 19.2bp 17.24 | buys/day 5.062
+  [slip 0.1%] account vs pool: frictionless fractional 22.51 | A0 +costs (no lots, no min commission) 14.43 | A1 +whole lots 13.70 | A2 +unaffordable buys dropped 13.59 | A3 +min commission (= engine) 12.16
+  [slip 0.1%] engine vs B open-to-open 16.66 | vs B close-to-close arithmetic (all 727 days) 17.05 | compounded = target 1 20.39 | pool minus B 4.51 | cash share A0 0.0273 A1 0.0647 A2 0.0814 A3 0.0818 | holdings A1 50.00 A2 49.24
+  [slip 0.02%] account vs pool: frictionless fractional 22.51 | A0 +costs (no lots, no min commission) 18.47 | A1 +whole lots 17.56 | A2 +unaffordable buys dropped 17.72 | A3 +min commission (= engine) 16.22
+  [slip 0.02%] engine vs B open-to-open 20.69 | vs B close-to-close arithmetic (all 727 days) 21.08 | compounded = target 1 25.63 | pool minus B 4.48 | cash share A0 0.0292 A1 0.0649 A2 0.0817 A3 0.0821 | holdings A1 50.00 A2 49.24
+  YEAR 2020 | days 242 | strategy   23.72% | B   12.27% | difference   11.45 pts | arith excess %/yr    9.28
+  YEAR 2021 | days 243 | strategy   31.92% | B   23.67% | difference    8.25 pts | arith excess %/yr    6.73
+  YEAR 2022 | days 242 | strategy   24.09% | B  -11.69% | difference   35.77 pts | arith excess %/yr   35.20
+  QUARTER 2020Q1 | days  57 | strategy   -0.00% | B   -6.96% | difference    6.96 pts | arith excess %/yr   30.67
+  QUARTER 2020Q2 | days  59 | strategy    9.57% | B    9.62% | difference   -0.05 pts | arith excess %/yr   -0.82
+  QUARTER 2020Q3 | days  66 | strategy   14.77% | B    6.79% | difference    7.99 pts | arith excess %/yr   26.19
+  QUARTER 2020Q4 | days  60 | strategy   -1.62% | B    3.08% | difference   -4.70 pts | arith excess %/yr  -19.72
+  QUARTER 2021Q1 | days  58 | strategy    7.99% | B   -1.27% | difference    9.26 pts | arith excess %/yr   39.96
+  QUARTER 2021Q2 | days  60 | strategy    6.35% | B    9.11% | difference   -2.76 pts | arith excess %/yr  -10.82
+  QUARTER 2021Q3 | days  64 | strategy    2.73% | B    6.74% | difference   -4.00 pts | arith excess %/yr  -15.98
+  QUARTER 2021Q4 | days  61 | strategy   11.81% | B    7.56% | difference    4.25 pts | arith excess %/yr   16.22
+  QUARTER 2022Q1 | days  58 | strategy    6.06% | B   -8.95% | difference   15.01 pts | arith excess %/yr   66.54
+  QUARTER 2022Q2 | days  59 | strategy    9.87% | B    3.29% | difference    6.59 pts | arith excess %/yr   26.30
+  QUARTER 2022Q3 | days  65 | strategy   -0.63% | B  -10.21% | difference    9.58 pts | arith excess %/yr   38.83
+  QUARTER 2022Q4 | days  60 | strategy    7.15% | B    4.59% | difference    2.57 pts | arith excess %/yr    9.72
+record saved: <BLIND_ROOT>\design\stageC2\record_c2_main_V.npz (0.05 MB)
+# [ 88.1s] window V
+benchmark B vs design\stage3\engine.simulate hold accounts (V, 2255 accounts): max |NAV diff| 0.000e+00
+
+==== WINDOW SEL  2023-01-03..2024-06-28  359 days ====
+benchmark B: pool of 2022-12-30 = 2708 stocks, bought 2708, series ended inside the window 39
+MAIN 500k slip0.1%         n=359 | annS    5.83 annB   -9.59 | T1 excess %/yr   15.42 (arith   17.53) | T2 t  1.43 t551  1.77 TE %/d 0.920 | T3 ddS  36.12 ddB  29.16 | NAV S 1.0840 B 0.8662
+CONSERVATIVE (ended=0)     n=359 | annS   -0.23 annB   -9.86 | T1 excess %/yr    9.64 (arith   12.03) | T2 t  0.97 t551  1.20 TE %/d 0.933 | T3 ddS  35.79 ddB  29.31 | NAV S 0.9968 B 0.8625
+  cons. strategy vs main B n=359 | annS   -0.23 annB   -9.59 | T1 excess %/yr    9.36 (arith   11.74) | T2 t  0.95 t551  1.17 TE %/d 0.934 | T3 ddS  35.79 ddB  29.16 | NAV S 0.9968 B 0.8662
+slip 0.02% (report only)   n=359 | annS    9.94 annB   -9.54 | T1 excess %/yr   19.48 (arith   21.29) | T2 t  1.74 t551  2.15 TE %/d 0.921 | T3 ddS  35.84 ddB  29.16 | NAV S 1.1446 B 0.8669
+20k tier (report only)     n=359 | annS  -22.90 annB   -9.11 | T1 excess %/yr  -13.79 (arith  -18.12) | T2 t -1.31 t551 -1.63 TE %/d 1.037 | T3 ddS  30.96 ddB  28.05 | NAV S 0.6904 B 0.8728
+20k tier: mean holdings 6.6, cash share 0.891, buys 686, lot-unaffordable 15586, B bought 2706 of 2708
+account: mean holdings 49.42 (min 46) | cash share mean 0.0737 | buys 1840 sells 1790 | turnover /yr 24.17 | cost %/yr 8.89 | gross excess (arith net + cost) 26.42 | cost / gross 0.336
+account events: buy blocked 0 | one lot unaffordable 209 | no cash for one lot 0 | cut by cash 0 | 1% cap binding 0 | pending-sell days 0 | pending at end 0
+holdings by amt60 quintile (lowest..highest | not in pool): 0.719 0.112 0.033 0.015 0.088 0.033
+series ended: positions 5 (codes 002288,002781,600242,600306,603133; last tradable 2024-06-26,2023-07-04,2023-06-20,2024-06-19,2024-06-26) | value carried at window end 44386 CNY = 8.189% of NAV | conservative NAV 0.9968 vs main 1.0840
+DECOMPOSITION (358 open-to-open days; %/yr, arithmetic)
+  set sim, continuous path from 2015 (= record): gross 22.00 | net strict 35.2bp 11.87
+  set sim restarted empty at the window start  : gross 25.05 | net strict 35.2bp 14.70 | buys/day 5.126
+  set sim, continuous path from 2015 (= record): gross 22.00 | net mine 19.2bp 15.90
+  set sim restarted empty at the window start  : gross 25.05 | net mine 19.2bp 18.83 | buys/day 5.126
+  [slip 0.1%] account vs pool: frictionless fractional 26.15 | A0 +costs (no lots, no min commission) 18.67 | A1 +whole lots 18.29 | A2 +unaffordable buys dropped 18.90 | A3 +min commission (= engine) 17.15
+  [slip 0.1%] engine vs B open-to-open 19.08 | vs B close-to-close arithmetic (all 359 days) 17.53 | compounded = target 1 15.42 | pool minus B 1.92 | cash share A0 0.0188 A1 0.0613 A2 0.0735 A3 0.0737 | holdings A1 50.00 A2 49.42
+  [slip 0.02%] account vs pool: frictionless fractional 26.15 | A0 +costs (no lots, no min commission) 22.76 | A1 +whole lots 22.37 | A2 +unaffordable buys dropped 22.88 | A3 +min commission (= engine) 20.98
+  [slip 0.02%] engine vs B open-to-open 22.85 | vs B close-to-close arithmetic (all 359 days) 21.29 | compounded = target 1 19.48 | pool minus B 1.87 | cash share A0 0.0201 A1 0.0636 A2 0.0753 A3 0.0744 | holdings A1 50.00 A2 49.42
+  YEAR 2023 | days 242 | strategy   18.62% | B    3.88% | difference   14.73 pts | arith excess %/yr   13.90
+  YEAR 2024 | days 117 | strategy   -8.61% | B  -16.62% | difference    8.01 pts | arith excess %/yr   25.04
+  QUARTER 2023Q1 | days  59 | strategy    7.93% | B    7.51% | difference    0.41 pts | arith excess %/yr    1.62
+  QUARTER 2023Q2 | days  59 | strategy    1.45% | B   -0.41% | difference    1.87 pts | arith excess %/yr    8.32
+  QUARTER 2023Q3 | days  64 | strategy    4.89% | B   -2.94% | difference    7.84 pts | arith excess %/yr   30.54
+  QUARTER 2023Q4 | days  60 | strategy    3.28% | B   -0.03% | difference    3.31 pts | arith excess %/yr   13.69
+  QUARTER 2024Q1 | days  58 | strategy   -2.44% | B   -6.24% | difference    3.80 pts | arith excess %/yr   23.81
+  QUARTER 2024Q2 | days  59 | strategy   -6.33% | B  -11.07% | difference    4.75 pts | arith excess %/yr   26.25
+record saved: <BLIND_ROOT>\design\stageC2\record_c2_main_SEL.npz (0.03 MB)
+# [ 89.7s] window SEL
+# done  elapsed_s=89.7

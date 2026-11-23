@@ -1,0 +1,12 @@
+{
+ "evaluated_at": "2026-10-09 20:57:17",
+ "A_ratio_nn3": -0.16270761260970473,
+ "A_ratio_ridge": 0.4892558985303913,
+ "A_pass": false,
+ "B_ic_years_won": 0,
+ "B_years": 5,
+ "B_pass": false,
+ "info_top_net_years_won": 3,
+ "info_r2_years_won": 1,
+ "PASS": false
+}

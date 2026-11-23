@@ -1,0 +1,134 @@
+# d0_a
+# [  4.7s] stage1 features
+# [  7.3s] stage2 features
+# [ 20.4s] stage3 features
+# [ 22.2s] stage4 features
+# [ 26.1s] stage5 features
+pool: first day 2015-01-12 (row 250); F rows 1212 (2015-01-14..2019-12-31); V rows 727 (2020-01-03..2022-12-30); mean names/day F 1905, V 2534
+# [ 29.0s] labels
+
+A1 design effect per feature on F (label = 10d realisable relative return rank): feature | mean IC | days | rows | deff cross-section (var_day*n) | serial factor (NW 20 lags) | deff total | N_eff rows | naive t (IC*sqrt(rows)) | actual t
+ret1         | -0.0058 | 1201 | 2283943 |    23.2 |  0.88 |     20.4 |  112212 |    -8.8 |  -1.95
+ret3         | -0.0271 | 1201 | 2283943 |    27.1 |  2.50 |     67.8 |   33663 |   -40.9 |  -4.97
+ret5         | -0.0373 | 1201 | 2283943 |    32.0 |  3.95 |    126.3 |   18086 |   -56.4 |  -5.02
+ovn5         | +0.0224 | 1201 | 2283943 |    11.2 |  4.19 |     46.8 |   48801 |    33.8 |   4.94
+intra5       | -0.0465 | 1201 | 2283943 |    27.8 |  4.36 |    120.9 |   18885 |   -70.3 |  -6.40
+ovn20        | +0.0129 | 1201 | 2283943 |    14.1 |  7.15 |    100.8 |   22659 |    19.5 |   1.94
+intra20      | -0.0755 | 1201 | 2283943 |    33.6 |  7.79 |    262.0 |    8719 |  -114.0 |  -7.05
+abn_turn     | -0.0416 | 1201 | 2283943 |    21.2 |  6.45 |    136.5 |   16733 |   -62.8 |  -5.38
+turn5_60     | -0.0428 | 1201 | 2283943 |    22.7 |  7.72 |    175.0 |   13050 |   -64.7 |  -4.89
+turn20       | -0.0768 | 1201 | 2283943 |    57.2 |  7.66 |    438.3 |    5211 |  -116.1 |  -5.55
+pv_corr20    | -0.0406 | 1201 | 2283943 |    14.3 |  5.64 |     80.9 |   28223 |   -61.3 |  -6.82
+amihud20     | +0.0479 | 1201 | 2283943 |    42.7 | 10.13 |    432.1 |    5286 |    72.3 |   3.48
+amt60        | -0.0656 | 1201 | 2283943 |    32.5 | 10.46 |    340.2 |    6714 |   -99.2 |  -5.38
+logprice     | -0.0170 | 1201 | 2283943 |    41.2 |  8.11 |    334.3 |    6832 |   -25.6 |  -1.40
+fcap         | -0.0162 | 1201 | 2283943 |    70.1 |  9.86 |    691.8 |    3301 |   -24.5 |  -0.93
+dist_high60  | -0.0169 | 1201 | 2283943 |    64.5 |  8.22 |    530.3 |    4307 |   -25.6 |  -1.11
+dist_low60   | -0.0636 | 1201 | 2283943 |    38.5 |  7.80 |    300.2 |    7609 |   -96.1 |  -5.55
+clv5         | -0.0143 | 1201 | 2283943 |    19.5 |  4.79 |     93.2 |   24507 |   -21.7 |  -2.25
+dist_high250 | -0.0190 | 1201 | 2283943 |    65.4 |  9.63 |    629.1 |    3630 |   -28.7 |  -1.14
+streak       | -0.0084 | 1201 | 2283943 |    12.9 |  2.61 |     33.8 |   67652 |   -12.7 |  -2.19
+lu20         | -0.0475 | 1201 | 2283943 |    10.5 |  9.53 |     99.7 |   22914 |   -71.7 |  -7.18
+ld20         | +0.0198 | 1201 | 2283943 |    17.7 |  7.68 |    135.7 |   16827 |    29.9 |   2.57
+max20        | -0.0828 | 1201 | 2283943 |    26.6 |  7.21 |    191.5 |   11927 |  -125.2 |  -9.04
+vol20        | -0.0689 | 1201 | 2283943 |    57.9 |  7.75 |    448.4 |    5093 |  -104.1 |  -4.92
+downshare20  | +0.0718 | 1201 | 2283943 |    29.4 |  7.55 |    221.9 |   10293 |   108.4 |   7.28
+hl20         | -0.0753 | 1201 | 2283943 |    57.8 |  7.09 |    409.7 |    5574 |  -113.8 |  -5.62
+ret20        | -0.0762 | 1201 | 2283943 |    43.6 |  8.13 |    354.3 |    6446 |  -115.1 |  -6.12
+ret60        | -0.0651 | 1201 | 2283943 |    46.4 |  8.78 |    407.5 |    5604 |   -98.3 |  -4.87
+ret120       | -0.0465 | 1201 | 2283943 |    39.6 |  9.60 |    380.1 |    6009 |   -70.3 |  -3.61
+mom250_20    | -0.0039 | 1201 | 2283943 |    39.0 |  8.39 |    327.3 |    6979 |    -5.9 |  -0.32
+A1 summary F: rows 2283943 ; deff cross-section median 32.2 (min 10.5 max 70.1) ; serial factor median 7.70 ; deff total median 242 (min 20 max 692) ; N_eff median 9506 (min 3301 max 112212) ; N_eff/day median 7.91 ; naive t / actual t median 15.5
+# [ 29.9s] a: design effect
+
+A2 default GBDT: rows 458019, iterations 100 (max 100; early stopping on a random 10% of ROWS)
+# [ 36.9s] default fit
+A2 R2 (rank label) of the default model, % : in-sample F rows 5.085 ; row-random validation (sklearn internal) 3.343 ; internal train-score 5.146 ; V rows 1.692
+A2 default model, V R2 %% by iteration 1:0.310 5:1.072 10:1.476 20:1.716 30:1.757 50:1.739 75:1.716 100:1.692 ; best iteration on V 31 (1.758)
+A2 default model, in-sample R2 %% by iteration 1:0.370 5:1.391 10:2.090 20:2.900 30:3.366 50:4.045 75:4.619 100:5.085
+
+B1 predictable share: daily cross-sectional correlation of the default-model score with the realised relative return (mean over days) and its square
+B1 5d | Pearson F +0.1257 V +0.0669 (R2 % F 1.580 V 0.447) | rank F +0.1551 V +0.1036 (R2 % F 2.405 V 1.073) | daily sd of rank IC V 0.1094
+B1 10d | Pearson F +0.1589 V +0.0790 (R2 % F 2.525 V 0.624) | rank F +0.1901 V +0.1198 (R2 % F 3.612 V 1.434) | daily sd of rank IC V 0.1128
+B2 5d raw relative return, F rows 2295245: sd 5.45% ; kurtosis 17.5 ; share of sum of squares from the largest |y| 0.1% of rows 8.8%, 1% 29.8%, 5% 56.1% ; |y| at 99% quantile 19.8%, 99.9% 40.4%
+B2 10d raw relative return, F rows 2283943: sd 7.56% ; kurtosis 18.3 ; share of sum of squares from the largest |y| 0.1% of rows 9.0%, 1% 29.2%, 5% 54.6% ; |y| at 99% quantile 27.0%, 99.9% 54.6%
+
+B3 root split of a squared-loss tree on the RAW 10d relative return (F rows): feature | best split bin all rows | gain | best split bin without the 1%% largest |y| | gain | gain of the all-rows split evaluated on core rows only / all-rows gain
+ret1         | 191 | 15.2523 | 191 | 21.9317 | 1.44
+ret3         | 186 | 21.6141 | 186 | 28.3986 | 1.31
+ret5         | 181 | 26.8862 | 184 | 33.1044 | 1.22
+ovn5         |   9 | 13.7428 |  10 | 17.5167 | 1.25
+intra5       | 184 | 32.2278 | 184 | 39.3637 | 1.22
+ovn20        |  15 | 4.7228 |  19 | 8.1128 | 1.66
+intra20      | 177 | 39.6845 | 182 | 50.0573 | 1.26
+abn_turn     | 187 | 28.5394 | 189 | 37.6454 | 1.31
+turn5_60     | 186 | 28.6289 | 186 | 35.1139 | 1.23
+turn20       | 176 | 22.7058 | 176 | 34.0537 | 1.50
+pv_corr20    | 144 | 5.3459 | 109 | 6.0408 | 1.02
+amihud20     | 125 | 18.0277 | 125 | 10.1850 | 0.56
+amt60        |  83 | 20.7870 |  83 | 16.8313 | 0.81
+logprice     |  96 | 2.6066 | 111 | 1.5790 | 0.58
+fcap         |  39 | 9.2668 |  27 | 4.4693 | 0.42
+dist_high60  | 189 | 6.4697 | 197 | 6.3852 | 0.88
+dist_low60   | 171 | 26.5331 | 171 | 37.7301 | 1.42
+clv5         | 176 | 11.4317 | 180 | 9.2073 | 0.80
+dist_high250 |  75 | 5.8306 | 106 | 2.9778 | 0.48
+streak       | 168 | 5.0860 | 176 | 4.8028 | 0.94
+lu20         | 180 | 24.4020 | 184 | 38.7513 | 1.59
+ld20         | 170 | 3.6569 |  74 | 1.8975 | 0.35
+max20        | 159 | 24.8154 | 159 | 36.1845 | 1.46
+vol20        | 173 | 15.4861 | 175 | 31.0971 | 2.00
+downshare20  |  46 | 33.3487 |  46 | 32.8983 | 0.99
+hl20         | 167 | 17.9070 | 170 | 32.5101 | 1.81
+ret20        | 157 | 43.4189 | 172 | 49.0592 | 1.10
+ret60        | 151 | 24.9911 | 156 | 29.9159 | 1.18
+ret120       | 126 | 12.4971 | 170 | 15.2499 | 1.12
+mom250_20    | 197 | 0.7789 | 197 | 1.9965 | 2.56
+B3 summary: features whose best root split moves by >= 20 bins when the 1% tail rows are removed: 4 of 30 ; median (core gain at same split / all gain) 1.22 ; rank correlation of the 30 gains 0.93 ; top-5 by gain all rows: ret20,intra20,downshare20,intra5,turn5_60 ; core rows: intra20,ret20,intra5,lu20,dist_low60 ; total gain best feature all 43.4189 core 50.0573 ; tail threshold |y| > 27.0%
+# [ 89.8s] b: snr and tails
+
+D1 extreme regions: region | seg | rows | %% of pool rows | rows per day | %% without a realisable 10d label | mean model percentile | mean realised percentile | realised 10d relative mean bp, median bp | P(in model top 50) %% (pool base rate %%) | share of top-50 slots %%
+R1 ret120 low 2.5% and price low 2.5% | F | 1897 | 0.082 | 1.6 | 5.7 | 0.575 | 0.542 | +258 -11 | 9.3 (2.6) | 0.3
+R1 ret120 low 2.5% and price low 2.5% | V | 2277 | 0.124 | 3.1 | 12.6 | 0.515 | 0.460 | -208 -190 | 5.3 (2.0) | 0.3
+R2 ret60 low 1% | F | 21234 | 0.920 | 17.5 | 1.4 | 0.453 | 0.490 | +27 -106 | 5.0 (2.6) | 1.8
+R2 ret60 low 1% | V | 18064 | 0.981 | 24.8 | 3.3 | 0.445 | 0.474 | -48 -155 | 3.4 (2.0) | 1.7
+R3 price low 1% | F | 23415 | 1.014 | 19.3 | 1.3 | 0.508 | 0.501 | +1 -65 | 2.1 (2.6) | 0.8
+R3 price low 1% | V | 18053 | 0.980 | 24.8 | 3.3 | 0.545 | 0.521 | +24 -69 | 1.5 (2.0) | 0.8
+R4 close < 2 yuan | F | 5240 | 0.227 | 4.3 | 4.7 | 0.532 | 0.501 | +5 -57 | 2.3 (2.6) | 0.2
+R4 close < 2 yuan | V | 14810 | 0.804 | 20.4 | 4.2 | 0.551 | 0.516 | +6 -82 | 1.8 (2.0) | 0.7
+R5 close < 1.5 yuan | F | 768 | 0.033 | 0.6 | 16.4 | 0.500 | 0.473 | -107 -134 | 7.2 (2.6) | 0.1
+R5 close < 1.5 yuan | V | 2662 | 0.145 | 3.7 | 13.0 | 0.521 | 0.499 | -90 -108 | 3.6 (2.0) | 0.3
+D2 F: number of the 30 features sitting in their outer 2.5% tails: model top-50 mean 1.98 (share with >= 5: 12.7%) ; pool mean 1.41 (share with >= 5: 8.0%)
+D2 V: number of the 30 features sitting in their outer 2.5% tails: model top-50 mean 2.07 (share with >= 5: 11.1%) ; pool mean 1.49 (share with >= 5: 8.4%)
+D3 names whose price series ends inside the data (last tradable row > 60 days before the end), series ending in F: 29 names, 10 with pool rows in the window 60..21 days before the end ; rows 302 ; mean model percentile 0.324 ; in model top-50 0.7% of rows ; without realisable 10d label 0.0%
+D3 names whose price series ends inside the data (last tradable row > 60 days before the end), series ending in F: 29 names, 15 with pool rows in the window 20..0 days before the end ; rows 295 ; mean model percentile 0.471 ; in model top-50 12.5% of rows ; without realisable 10d label 55.3%
+D3 names whose price series ends inside the data (last tradable row > 60 days before the end), series ending in V: 64 names, 4 with pool rows in the window 60..21 days before the end ; rows 132 ; mean model percentile 0.611 ; in model top-50 0.8% of rows ; without realisable 10d label 0.0%
+D3 names whose price series ends inside the data (last tradable row > 60 days before the end), series ending in V: 64 names, 43 with pool rows in the window 20..0 days before the end ; rows 459 ; mean model percentile 0.678 ; in model top-50 17.9% of rows ; without realisable 10d label 73.2%
+# [ 92.4s] d: extrapolation
+
+E1 default model, frozen-hold realisable relative drift bp/day by score zone: H | seg | top20 | top50 | 51-100 | 101-200 | top10% | 10-30% | 30-70% | 70-90% | bot10% | bot50 | rank IC all | rank IC inside top 10% | inside bottom 10%
+E1  5 | F |  33.17 |  27.74 |  19.91 |  15.36 |  20.40 |   9.99 |   1.65 |  -9.26 | -28.34 | -44.73 | +0.1551 | +0.0555 | +0.1178
+E1  5 | V |  10.34 |  10.27 |   9.19 |   8.46 |   8.78 |   5.02 |   1.24 |  -2.69 | -18.36 | -42.01 | +0.1036 | +0.0147 | +0.1121
+E1 10 | F |  30.84 |  25.72 |  17.79 |  13.66 |  18.39 |   8.80 |   1.32 |  -8.42 | -24.33 | -37.33 | +0.1901 | +0.0715 | +0.1372
+E1 10 | V |   8.54 |   8.88 |   8.01 |   7.29 |   7.61 |   4.61 |   0.76 |  -2.52 | -14.79 | -31.90 | +0.1198 | +0.0158 | +0.1208
+E2 F: top-50 set kept next day: raw score 0.569, 5-day mean of score 0.800 ; kept after 10 days (raw) 0.244 ; top-50 drift bp/day raw H5 27.74 H10 25.72 ; smoothed H5 27.54 H10 23.84
+E2 V: top-50 set kept next day: raw score 0.595, 5-day mean of score 0.831 ; kept after 10 days (raw) 0.309 ; top-50 drift bp/day raw H5 10.27 H10 8.88 ; smoothed H5 10.39 H10 9.10
+E3 rank IC with 5d label, score: F +0.1551 V +0.1036
+E3 rank IC with 5d label, yesterday 5d mean: F +0.1410 V +0.0900
+E3 rank IC with 5d label, innovation = score - yesterday 5d mean: F +0.0407 V +0.0309
+# [104.0s] e: mismatch
+F1 default G: daily rank correlation of score with cap proxy: F -0.129 V -0.180 ; with 60d amount: F -0.414 V -0.466
+F2 default G | H  5 | F | top-50: gross 27.74 = style(25 cells) 7.65 + within-cell 20.09 bp/day (t of within 12.92) ; top-50 in smallest cap quintile 0.55, smallest amount quintile 0.52 ; within-cell rank IC +0.1348 ; best 2 per cell (about 50 names, style-neutral): within 20.05 bp/day (t 13.05) ; smallest cap decile: decile mean 7.03, model top-50 inside the decile 20.19, smallest 2% by cap (about 50 names) 8.63
+F2 default G | H  5 | V | top-50: gross 10.27 = style(25 cells) 6.06 + within-cell 4.21 bp/day (t of within 2.96) ; top-50 in smallest cap quintile 0.72, smallest amount quintile 0.67 ; within-cell rank IC +0.0804 ; best 2 per cell (about 50 names, style-neutral): within 4.30 bp/day (t 2.79) ; smallest cap decile: decile mean 4.54, model top-50 inside the decile 13.16, smallest 2% by cap (about 50 names) 6.78
+F2 default G | H 10 | F | top-50: gross 25.72 = style(25 cells) 7.58 + within-cell 18.14 bp/day (t of within 10.01) ; top-50 in smallest cap quintile 0.55, smallest amount quintile 0.52 ; within-cell rank IC +0.1614 ; best 2 per cell (about 50 names, style-neutral): within 17.81 bp/day (t 10.74) ; smallest cap decile: decile mean 6.55, model top-50 inside the decile 18.12, smallest 2% by cap (about 50 names) 7.68
+F2 default G | H 10 | V | top-50: gross 8.88 = style(25 cells) 5.68 + within-cell 3.20 bp/day (t of within 2.13) ; top-50 in smallest cap quintile 0.72, smallest amount quintile 0.67 ; within-cell rank IC +0.0880 ; best 2 per cell (about 50 names, style-neutral): within 3.49 bp/day (t 2.27) ; smallest cap decile: decile mean 4.45, model top-50 inside the decile 10.93, smallest 2% by cap (about 50 names) 5.94
+# [115.1s] f: default style report
+
+F3 cell-neutral-label GBDT (label = rank inside the same amount-quintile x cap-quintile cell): rows 458019, iterations 100
+# [167.2s] f: neutral fit
+F1 cell-neutral label: daily rank correlation of score with cap proxy: F -0.035 V -0.058 ; with 60d amount: F -0.068 V -0.125
+F2 cell-neutral label | H  5 | F | top-50: gross 25.51 = style(25 cells) 1.19 + within-cell 24.32 bp/day (t of within 13.89) ; top-50 in smallest cap quintile 0.38, smallest amount quintile 0.20 ; within-cell rank IC +0.1380 ; best 2 per cell (about 50 names, style-neutral): within 20.95 bp/day (t 13.16) ; smallest cap decile: decile mean 7.03, model top-50 inside the decile 22.36, smallest 2% by cap (about 50 names) 8.63
+F2 cell-neutral label | H  5 | V | top-50: gross 4.78 = style(25 cells) 0.64 + within-cell 4.14 bp/day (t of within 2.07) ; top-50 in smallest cap quintile 0.42, smallest amount quintile 0.23 ; within-cell rank IC +0.0802 ; best 2 per cell (about 50 names, style-neutral): within 4.91 bp/day (t 2.84) ; smallest cap decile: decile mean 4.54, model top-50 inside the decile 11.62, smallest 2% by cap (about 50 names) 6.78
+F2 cell-neutral label | H 10 | F | top-50: gross 23.29 = style(25 cells) 1.47 + within-cell 21.82 bp/day (t of within 11.14) ; top-50 in smallest cap quintile 0.38, smallest amount quintile 0.20 ; within-cell rank IC +0.1634 ; best 2 per cell (about 50 names, style-neutral): within 17.93 bp/day (t 10.50) ; smallest cap decile: decile mean 6.55, model top-50 inside the decile 19.62, smallest 2% by cap (about 50 names) 7.68
+F2 cell-neutral label | H 10 | V | top-50: gross 3.56 = style(25 cells) 0.75 + within-cell 2.81 bp/day (t of within 1.36) ; top-50 in smallest cap quintile 0.42, smallest amount quintile 0.23 ; within-cell rank IC +0.0869 ; best 2 per cell (about 50 names, style-neutral): within 3.27 bp/day (t 1.86) ; smallest cap decile: decile mean 4.45, model top-50 inside the decile 9.50, smallest 2% by cap (about 50 names) 5.94
+# done  elapsed_s=172.1

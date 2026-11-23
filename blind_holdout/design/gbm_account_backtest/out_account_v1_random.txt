@@ -1,0 +1,14 @@
+# c2_random
+scores read from scratch cache <TMP>/c2_cache.npz
+# [  2.8s] scores and market ready; rows 2019-11-26..2024-06-28
+
+==== WINDOW V target 4: random selection, exact engine, 200 seeds ====
+  final NAV: strategy 2.0252 | B 1.2262 | random mean 1.0031 sd 0.1041 min 0.7534 median 1.0019 q97.5 1.2299 max 1.3863 | strategy rank: above 200 of 200 | z 9.81 | target 4: PASS
+  rhythm: strategy mean holdings 49.23 buys 3680 | random mean holdings 49.92 buys 3680
+# [ 33.7s] random V
+
+==== WINDOW SEL target 4: random selection, exact engine, 200 seeds ====
+  final NAV: strategy 1.0840 | B 0.8662 | random mean 0.7769 sd 0.0487 min 0.6682 median 0.7753 q97.5 0.8756 max 0.9314 | strategy rank: above 200 of 200 | z 6.30 | target 4: PASS
+  rhythm: strategy mean holdings 49.42 buys 1840 | random mean holdings 49.95 buys 1840
+# [ 53.8s] random SEL
+# done  elapsed_s=53.8

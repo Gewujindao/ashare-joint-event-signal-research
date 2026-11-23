@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Environments
+.venv*/
+venv/
+env/
+.conda*/
+.runtime*/
+.tmp_python/
+
+# Local data, caches and generated outputs (not distributed)
+cache/
+research_data/
+output/
+external_references/
+*.csv
+*.parquet
+*.pkl
+*.npy
+*.npz
+*.pt
+*.jsonl
+*.jsonl.gz
+*.log
+
+# Secrets and private files
+.secrets/
+.env
+holdings.csv
+sector_map.csv
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

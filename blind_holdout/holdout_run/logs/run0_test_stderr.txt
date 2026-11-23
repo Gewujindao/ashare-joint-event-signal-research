@@ -1,0 +1,9 @@
+﻿python.exe : <BLIND_ROOT>\evaluator\stageC2\c2_core.py:323: RuntimeWarning: divide 
+by zero encountered in scalar divide
+At line:4 char:1
++ & "python" -X utf8  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (<BLIND_ROOT>...n scalar divide:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  t=d.mean() / sd * sqrt(n), t551=d.mean() / sd * sqrt(551), te=sd * 100, ddS=maxdd(np.r_[K0, navS]) * 100,

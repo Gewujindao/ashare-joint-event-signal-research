@@ -1,0 +1,10 @@
+# c4_pool
+data rows 3102, last date 2026-10-09 ; mode extend ; tag pool
+# [  7.7s] stage1
+# [ 12.1s] stage2
+# [ 32.6s] stage3
+# [ 35.6s] stage4
+# [ 43.5s] stage5
+pool: first day 2015-01-12 (row 250); fit segment ends 2019-12-31 (row 1463)
+t0 250 (2015-01-12); r0 225 (2014-12-04); rows 3102; pool size on t0 1727
+# done  elapsed_s=44.8
